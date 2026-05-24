@@ -1,6 +1,11 @@
-# Base profile renders the Spanish book at site root (/).
-# The `en` and `fr` profiles (in _quarto-en.yml / _quarto-fr.yml) override
-# `output-dir`, `book.chapters`, and `lang` to produce /en/ and /fr/.
+# Shared base — NO chapter list here. Each language profile
+# (_quarto-es.yml, _quarto-en.yml, _quarto-fr.yml) provides its own
+# book.chapters list, so Quarto's profile array-merge doesn't union
+# them across languages.
+# Always render with an explicit profile:
+#   quarto render --profile es   (root /)
+#   quarto render --profile en   (/en/)
+#   quarto render --profile fr   (/fr/)
 
 project:
   type: book
@@ -10,10 +15,8 @@ project:
     - "pdf/**"
 
 book:
-  title: "Encajes entre nociones de forcing"
-  subtitle: "Tesis de licenciatura — Facultad de Ciencias, UNAM"
+  # title / subtitle / language / page-footer set per-profile
   author: "Alonso Celis"
-  language: es
   reader-mode: true
   page-navigation: true
   search: true
@@ -36,14 +39,7 @@ book:
       - icon: github
         href: https://github.com/Alonso-Celis/Mathematics
         aria-label: GitHub
-  chapters:
-    - index.es.qmd
-    - chapters/01-preliminares.es.qmd
-    # - chapters/02-encajes.es.qmd
-    # - chapters/03-aplicaciones.es.qmd
-  page-footer:
-    left: "© Alonso Celis"
-    right: "Sitio construido con Quarto"
+  # chapters: see _quarto-es.yml / -en.yml / -fr.yml
 
 bibliography: references.bib
 
@@ -63,17 +59,7 @@ format:
     crossrefs-hover: true
   # pdf: re-add and enable TinyTeX in the workflow to ship per-language PDFs.
 
-# Theorem / proof crossref labels (Quarto built-in)
-crossref:
-  thm-title: "Teorema"
-  lem-title: "Lema"
-  cor-title: "Corolario"
-  prp-title: "Proposición"
-  def-title: "Definición"
-  exm-title: "Ejemplo"
-  exr-title: "Ejercicio"
+# Theorem / proof crossref titles are set per-profile.
 
 execute:
   freeze: auto
-
-lang: es

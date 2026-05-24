@@ -37,7 +37,7 @@ jobs:
             freeze-${{ runner.os }}-
 
       - name: Render (Spanish — root)
-        run: quarto render
+        run: quarto render --profile es
 
       - name: Render (English — /en/)
         run: quarto render --profile en

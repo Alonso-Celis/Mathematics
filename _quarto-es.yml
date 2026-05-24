@@ -1,0 +1,29 @@
+# Profile: es — renders the Spanish book at site root (/).
+# Activated by: `quarto render --profile es`
+
+project:
+  output-dir: _site
+
+book:
+  language: es
+  title: "Encajes entre nociones de forcing"
+  subtitle: "Tesis de licenciatura — Facultad de Ciencias, UNAM"
+  chapters:
+    - index.es.qmd
+    - chapters/01-preliminares.es.qmd
+    # - chapters/02-encajes.es.qmd
+    # - chapters/03-aplicaciones.es.qmd
+  page-footer:
+    left: "© Alonso Celis"
+    right: "Sitio construido con Quarto"
+
+crossref:
+  thm-title: "Teorema"
+  lem-title: "Lema"
+  cor-title: "Corolario"
+  prp-title: "Proposición"
+  def-title: "Definición"
+  exm-title: "Ejemplo"
+  exr-title: "Ejercicio"
+
+lang: es
