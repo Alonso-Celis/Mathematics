@@ -15,6 +15,12 @@ permissions:
   contents: write
   pull-requests: write
 
+# Opt into Node-24 for all JavaScript actions ahead of the 2026-06-02
+# default switch. Matches publish.yml; remove once upstream actions
+# ship Node-24-native majors.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   shoot:
     runs-on: ubuntu-latest
@@ -25,7 +31,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install Playwright
         run: |
