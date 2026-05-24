@@ -1,0 +1,52 @@
+name: Capture screenshots
+
+# Manual-only — captures full-page PNGs of the live site and opens a PR
+# adding them under assets/screenshots/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_base:
+        description: "Base URL to capture (defaults to the production site)"
+        required: false
+        default: "https://alonso-celis.github.io/Mathematics"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  shoot:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.48.0-jammy
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Capture screenshots
+        env:
+          SITE_BASE: ${{ inputs.site_base }}
+        run: node scripts/screenshot.js
+
+      - name: List captured files
+        run: ls -la assets/screenshots/
+
+      - name: Open pull request with refreshed screenshots
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/screenshots
+          base: main
+          commit-message: "Refresh live-site screenshots"
+          title: "Refresh live-site screenshots"
+          body: |
+            Automated refresh of the screenshots used in `README.md`,
+            captured from `${{ inputs.site_base }}` by the
+            `Capture screenshots` workflow.
+
+            One PNG per (landing × chapter) × (es, en, fr) — six in total.
+          labels: documentation
+          add-paths: |
+            assets/screenshots/*.png
+          delete-branch: true

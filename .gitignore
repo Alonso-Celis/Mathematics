@@ -37,3 +37,8 @@ Thumbs.db
 # Local environment
 .env
 .env.local
+
+# Node (only used by scripts/screenshot.js when run locally)
+node_modules/
+package-lock.json
+package.json
