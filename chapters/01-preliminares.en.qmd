@@ -1,0 +1,877 @@
+---
+title: "Preliminaries"
+lang: en
+---
+
+In this chapter we introduce the concepts required for the rest of the
+thesis. We present the definition of the central notion of this work — the
+partial order — and use it to introduce concepts of interest such as
+antichain, maximal antichain, dense subset, and dense subset below an
+element of a partial order. We set up the standard language of forcing
+theory and state its fundamental theorems. Finally, we exhibit some
+examples and properties of partial orders.
+
+## Partial orders
+
+::: {#def-orden-parcial}
+Let $\mathbb P$ be a set, $\leq$ a binary relation on $\mathbb P$, and
+$\mathbb{1}_{\mathbb P}$ an element of $\mathbb P$. We say that
+$(\mathbb P, \leq, \mathbb{1}_{\mathbb P})$ is a **partial order** if and
+only if for every $p, q, r \in \mathbb P$ the following hold:
+
+1. $\mathbb{1}_{\mathbb P}$ is the unique element of $\mathbb P$ that
+   satisfies $p \leq \mathbb{1}_{\mathbb P}$ for every $p \in \mathbb P$.
+2. $p \leq p$.
+3. If $p \leq q$ and $q \leq r$, then $p \leq r$.
+:::
+
+According to the previous definition, $\mathbb P \neq \emptyset$ and
+$\mathbb{1}_{\mathbb P}$ is a maximum element of $\mathbb P$. From now on,
+all our partial orders will have a maximum element $\mathbb{1}_{\mathbb P}$.
+The relation mentioned is not necessarily antisymmetric (i.e. $p \leq q$
+and $q \leq p$ do not necessarily imply $p = q$). When the relation does
+satisfy antisymmetry, we will say that the partial order in question is an
+*antisymmetric partial order*. It is common to find in the literature what
+is here defined as a partial order called a *preorder*. In this sense, for
+the purposes of this work preorder means the same thing as partial order.
+
+For notational simplicity, whenever we speak of the partial order
+$\mathbb P$ we shall be referring to the triple
+$(\mathbb P, \leq, \mathbb{1}_{\mathbb P})$. In this context, the symbol
+$\mathbb P$ will always denote a partial order (or forcing notion) and,
+whenever there is no risk of confusion, we will write $\mathbb{1}$ instead
+of $\mathbb{1}_{\mathbb P}$ for the maximum element of $\mathbb P$.
+
+::: {#def-compatibilidad}
+Let $p, q \in \mathbb P$.
+
+1. We say that $p$ and $q$ are **compatible** $(p \mid q)$ if there is
+   $r \in \mathbb P$ such that $r \leq p$ and $r \leq q$.
+2. $p$ and $q$ are **incompatible** $(p \perp q)$ if they are not
+   compatible — that is, if there is no $r \in \mathbb P$ such that
+   $r \leq p$ and $r \leq q$.
+:::
+
+Note that any two comparable elements are always compatible. In other
+words, if $p, q \in \mathbb P$ and $p \leq q$, then $p \mid q$ as an
+immediate consequence of the previous definition. So, for example, we
+always have $p \mid \mathbb{1}_{\mathbb P}$. On the other hand, when two
+elements of $\mathbb P$ are comparable ($p \leq q$) we say that $p$ is an
+*extension* of $q$, and consequently, when two elements of $\mathbb P$ are
+compatible we say that they *admit a common extension*.
+
+::: {#def-anticadena}
+Let $A, X \subseteq \mathbb P$.
+
+1. $A$ is an **antichain** if any two distinct elements of $A$ are
+   incompatible.
+2. $A \subseteq X$ is a **maximal antichain in** $X$ if $A$ is an
+   antichain and no other antichain in $X$ contains it properly.
+:::
+
+Observe that if $A \subseteq \mathbb P$ is an antichain and
+$\mathbb{1}_{\mathbb P} \in A$, then $A = \{\mathbb{1}_{\mathbb P}\}$. This
+follows because $\mathbb{1}_{\mathbb P} \mid p$ for every $p \in \mathbb P$.
+
+::: {#def-anticadena-trivial}
+$A \subseteq \mathbb P$ is the **trivial antichain** if
+$A = \{\mathbb{1}_{\mathbb P}\}$.
+:::
+
+When we want to show that a given antichain is maximal, we will do so via
+the following equivalence.
+
+::: {#prp-equivalencia}
+Let $X \subseteq \mathbb P$. The following are equivalent for any
+antichain $A \subseteq X$.
+
+1. $A$ is maximal in $X$.
+2. For every $x \in X$ there is $a \in A$ such that $x$ and $a$ are
+   compatible.
+:::
+
+::: {.proof}
+We prove this proposition by contrapositive in both directions. Let
+$A \subseteq X$ be an antichain. Suppose there is $x \in X$ such that
+$x \perp a$ for every $a \in A$. From this, $x \notin A$. Hence
+$A \cup \{x\}$ is an antichain that properly contains $A$, so $A$ is not
+maximal.
+
+Suppose $A$ is not maximal in $X$. Then there is an antichain
+$B \subseteq X$ with $A \varsubsetneq B$. Let $b \in B \setminus A$. Since
+$B$ is an antichain, $a \perp b$ for every $a \in A$.
+:::
+
+::: {#cor-anticadena-trivial-maximal}
+If $A$ is the trivial antichain, then $A$ is maximal in $\mathbb P$.
+:::
+
+::: {.proof}
+Let $A = \{\mathbb{1}_{\mathbb P}\}$ and let $p \in \mathbb P$. Then
+$p \mid \mathbb{1}_{\mathbb P}$. So, by @prp-equivalencia, $A$ is maximal
+in $\mathbb P$.
+:::
+
+We now introduce the concepts of a dense subset of a partial order and a
+dense subset below an element of a partial order. Both will be of
+particular relevance in the next section.
+
+::: {#def-denso}
+If $D \subseteq \mathbb P$ and $p_0 \in \mathbb P$, then:
+
+1. $D$ is a **dense subset** of $\mathbb P$ if for every $p \in \mathbb P$
+   there is $d \in D$ such that $d \leq p$.
+2. $D$ is **dense below** $p_0$ if for every $r \leq p_0$ there is
+   $d \in D$ such that $d \leq r$.
+:::
+
+A first consequence of being a dense subset of a partial order is that it
+suffices for an antichain to be maximal in the dense set in order to be
+maximal in the whole order — a fact we prove next.
+
+::: {#prp-amaximalendenso}
+If $D$ is a dense subset of $\mathbb P$, then every maximal antichain in
+$D$ is maximal in $\mathbb P$.
+:::
+
+::: {.proof}
+Let $p \in \mathbb P$ and let $A \subseteq D$ be a maximal antichain in
+$D$. Then, for some $d \in D$, $d \leq p$ since $D$ is dense in $\mathbb P$.
+By @prp-equivalencia, $d \mid a$ for some $a \in A$. Let $q \leq d, a$.
+Then $q \leq p, a$. We have shown that every element of $\mathbb P$ is
+compatible with some element of $A$ — that is, $A$ is maximal in
+$\mathbb P$.
+:::
+
+Up to this point we have spoken of the properties of maximal antichains,
+but we have not shown that they exist. The next result repairs this gap.
+
+::: {#prp-extenderanticadenamaximal}
+If $B \subseteq X \subseteq \mathbb P$ and $B$ is an antichain, then there
+is a maximal antichain in $X$ that contains $B$.
+:::
+
+::: {.proof}
+We want to see that $B$ can be extended to a maximal antichain in $X$. To
+that end, consider the following set:
+$$
+\Sigma = \{A \subseteq X : A \text{ is an antichain and } B \subseteq A\}.
+$$
+
+We check that the partial order $(\Sigma, \subseteq)$ satisfies the
+hypotheses of Zorn's Lemma. $\Sigma \neq \emptyset$ because $B \in \Sigma$.
+
+Let $\mathcal C$ be any non-empty chain in $\Sigma$. We show that
+$\bigcup \mathcal C$ is an upper bound in $\Sigma$ for $\mathcal C$.
+
+For every $A \in \mathcal C$, $A \subseteq \bigcup \mathcal C$. Let
+$x \in \bigcup \mathcal C$. Then $x \in A$ for some $A \in \mathcal C$ and,
+since $\mathcal C$ is a chain of elements in $\Sigma$, $A \subseteq X$ and
+therefore $x \in X$.
+
+Now, $\bigcup \mathcal C$ is an antichain: if
+$x, y \in \bigcup \mathcal C$ are distinct, then there exist
+$A_0, A_1 \in \mathcal C$ such that $x \in A_0$ and $y \in A_1$. Since
+$\mathcal C$ is a chain, either $A_0 \subseteq A_1$ or $A_1 \subseteq A_0$.
+Suppose $A_0 \subseteq A_1$; then $x$ and $y$ are both elements of $A_1$,
+which is an antichain, and therefore $x \perp y$. The argument is
+analogous if $A_1 \subseteq A_0$.
+
+To verify that $\bigcup \mathcal C$ contains $B$, note that since
+$\mathcal C \neq \emptyset$, there is $A \in \mathcal C$ with
+$A \subseteq \bigcup \mathcal C$. Then $A \in \Sigma$, hence
+$B \subseteq A$, and therefore $B \subseteq \bigcup \mathcal C$.
+
+In summary, every non-empty chain in $\Sigma$ has an upper bound in
+$\Sigma$, and so by Zorn's Lemma there is $A \subseteq \mathbb P$ that is
+a maximal element of $\Sigma$.
+:::
+
+## Generic extensions
+
+For the rest of this work, $V$ will always denote a countable transitive
+model of a sufficiently large fragment of the ZFC axioms — that is, we
+will think of $V$ as a model of those axioms of set theory required to
+prove the theorem at hand. Recall that, by Gödel's Second Incompleteness
+Theorem, it is not possible to produce within ZFC a model of all the
+axioms of ZFC. However, it is possible to consider a countable transitive
+model $V$ of any finite list of ZFC axioms. We will call $V$ the *ground
+model*.
+
+One of the important issues in the development of this work is the need
+for certain sets to be elements of the ground model. To deal with this we
+must turn to the concept of *relativization*. Given the breadth and
+complexity of the topic, we refer the reader to [@kunen, IV §2] for
+further details. We present below an example of a typical situation that
+will arise throughout the text and that illustrates how to argue when a
+set belongs to the ground model $V$:
+
+Assume $\{\mathbb P, \leq\} \subseteq V$. Given $X \in V$ with
+$X \subseteq \mathbb P$, define the formula
+$$
+\varphi : \forall x \in X \, (p \perp x).
+$$
+
+We wish to argue that if
+$Y = \{p \in \mathbb P : \varphi(p)\}
+   = \{p \in \mathbb P : \forall x \in X \, (p \perp x)\}$,
+then $Y \in V$; to do so we show that $\varphi$ is absolute for $V$ —
+that is, $\varphi$ is equivalent to $\varphi^V$, the relativization of
+$\varphi$ to $V$. We begin by observing that, given
+$p, q \in \mathbb P$, $p \perp q$ means
+$\neg \exists r \, (r \in \mathbb P \,\&\, r \leq p \,\&\, r \leq q)$.
+Moreover, $r \leq p$ and $r \leq q$ mean $(r, p) \in \,\leq$ and
+$(r, q) \in \,\leq$.
+
+Since $p, q \in \mathbb P \in V$ and $V$ is a transitive model, we have
+$p, q \in V$. Then $(p \leq q)^V$ if and only if $p \leq q$ because $\in$
+is absolute (see [@kunen, VI §3]) and $\leq \, \in V$. Hence
+$(p \perp q)^V \leftrightarrow p \perp q$. In conclusion,
+$\{p \in \mathbb P : \varphi^V(p)\} = Y$. Therefore $Y \in V$.
+
+In general we will skip the details whenever the notions involved are
+absolute and the parameters are elements of $V$. For instance, in the
+previous case we will simply say that $Y \in V$ because
+$\mathbb P, X \in V$, where, from now on, $\mathbb P \in V$ will mean that
+$\{\mathbb P, \leq\} \subseteq V$.
+
+::: {#def-filtro}
+Let $G \subseteq \mathbb P$ be non-empty. We will say that $G$ is a
+**filter** on $\mathbb P$ if the following hold:
+
+1. whenever $p \in G$ and $q \in \mathbb P$, $p \leq q$ implies $q \in G$;
+   and
+2. if $p, q \in G$, then there is $r \in G$ such that $r \leq p, q$.
+:::
+
+Note that since $G \neq \emptyset$ and $p \leq \mathbb{1}$ for every
+$p \in G$, it follows from clause (1) of the previous definition that
+$\mathbb{1}$ is always an element of $G$.
+
+We now show that, for any finite subset of a filter, the filter contains a
+common extension of all its members.
+
+::: {#prp-extensionparamuchos}
+If $G$ is a filter and $F$ is a finite subset of $G$, then there is
+$p \in G$ such that $p \leq q$ for every $q \in F$.
+:::
+
+::: {.proof}
+Write $F = \{q_0, q_1, \ldots, q_{n-1}\}$. Since $G$ is a filter, there is
+$p_0 \in G$ such that $p_0 \leq q_0, q_1$. But then there is $p_1 \in G$
+such that $p_1 \leq p_0, q_1$. Continuing in this fashion, there is
+$p_{k+1} \in G$ such that $p_{k+1} \leq p_k, q_{k+1}$ for
+$k = 0, 1, 2, \ldots, n-2$. Then $p = p_{n-1} \in G$ and $p \leq q$ for
+every $q \in F$.
+:::
+
+Throughout this work we will be interested in filters that do not avoid
+any dense subset of $\mathbb P$ that belongs to the ground model. We make
+this precise next.
+
+::: {#def-filtrogenerico}
+Let $\mathbb P \in V$. We say that $G \subseteq \mathbb P$ is a
+**$(V, \mathbb P)$-generic filter** if $G$ is a filter and, for every set
+$D$ dense in $\mathbb P$, $D \in V$ implies $G \cap D \neq \emptyset$.
+:::
+
+The next lemma simplifies the task of verifying that a filter is
+$(V, \mathbb P)$-generic, and will be used in a later chapter.
+
+::: {#lem-filtroequivalencia}
+Let $\mathbb P \in V$ and $G \subseteq \mathbb P$. Then $G$ is a
+$(V, \mathbb P)$-generic filter if and only if for every
+$p, q \in \mathbb P$:
+
+1. if $p, q \in G$, then there is $r \in \mathbb P$ such that
+   $r \leq p, q$;
+2. if $p \in G$ and $p \leq q$, then $q \in G$; and
+3. for every $D \subseteq \mathbb P$, if $D \in V$ and $D$ is dense in
+   $\mathbb P$, then $G \cap D \neq \emptyset$.
+:::
+
+::: {.proof}
+Suppose $G$ is a $(V, \mathbb P)$-generic filter. Since $G$ is a filter,
+properties (1) and (2) hold trivially. Property (3) follows from the
+genericity of $G$.
+
+We prove the remaining implication. Suppose $G$ satisfies (1), (2), and
+(3). By @def-filtrogenerico, it remains to show that any two elements of
+$G$ are compatible in $G$. Note that property (1) only guarantees that
+any two elements of $G$ admit a common extension in $\mathbb P$. Let
+$p, q \in G$. Define
+$$
+D = \{r \in \mathbb P : r \perp p \,\vee\, r \perp q \,\vee\,
+       (r \leq p \,\&\, r \leq q)\}.
+$$
+
+We show that $D$ is a dense subset of $\mathbb P$. Let $s \in \mathbb P$.
+If for some $r \leq s$ we have $r$ incompatible with $p$ or with $q$,
+then $r \leq s$ and $r \in D$. If, on the contrary, every extension of
+$s$ is compatible with both $p$ and $q$, then there is
+$r_0 \in \mathbb P$ such that $r_0 \leq s, p$ (since $s \leq s$). Then
+there is $r \in \mathbb P$ such that $r \leq r_0, q$, since $r_0 \leq s$.
+Hence $r \leq p, q$ — that is, $r$ is an extension of $s$ in $D$.
+
+Now, by hypothesis $\mathbb P \in V$, and by the transitivity of $V$,
+$p, q \in V$. Thus $D \in V$. By property (3),
+$G \cap D \neq \emptyset$. Let $r \in G \cap D$. Note that we cannot have
+$r \perp p$ nor $r \perp q$, since otherwise $G$ would contain two
+incompatible elements, contradicting property (1). Therefore $r \in G$
+and $r \leq p, q$.
+:::
+
+The reason we require our models of ZFC to be countable can be seen in
+the proof of the next result.
+
+::: {#lem-condicionenG}
+If $\mathbb P \in V$, then for every $p \in \mathbb P$ there is a
+$(V, \mathbb P)$-generic filter $G$ such that $p \in G$.
+:::
+
+::: {.proof}
+Let $\langle D_n : n \in \omega \rangle$ be an enumeration of all dense
+subsets of $\mathbb P$ that belong to $V$. By the density of each $D_n$,
+we may inductively choose $q_{n+1} \in D_n$ so that the sequence
+$\langle q_i : i < \omega \rangle$ is decreasing. In other words, there
+is a sequence $\langle q_i : i < \omega \rangle$ such that:
+
+- $q_0 = p$
+- $q_{n+1} \leq q_n$ with $q_{n+1} \in D_n$
+
+Now consider $G = \{r \in \mathbb P : \exists n \, (q_n \leq r)\}$. We
+show that $G$ is the desired set. Let $r, s \in G$. Then there are
+$n, m \in \omega$ such that $q_n \leq r$ and $q_m \leq s$. Without loss
+of generality, suppose $n \leq m$. Then $q_m \leq r, s$ and $q_m \in G$.
+
+Let $s \in \mathbb P$ and $r \in G$ with $r \leq s$. Then $q_n \leq r$
+for some $n \in \omega$. So $q_n \leq s$, hence $s \in G$.
+
+$G$ is generic because $q_{n+1} \in G \cap D_n$ for every $n$.
+:::
+
+We now turn to partial orders in which every element admits two
+mutually-incompatible extensions.
+
+::: {#def-ordennoatomico}
+We say that $\mathbb P$ is **atomless** if for every $p \in \mathbb P$
+there are $r, q \in \mathbb P$ such that $r, q \leq p$ and $r \perp q$.
+:::
+
+The importance of atomless partial orders is that they produce proper
+extensions of the ground model, as the next result shows.
+
+::: {#lem-noatomico}
+If $\mathbb P \in V$ is atomless and $G$ is a $(V, \mathbb P)$-generic
+filter, then $G \notin V$.
+:::
+
+::: {.proof}
+Suppose, on the contrary, that $G \in V$. Then
+$D = \mathbb P \setminus G \in V$, since set difference is an absolute
+notion. $D$ is a dense subset of $\mathbb P$: if $p \in \mathbb P$, then
+there are $r, q \in \mathbb P$ that are mutually incompatible extensions
+of $p$. Note that $r$ and $q$ cannot both be in $G$, since $r \perp q$
+and $G$ is a filter. Hence $r \leq p$ and $r \in D$, or $q \leq p$ and
+$q \in D$. But then $D$ is a dense subset of $\mathbb P$ with $D \in V$
+and $G \cap D = \emptyset$, contradicting the genericity of $G$.
+:::
+
+From now on, all our partial orders will be atomless (in some cases we
+will say *atom-free partial order* instead of atomless).
+
+A central concept for talking about a model that will turn out to be an
+extension of $V$ is the following:
+
+::: {#def-pnombre}
+$\dot x$ is a **$\mathbb P$-name** if and only if $\dot x$ is a relation
+and for every $(\dot y, p) \in \dot x$ we have that $\dot y$ is a
+$\mathbb P$-name and $p \in \mathbb P$.
+:::
+
+The previous definition is given recursively. The Axiom of Foundation
+(also called the Axiom of Regularity) guarantees that this definition
+makes sense. Note moreover that the definition is given in terms of
+absolute concepts, so the notion of $\mathbb P$-name is absolute.
+
+::: {#def-vp}
+We denote by $V^{\mathbb P}$ the collection of all $\mathbb P$-names that
+belong to $V$.
+:::
+
+The collection just defined becomes relevant once we have a
+$(V, \mathbb P)$-generic filter $G$, since the inhabitants of the model
+that we are pursuing — which will extend $V$ — turn out to be the
+valuations of the elements of $V^{\mathbb P}$ with respect to $G$. We
+make this precise with the next two definitions.
+
+::: {#def-valuacion}
+If $\dot x \in V^{\mathbb P}$ and $G$ is a $(V, \mathbb P)$-generic
+filter, we define the **valuation** of $\dot x$ with respect to $G$
+recursively as
+$$
+\dot x_G = \{\dot y_G : \exists p \in G \, ((\dot y, p) \in \dot x)\}.
+$$
+:::
+
+::: {#def-vg}
+If $G$ is a $(V, \mathbb P)$-generic filter, we define
+$$
+V[G] = \{\dot x_G : \dot x \in V^{\mathbb P}\}.
+$$
+:::
+
+One way to read $V[G]$ is as follows: $x$ belongs to $V[G]$ if and only
+if $x$ is definable in $V[G]$ from $G$ and finitely many elements of $V$,
+and therefore has a name.
+
+A crucial fact is that $V[G]$ turns out to be the smallest extension that
+contains $V$:
+
+::: {#lem-minimalidad}
+If $M$ is a transitive model of ZFC with $V \subseteq M$ and $G \in M$,
+then $V[G] \subseteq M$.
+:::
+
+::: {.proof}
+For every $\dot x \in V^{\mathbb P}$, $\dot x \in M$ and $G \in M$. Thus
+$\dot x_G = (\dot x_G)^M \in M$, where $(\dot x_G)^M$ is the
+relativization of the set $\dot x_G$ to the model $M$ (see [@kunen, VII]).
+:::
+
+The next theorem, together with @lem-minimalidad, establishes that
+$V[G]$ is a transitive model of ZFC containing $V$. Its proof is omitted
+as it exceeds the scope of this thesis. The reader is referred to the
+proof developed throughout [@kunen, VII §2] and [@kunen, VII Theorem 4.2].
+
+::: {#thm-vg-es-modelo}
+If $G$ is a $(V, \mathbb P)$-generic filter, then $V[G]$ is a countable
+transitive model of ZFC with $V \subseteq V[G]$.
+:::
+
+The next definition and @lem-valuacioncanonica show that any element of
+$V$ can be represented in canonical form by a name, which we will denote
+by $\check{x}$.
+
+::: {#def-nombrecanonico}
+We define the **canonical $\mathbb P$-name** of $x \in V$ recursively by
+$$
+\check{x} = \{(\check{y}, \mathbb{1}_{\mathbb P}) : y \in x\}.
+$$
+:::
+
+Note that, formally, $\check{x}$ depends on the maximum element
+$\mathbb{1}_{\mathbb P}$ as well as on $x$. The set $\mathbb P$ will
+always be clear from context. The previous definition is recursive and
+uses only absolute concepts, so if $x \in V$ then $\check{x} \in V$. A
+relevant fact is that the valuation of $\check{x}$ with respect to a
+generic filter $G$ turns out to be $x$. This is the content of the
+following lemma (see a proof in [@kunen, VII Lemma 2.11]):
+
+::: {#lem-valuacioncanonica}
+If $\mathbb P \in V$ and $G$ is a $(V, \mathbb P)$-generic filter, then
+for every $x \in V$ we have $\check{x} \in V^{\mathbb P}$ and
+$\check{x}_G = x$.
+:::
+
+It is of interest to know whether there is a name whose valuation with
+respect to $G$ is precisely the generic filter. This is answered by the
+next definition and lemma.
+
+::: {#def-gamma}
+Given $\mathbb P \in V$, define
+$\Gamma = \{(\check{p}, p) : p \in \mathbb P\}$.
+:::
+
+Note that the definition of $\Gamma$ depends on $\mathbb P$. Now,
+$\Gamma \in V$ because $\mathbb P \in V$.
+
+::: {#lem-gammaesg}
+If $\mathbb P \in V$ and $G \subseteq \mathbb P$ is a non-empty filter,
+then $\Gamma_G = G$.
+:::
+
+::: {.proof}
+$\Gamma_G = \{\check{p}_G : p \in G\} = \{p : p \in G\} = G$.
+:::
+
+By the previous lemma, there is a name, $\Gamma$, whose valuation with
+respect to $G$ returns $G$. This lets us conclude that $G \in V[G]$.
+
+Combining this observation with @thm-vg-es-modelo, $V[G]$ is the smallest
+transitive extension containing $V$ as a set and $G$ as an element.
+
+::: {#lem-lemadenso}
+Let $\mathbb P \in V$ and let $E \subseteq \mathbb P$ with $E \in V$. For
+every $(V, \mathbb P)$-generic filter $G$ we have:
+
+1. $G \cap E \neq \emptyset$, or there is $q \in G$ such that $r \perp q$
+   for every $r \in E$.
+2. If $p \in G$ and $E$ is dense below $p$, then
+   $G \cap E \neq \emptyset$.
+:::
+
+::: {.proof}
+(1). Let $E^{\downarrow} = \{p \in \mathbb P : \exists r \in E \,
+(p \leq r)\}$ and $E^{\perp} = \{q \in \mathbb P : \forall r \in E \,
+(r \perp q)\}$, and consider $D = E^{\downarrow} \cup E^{\perp}$. We
+claim that $D$ is dense in $\mathbb P$. Let $p_0 \in \mathbb P$. If
+$p_0 \in E^{\perp}$, then $p_0$ is an element of $D$ that extends itself
+and we are done. Otherwise $p_0 \notin E^{\perp}$, so there is
+$r_0 \in E$ with $r_0 \mid p_0$ — that is, $p \leq r_0$ and $p \leq p_0$
+for some $p \in \mathbb P$. But then $p \in E^{\downarrow}$, hence $p$ is
+an element of $D$ extending $p_0$.
+
+Now, $D \in V$ since $\mathbb P, E \in V$. Since $G$ is
+$(V, \mathbb P)$-generic, $G \cap D \neq \emptyset$. Let
+$p \in G \cap D$. If $p \in E^{\downarrow}$, then $p \leq r$ for some
+$r \in E$, which implies $r \in G$ since $p \in G$ and $G$ is a filter.
+Thus $G \cap E \neq \emptyset$. If $p \in E^{\perp}$, then $p \in G$ is
+incompatible with every element of $E$, which finishes the proof.
+
+(2). By contradiction. Suppose that for some $p \in G$ with $E$ dense
+below $p$, $G \cap E = \emptyset$. By (1) there is then some $q \in G$
+incompatible with every element of $E$. Since $G$ is a filter, there is
+$t \in G$ such that $t \leq p, q$. Since $E$ is dense below $p$,
+$r \leq t$ for some $r \in E$, hence $r \leq q$ and in particular
+$r \mid q$, which is impossible.
+:::
+
+The next lemma shows that generic filters are maximal in the sense of
+containment.
+
+::: {#lem-filtrosiguales}
+Let $\mathbb P \in V$. If $G$ and $H$ are both $(V, \mathbb P)$-generic
+filters and $G \subseteq H$, then $G = H$.
+:::
+
+::: {.proof}
+It remains to show $H \subseteq G$. By contradiction, suppose there is
+$p \in H \setminus G$. Then $G \cap \{p\} = \emptyset$. By
+@lem-lemadenso (1) applied to $G$ and $\{p\}$, there is
+$q \in G \subseteq H$ such that $q \perp p$, which is impossible because
+$H$ is a filter.
+:::
+
+## Forcing
+
+Let us now set up our main relation of interest in this section: the
+forcing relation. Relaxing notation for a moment, the symbol
+$p \Vdash \phi$ should be read as "$p$ *forces* $\phi$".
+
+::: {#def-forzar}
+Let $\mathbb P \in V$ and let $\varphi(y_1, \ldots, y_n)$ be a formula
+whose free variables are $y_1, \ldots, y_n$. Let
+$\dot x_1, \ldots, \dot x_n \in V^{\mathbb P}$ and $p \in \mathbb P$. We
+say that $p \Vdash \varphi(\dot x_1, \ldots, \dot x_n)$ if and only if
+for every $(V, \mathbb P)$-generic filter $G$ with $p \in G$,
+$\varphi^{V[G]}((\dot x_1)_G, \ldots, (\dot x_n)_G)$ holds.
+:::
+
+The next lemma will be very useful in later proofs; its proof can be
+consulted in [@kunen, VII Lemma 3.2]. Informally, clause (1) says that
+if $p \in \mathbb P$ and $p \Vdash \phi$, then every extension of $p$
+also forces $\phi$; clause (2) says that if $p$ forces two formulas, then
+$p$ forces their conjunction.
+
+::: {#lem-alguienmasfuerte}
+Let $\mathbb P \in V$ and $\phi(y_1, \ldots, y_n)$ a formula whose free
+variables are $y_1, \ldots, y_n$. Let
+$\dot x_1, \ldots, \dot x_n \in V^{\mathbb P}$ and $p, q \in \mathbb P$.
+The following hold.
+
+1. If $p \Vdash \phi(\dot x_1, \ldots, \dot x_n)$ and $q \leq p$, then
+   $q \Vdash \phi(\dot x_1, \ldots, \dot x_n)$.
+2. $(p \Vdash \phi(\dot x_1, \ldots, \dot x_n))$ and
+   $(p \Vdash \psi(\dot x_1, \ldots, \dot x_n))$ if and only if
+   $p \Vdash (\phi(\dot x_1, \ldots, \dot x_n) \,\&\,
+              \psi(\dot x_1, \ldots, \dot x_n))$.
+:::
+
+The next theorem is the most important result in the basic theory of
+forcing. By @def-forzar, if $\varphi$ is a formula, the notion
+$p \Vdash \varphi$ requires knowledge of all generic filters $G$ —
+meaning the forcing notion has been defined in terms of objects external
+to $V$. However, the first thing the theorem establishes is that one can
+define a notion equivalent to $\Vdash$, denoted $\Vdash^*$, definable by
+a formula that admits a relativization to $V$. The second thing it
+establishes is that if $G$ is a $(V, \mathbb P)$-generic filter, then
+$\varphi$ holds in $V[G]$ iff there is a condition in $G$ that forces
+$\varphi$. Informally, "something" happens in the generic extension if
+and only if some element of the filter $G$ forces it to happen. As the
+proof does not contribute substantively to the development of this
+thesis we omit it; a demonstration can be found in
+[@kunen, VII Theorem 3.6].
+
+::: {#thm-teoremadeforcing}
+Let $\mathbb P \in V$ and $\phi(y_1, \ldots, y_n)$ a formula whose free
+variables are $y_1, \ldots, y_n$. Let
+$\dot x_1, \ldots, \dot x_n \in V^{\mathbb P}$. The following hold.
+
+1. For every $p \in \mathbb P$,
+   $p \Vdash \phi(\dot x_1, \ldots, \dot x_n) \leftrightarrow
+    (p \Vdash^{*} \phi(\dot x_1, \ldots, \dot x_n))^V$.
+2. For every $(V, \mathbb P)$-generic filter $G$,
+$$
+\phi((\dot x_1)_G, \ldots, (\dot x_n)_G)^{V[G]}
+\;\text{if and only if there is}\; p \in G \;\text{such that}\;
+p \Vdash \phi(\dot x_1, \ldots, \dot x_n).
+$$
+:::
+
+The next result will be very useful in the section on composition of
+forcing notions. A clarification: as we have said, a $\mathbb P$-name is
+a binary relation and thus every $\mathbb P$-name $\dot X$ has a domain
+(the set of all first coordinates of $\dot X$). The proof of clause (1)
+is omitted; a proof can be found in [@kunen, VII Corollary 3.7].
+
+::: {#lem-nombreeneldominio}
+Let $\mathbb P \in V$ and let
+$\dot X, \dot x_1, \ldots, \dot x_n \in V^{\mathbb P}$. Let
+$\phi(y_0, \ldots, y_n)$ be a formula whose free variables are
+$y_0, \ldots, y_n$. If $p \in \mathbb P$ and
+$p \Vdash \exists x \, (x \in \dot X \,\&\,
+\phi(x, \dot x_1, \ldots, \dot x_n))$, then:
+
+1. There are $r \in \mathbb P$ and
+   $\dot x \in \operatorname{dom} \dot X$ such that $r \leq p$ and
+   $r \Vdash \phi(\dot x, \dot x_1, \ldots, \dot x_n)$.
+2. If $G$ is a $(V, \mathbb P)$-generic filter and $p \in G$, then
+   there are $r \in G$ and $\dot x \in \operatorname{dom} \dot X$ such
+   that $r \leq p$ and $r \Vdash \phi(\dot x, \dot x_1, \ldots, \dot x_n)$.
+:::
+
+::: {.proof}
+Define $D = \{s \in \mathbb P : \exists \dot x \in \operatorname{dom}
+\dot X \, (s \Vdash \phi(\dot x, \dot x_1, \ldots, \dot x_n))\}$. We
+show that $D$ is dense below $p$. Let $p_1 \leq p$. By (1), there are
+$s \leq p_1$ and $\dot x \in \operatorname{dom} \dot X$ such that
+$s \Vdash \phi(\dot x, \dot x_1, \ldots, \dot x_n)$. So $s \leq p_1$ and
+$s \in D$.
+
+Now, on the one hand $D$ is defined in terms of $\mathbb P$ and
+$\operatorname{dom} \dot X$ — sets that are elements of $V$. On the
+other hand, $D$ is also defined in terms of $\Vdash$, which by
+@thm-teoremadeforcing (1) is equivalent to $\Vdash^*$, a notion that can
+be relativized to $V$. Hence $D \in V$. By @lem-lemadenso (2),
+$G \cap D \neq \emptyset$. Let $s \in G \cap D$. Then $s \in G$ and
+there is $\dot x \in \operatorname{dom} \dot X$ such that
+$s \Vdash \phi(\dot x, \dot x_1, \ldots, \dot x_n)$. Let $r \in G$ with
+$r \leq p, s$. By @lem-alguienmasfuerte (1),
+$r \Vdash \phi(\dot x, \dot x_1, \ldots, x_n)$.
+:::
+
+## Examples
+
+The forcing notions and properties of forcing notions in this section
+will be used extensively throughout the rest of this work.
+
+::: {#def-fn}
+For any pair of sets $I$ and $J$, define
+$$
+\operatorname{Fn}(I, J) = \{p : |p| < \omega \,\&\,
+                                p \text{ is a function} \,\&\,
+                                p \subseteq I \times J\}.
+$$
+
+We order $\operatorname{Fn}(I, J)$ by: $p \leq q$ if and only if
+$q \subseteq p$.
+:::
+
+The next lemma gives a compatibility criterion for elements of
+$\operatorname{Fn}(I, J)$.
+
+::: {#lem-unionesfuncion}
+Let $p, q \in \operatorname{Fn}(I, J)$. Then $p$ is compatible with $q$
+if and only if $p \cup q$ is a function.
+:::
+
+::: {.proof}
+Suppose $p$ and $q$ are compatible. Then, by the order on
+$\operatorname{Fn}(I, J)$, $p \subseteq r$ and $q \subseteq r$ for some
+$r \in \operatorname{Fn}(I, J)$. So $p \cup q \subseteq r$ and the result
+follows.
+
+Suppose now that $p \cup q$ is a function. Since
+$p \subseteq p \cup q$ and $q \subseteq p \cup q$, $p \cup q$ is a common
+extension of $p$ and $q$ in $\operatorname{Fn}(I, J)$, hence they are
+compatible.
+:::
+
+::: {#def-concatenacion}
+For every ordinal $\alpha$:
+
+1. $p \in 2^{<\alpha}$ if and only if there is an ordinal $\beta < \alpha$
+   such that $p : \beta \to \{0, 1\}$.
+2. $2^{<\alpha}$ is ordered by $p \leq q$ if and only if $q \subseteq p$.
+3. If $p \in 2^{<\alpha}$, we define, for each $i < 2$,
+   $p^\frown i := p \cup \{(\operatorname{dom} p, i)\}$.
+:::
+
+Analogously we define the following.
+
+::: {#def-omegafinito}
+$\omega^{<\omega} := \{p : \exists n < \omega \,
+                              (p : n \to \omega)\}$.
+:::
+
+For the rest of this work, $2^{<\alpha}$ and $\omega^{<\omega}$ will
+denote, respectively, the triples $(2^{<\alpha}, \leq, \emptyset)$ and
+$(\omega^{<\omega}, \leq, \emptyset)$, where $\leq$ is the order defined
+above and $\emptyset$ is the maximum element of both sets. We call
+$\omega^{<\omega}$ **Cohen forcing**.
+
+Observe that, by @def-concatenacion, if $p \in 2^{<\alpha}$ and
+$\operatorname{dom} p + 1 < \alpha$, then
+$p^\frown i \in 2^{<\alpha}$ and
+$\operatorname{dom}(p^\frown i) = \operatorname{dom} p + 1$. This shows
+that if $p \in 2^{<\alpha}$, then $p^{\frown}0$ and $p^{\frown}1$ are
+mutually-incompatible extensions of $p$ — that is, $2^{<\alpha}$ is
+atomless. Note also that if @lem-unionesfuncion is restated with
+$2^{<\alpha}$ in place of $\operatorname{Fn}(I, J)$, the same argument
+shows that two elements in $2^{<\alpha}$ are compatible if and only if
+their union is a function.
+
+If we take $\alpha = \omega$ in the last definition, then $2^{<\omega}$
+is defined in terms of absolute notions (see
+[@kunen, Theorem 5.1, p. 126] for details), which lets us conclude that
+$2^{<\omega} \in V$ — a fact relevant to the next proposition.
+
+::: {#prp-unnuevoreal}
+If $G$ is a $(V, 2^{<\omega})$-generic filter and $g = \bigcup G$, then:
+
+1. $g : \omega \to 2$.
+2. $G = \{g \restriction n : n \in \omega\}$.
+3. $g \in V[G] \setminus V$.
+:::
+
+::: {.proof}
+To simplify notation, let $\mathbb P = 2^{<\omega}$. We show that
+$g = \bigcup G$ is a function from $\omega$ to $2$. Since any two
+elements of $G$ are compatible, $g$ is a function (see
+@lem-unionesfuncion). Note that
+$\operatorname{dom} g = \bigcup_{p \in G} \operatorname{dom} p$, so
+$\operatorname{dom} g \subseteq \omega$.
+
+Let $n \in \omega$ be arbitrary; we show $n \in \operatorname{dom} g$.
+Define $D_n = \{p \in \mathbb P : n \in \operatorname{dom} p\}$. We show
+that $D_n$ is a dense subset of $\mathbb P$. Let $p \in \mathbb P$. If
+$n \in \operatorname{dom} p$, then $p \in D_n$ and, since $p \leq p$, the
+result follows. If $n \notin \operatorname{dom} p$, consider
+$r : n + 1 \to 2$ defined by
+$$
+r(i) = \begin{cases} p(i), & \text{if } i \in \operatorname{dom} p, \\
+                     0,    & \text{otherwise}.
+\end{cases}
+$$
+
+Then $r$ is a function in $D_n$ that extends $p$. So $D_n$ is dense in
+$\mathbb P$. Since $\mathbb P \in V$ and $\operatorname{dom} p$ is
+definable in $V$, $D_n \in V$. Hence $G \cap D_n \neq \emptyset$. Let
+$p \in G \cap D_n$. Then $p \in G$ and $n \in \operatorname{dom} p$. So
+$n \in \operatorname{dom} g$.
+
+The left-to-right containment of (2) holds because if $p \in G$, since
+$\operatorname{dom} p \in \omega$,
+$p = g \restriction \operatorname{dom} p$. It remains to show that for
+every $n \in \omega$, $g \restriction n \in G$. By what was shown in (1),
+$D_n$ is a dense subset of $\mathbb P$ with $D_n \in V$, so
+$G \cap D_n \neq \emptyset$. Let $p \in G \cap D_n$. Then
+$n < \operatorname{dom} p$, hence
+$g \restriction \operatorname{dom} p \leq g \restriction n$. Since
+$g \restriction \operatorname{dom} p = p$ and $p \in G$, we have
+$g \restriction n \in G$.
+
+We prove $g \in V[G] \setminus V$ by contradiction. If $g \in V$, then by
+(2), $G \in V$, contradicting @lem-noatomico.
+:::
+
+The function $g$ in the previous theorem is called a **Cohen real** and,
+by clause (3), one customarily says that a new Cohen real has been
+*added*.
+
+In contrast to the previous proposition, the next result shows that one
+can consider a partial order $\mathbb P \in V$ such that, given a
+$(V, \mathbb P)$-generic filter $G$, the generic extension $V[G]$
+contains no new functions from $\omega$ to $2$. For this we take
+$\mathbb P = (2^{<\omega_1})^V$ — that is, $\mathbb P$ is the partial
+order that $V$ thinks consists of functions from an ordinal less than
+$\omega_1^V$ to $2$.
+
+::: {#prp-nadanuevo}
+If $\mathbb P = (2^{<\omega_1})^V$ and $G$ is a
+$(V, \mathbb P)$-generic filter, then $V[G]$ contains no new functions
+from $\omega$ to $2$ — that is,
+$V[G] \cap {}^{\omega}2 \subseteq V$.
+:::
+
+::: {.proof}
+Let $f \in V[G] \cap {}^{\omega}2$. By @def-vg, there is
+$\dot f \in V^{\mathbb P}$ such that $\dot f_G = f$. Now, by
+@thm-teoremadeforcing (2), some $p \in G$ satisfies
+$p \Vdash \dot f : \check \omega \to \check 2$. Consider the formula
+$\varphi(r) : r \in \mathbb P \,\&\, \exists h \in {}^{\omega}2 \,
+(r \Vdash \dot f = \check h)$. Since $\mathbb P \in V$ and the notions
+${}^{\omega}2$ and $\Vdash$ can be relativized to $V$, the formula
+$\varphi$ can be relativized to $V$.
+
+Define $D = \{r \in \mathbb P : \varphi^V(r)\}$. Note that $D \in V$. We
+show that $D$ is dense below $p$. From this point on we work in $V$ —
+i.e. the following arguments are to be understood as relativized to $V$.
+Let $p_0 \leq p$. By @lem-alguienmasfuerte (1),
+$p_0 \Vdash \dot f : \check \omega \to \check 2$. In particular,
+$p_0 \Vdash \exists x \, (x \in \check 2 \,\&\,
+\dot f(\check 0) = x)$. By @lem-nombreeneldominio (1), there are
+$p_1 \in \mathbb P$ and $\dot y \in \operatorname{dom} \check 2$ with
+$p_1 \leq p_0$ and $p_1 \Vdash \dot f(\check 0) = \dot y$. Now, recall
+$\check 2 = \{(\check z, \emptyset) : z \in 2\}$, so
+$\dot y \in \operatorname{dom} \check 2$ implies $\dot y = \check m_0$
+for some $m_0 \in 2$ — that is,
+$p_1 \Vdash \dot f(\check 0) = \check m_0$. Since
+$p_1 \leq p_0 \leq p$, by @lem-alguienmasfuerte (1),
+$p_1 \Vdash \dot f : \check \omega \to \check 2$. In particular,
+$p_1 \Vdash \exists x \, (x \in \check 2 \,\&\,
+\dot f(\check 1) = x)$. Applying @lem-nombreeneldominio (1) again, there
+are $p_2 \leq p_1$ and $m_1 \in 2$ with
+$p_2 \Vdash \dot f(\check 1) = \check m_1$. This procedure produces two
+sequences, $\{p_k : k < \omega\} \subseteq \mathbb P$ and
+$\{m_k : k < \omega\}$, such that for every $k < \omega$:
+$p_{k+1} \leq p_k$, $m_k \in 2$, and
+$p_{k+1} \Vdash \dot f(\check k) = \check m_k$. Let
+$r = \bigcup_{n \in \omega} p_n$. Since $p_{k+1} \leq p_k$,
+$p_{k+1} \mid p_k$. Thus $r$ is the union of compatible functions, so
+$r$ is a function (see @lem-unionesfuncion). Moreover
+$\operatorname{dom} r = \bigcup_{n \in \omega} \operatorname{dom} p_n$,
+where $\operatorname{dom} p_n < \omega_1$. Hence
+$\operatorname{dom} r < \omega_1$, so $r \in \mathbb P$. Define
+$h : \omega \to 2$ by $h(n) = m_n$. Since $p_0 \subseteq r$ and
+$r \Vdash \dot f = \check{h}$, $r \leq p_0$ and $r \in D$.
+
+By @lem-lemadenso (2), $G \cap D \neq \emptyset$ — that is, there are
+$r \in G$ and $h \in {}^{\omega}2 \cap V$ such that
+$r \Vdash \dot f = \check h$. As a direct consequence of @def-forzar,
+$f = \dot f_G = h$, and since $h \in V$, the result follows.
+:::
+
+At various points in this work we will be interested in partial orders
+$\mathbb P$ and $\mathbb Q$ where the first stands in a special relation
+to the second.
+
+::: {#def-suborden}
+We say that $\mathbb P$ is a **suborder** of $\mathbb Q$ if
+$\mathbb P \subseteq \mathbb Q$ and
+$\leq_{\mathbb P} \,:=\, \leq_{\mathbb Q} \cap \, (\mathbb P \times \mathbb P)$.
+:::
+
+As will be seen in later chapters, a concept that will give us relevant
+information is that of an isomorphism between partial orders.
+
+::: {#def-isomorfismo}
+Let $\mathbb P$ and $\mathbb Q$ be two partial orders. We say that
+$f : \mathbb P \to \mathbb Q$ is an **isomorphism** if $f$ is a bijective
+function such that $f$ and $f^{-1}$ preserve the order.
+:::
+
+**Notation.** Whenever there is a function between $\mathbb P$ and
+$\mathbb Q$ as in the previous definition we write
+$\mathbb P \cong \mathbb Q$.

@@ -10,8 +10,7 @@ book:
   subtitle: "Bachelor's thesis — School of Sciences, UNAM"
   chapters:
     - index.en.qmd
-    # - chapters/00-introduccion.en.qmd
-    # - chapters/01-preliminares.en.qmd
+    - chapters/01-preliminares.en.qmd
   page-footer:
     left: "© Alonso Celis"
     right: "Site built with Quarto"
