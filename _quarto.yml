@@ -38,9 +38,9 @@ book:
         aria-label: GitHub
   chapters:
     - index.es.qmd
-    # Chapters land here once tex-source is migrated:
-    # - chapters/00-introduccion.es.qmd
-    # - chapters/01-preliminares.es.qmd
+    - chapters/01-preliminares.es.qmd
+    # - chapters/02-encajes.es.qmd
+    # - chapters/03-aplicaciones.es.qmd
   page-footer:
     left: "© Alonso Celis"
     right: "Sitio construido con Quarto"
