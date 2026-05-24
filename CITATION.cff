@@ -27,9 +27,10 @@ keywords:
   - UNAM
 url: "https://alonso-celis.github.io/Mathematics/"
 repository-code: "https://github.com/Alonso-Celis/Mathematics"
-# Add a DOI here once the first GitHub release is published with the
-# Zenodo integration enabled — see README.md "Citing this work".
-# doi: 10.5281/zenodo.XXXXXXX
+# Persistent DOI minted by Zenodo at v1.0.1 (first archived release).
+# Future releases will get their own DOI plus an umbrella concept-DOI
+# from Zenodo; this one is the version-specific DOI for v1.0.1.
+doi: 10.5281/zenodo.20370496
 preferred-citation:
   type: thesis
   title: "Encajes entre nociones de forcing"
