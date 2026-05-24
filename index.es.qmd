@@ -1,0 +1,35 @@
+---
+title: "Encajes entre nociones de forcing"
+subtitle: "Tesis de licenciatura — Facultad de Ciencias, UNAM"
+author: "Alonso Celis"
+lang: es
+---
+
+# Sobre esta obra
+
+Esta tesis estudia las relaciones de **encaje** entre nociones de *forcing*,
+una herramienta central de la teoría de conjuntos moderna introducida por
+Paul Cohen para establecer la independencia de la hipótesis del continuo.
+
+Una versión completa en PDF está disponible
+[aquí](pdf/ENCAJES_ENTRE_NOCIONES_DE_FORCING.pdf).
+
+## Idiomas
+
+El contenido está disponible en tres lenguas:
+
+- **Español** (versión original) — la presente
+- [**English**](/en/)
+- [**Français**](/fr/)
+
+## Estructura
+
+Los capítulos se publicarán a medida que avance la migración del manuscrito
+original `.tex` al formato del sitio.
+
+## Cita
+
+Si esta obra te resulta útil:
+
+> Celis, A. *Encajes entre nociones de forcing*. Tesis de licenciatura,
+> Facultad de Ciencias, UNAM.

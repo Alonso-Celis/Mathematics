@@ -1,0 +1,35 @@
+---
+title: "Plongements entre notions de forcing"
+subtitle: "Mémoire de licence — Faculté des Sciences, UNAM"
+author: "Alonso Celis"
+lang: fr
+---
+
+# À propos de cet ouvrage
+
+Ce mémoire étudie les relations de **plongement** entre les notions de
+*forcing* — un outil central de la théorie des ensembles moderne, introduit
+par Paul Cohen pour établir l'indépendance de l'hypothèse du continu.
+
+La version complète en PDF (original espagnol) est disponible
+[ici](../pdf/ENCAJES_ENTRE_NOCIONES_DE_FORCING.pdf).
+
+## Langues
+
+Le contenu est disponible en trois langues :
+
+- [**Español**](/) (original)
+- [**English**](/en/)
+- **Français** — actuelle
+
+## Structure
+
+Les chapitres apparaîtront ici au fur et à mesure que le manuscrit `.tex`
+d'origine sera migré et traduit.
+
+## Citation
+
+Si cet ouvrage vous est utile :
+
+> Celis, A. *Plongements entre notions de forcing* [Encajes entre nociones
+> de forcing]. Mémoire de licence, Faculté des Sciences, UNAM.

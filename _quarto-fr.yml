@@ -1,0 +1,29 @@
+# Profile: fr — render the French book under /fr/.
+# Activated by: `quarto render --profile fr`
+
+project:
+  output-dir: _site/fr
+
+book:
+  language: fr
+  title: "Plongements entre notions de forcing"
+  subtitle: "Mémoire de licence — Faculté des Sciences, UNAM"
+  chapters:
+    - index.fr.qmd
+    # - chapters/00-introduccion.fr.qmd
+    # - chapters/01-preliminares.fr.qmd
+  page-footer:
+    left: "© Alonso Celis"
+    right: "Site construit avec Quarto"
+
+crossref:
+  thm-title: "Théorème"
+  lem-title: "Lemme"
+  cor-title: "Corollaire"
+  prp-title: "Proposition"
+  def-title: "Définition"
+  exm-title: "Exemple"
+  exr-title: "Exercice"
+  rem-title: "Remarque"
+
+lang: fr

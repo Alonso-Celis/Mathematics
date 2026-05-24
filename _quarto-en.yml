@@ -1,0 +1,29 @@
+# Profile: en — render the English book under /en/.
+# Activated by: `quarto render --profile en`
+
+project:
+  output-dir: _site/en
+
+book:
+  language: en
+  title: "Embeddings between forcing notions"
+  subtitle: "Bachelor's thesis — School of Sciences, UNAM"
+  chapters:
+    - index.en.qmd
+    # - chapters/00-introduccion.en.qmd
+    # - chapters/01-preliminares.en.qmd
+  page-footer:
+    left: "© Alonso Celis"
+    right: "Site built with Quarto"
+
+crossref:
+  thm-title: "Theorem"
+  lem-title: "Lemma"
+  cor-title: "Corollary"
+  prp-title: "Proposition"
+  def-title: "Definition"
+  exm-title: "Example"
+  exr-title: "Exercise"
+  rem-title: "Remark"
+
+lang: en
