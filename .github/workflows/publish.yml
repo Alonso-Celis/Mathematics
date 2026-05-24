@@ -23,6 +23,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Math integrity check (ES vs EN/FR per chapter)
+        run: python3 scripts/check_math_integrity.py chapters/*.es.qmd
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
