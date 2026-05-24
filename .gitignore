@@ -5,6 +5,24 @@
 /.quarto/
 *.tex.bak
 
+# LaTeX build artefacts (we ship .tex source under tex-source/ but no compile output)
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.run.xml
+*.bcf
+*.nav
+*.snm
+*.vrb
+
 # Project brief — must never be tracked (per project contract)
 unam-tesis-site-project.*
 **/unam-tesis-site-project.*
