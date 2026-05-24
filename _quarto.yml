@@ -19,7 +19,17 @@ book:
   author: "Alonso Celis"
   reader-mode: true
   page-navigation: true
-  search: true
+  # Each language profile renders its own search.json, so results stay
+  # in the visitor's current language. The Fuse.js UI lives in the
+  # navbar (magnifying-glass icon, '/' or '?' to focus).
+  search:
+    location: navbar
+    type: overlay
+    show-item-context: true
+    copy-button: true
+    limit: 30
+    collapse-after: 2
+    keyboard-shortcut: ["/", "?"]
   repo-url: https://github.com/Alonso-Celis/Mathematics
   repo-actions: [edit, source]
   downloads: [pdf]
