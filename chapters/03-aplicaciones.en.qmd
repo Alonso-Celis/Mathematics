@@ -1,0 +1,1236 @@
+---
+title: "Applications"
+lang: en
+---
+
+In this chapter we introduce the composition of two forcing notions.
+We show that every partial order is completely embedded into the
+composition of itself with any other forcing notion. We study examples
+of interest for the composition of a partial order with itself, and
+analyse the interaction of this composition with its quotient modulo a
+generic filter (see @def-moduloG). Finally, we define a separative
+partial order and give two different ways of densely embedding every
+partial order into two separative notions, not necessarily isomorphic
+to each other.
+
+## Composition
+
+In this section we set out to answer a question that, as Saharon
+Shelah does in [@shelah], can be phrased as follows: suppose we start
+with a model $V$ and, via a forcing notion $\mathbb P$, extend it to
+$V[G]$, where $G$ is a generic subset of $\mathbb P$; we then take a
+forcing notion $\mathbb Q$ in $V[G]$ and extend $V[G]$ to $V[G][H]$,
+where $H$ is a generic filter on $\mathbb Q$. Is it possible to obtain
+the extension $V[G][H]$ from $V$ by a single forcing extension? The
+concepts and results below will give a positive answer to our
+question.
+
+::: {#def-pnombre-orden}
+Let $\mathbb P \in V$ be a partial order.
+
+We say that the triple of $\mathbb P$-names
+$(\dot{\mathbb Q}, \dot{\leq}, \mathbb{1}_{\dot{\mathbb Q}}) \in V$ is
+a **$\mathbb P$-name for a partial order** if
+$\mathbb{1}_{\dot{\mathbb Q}} \in \operatorname{dom} \dot{\mathbb Q}$
+and
+$$
+\mathbb{1}_{\mathbb P} \Vdash
+[(\mathbb{1}_{\dot{\mathbb Q}} \in \dot{\mathbb Q}) \,\&\,
+ (\dot{\leq} \text{ is a partial order on } \dot{\mathbb Q}
+  \text{ whose maximum element is } \mathbb{1}_{\dot{\mathbb Q}})].
+$$
+:::
+
+For simplicity, we will simply write $\dot{\mathbb Q}$ to refer to the
+$\mathbb P$-name given by the triple
+$(\dot{\mathbb Q}, \dot{\leq}, \mathbb{1}_{\dot{\mathbb Q}})$ of the
+previous definition. In this context, by $\dot{\mathbb Q} \in V$ we
+mean $\{\dot{\mathbb Q}, \dot{\leq}, \mathbb{1}_{\dot{\mathbb Q}}\}
+\subseteq V$. Also, $\mathbb{1}$ will denote the maximum element
+$\mathbb{1}_{\mathbb P}$.
+
+::: {#def-composicion}
+Let $\mathbb P$ be a partial order in $V$ and $\dot{\mathbb Q} \in V$
+the $\mathbb P$-name of a partial order. We define **$\mathbb P$
+composed with $\dot{\mathbb Q}$** as
+$$
+\mathbb P * \dot{\mathbb Q} = \{(p, \dot x) :
+p \in \mathbb P \,\&\, \dot x \in \operatorname{dom} \dot{\mathbb Q}
+\,\&\, p \Vdash \dot x \in \dot{\mathbb Q}\}.
+$$
+
+Also, given $(p, \dot x), (q, \dot y) \in \mathbb P * \dot{\mathbb Q}$
+we define
+$$
+(p, \dot x) \leq (q, \dot y) \quad\text{iff}\quad
+p \leq_{\mathbb P} q \;\text{and}\; p \Vdash \dot x\,\dot{\leq}\,\dot y.
+$$
+
+Finally, $\mathbb{1}_{\mathbb P * \dot{\mathbb Q}} =
+(\mathbb{1}, \mathbb{1}_{\dot{\mathbb Q}})$.
+:::
+
+Note that $\mathbb P * \dot{\mathbb Q} \in V$, since both $\mathbb P$
+and $\dot{\mathbb Q}$ are elements of $V$ and, by
+@thm-teoremadeforcing (1), the notion $\Vdash$ is equivalent to one
+that can be relativised to $V$.
+
+**Remark.** For every $p \in \mathbb P$,
+$(p, \mathbb{1}_{\dot{\mathbb Q}}) \in \mathbb P * \dot{\mathbb Q}$.
+This holds since by @def-pnombre-orden,
+$\mathbb{1}_{\dot{\mathbb Q}} \in \operatorname{dom} \dot{\mathbb Q}$
+and $\mathbb{1} \Vdash \mathbb{1}_{\dot{\mathbb Q}} \in
+\dot{\mathbb Q}$. Since $p \leq \mathbb{1}$, by
+@lem-alguienmasfuerte (1),
+$p \Vdash \mathbb{1}_{\dot{\mathbb Q}} \in \dot{\mathbb Q}$, which
+verifies the observation.
+
+We now show that if the valuation of a $\mathbb P$-name with respect
+to a generic filter $G$ is an element of the notion $\mathbb Q$, where
+$\mathbb Q = \dot{\mathbb Q}_G \in V[G]$, then there is a pair in the
+composition $\mathbb P * \dot{\mathbb Q}$ whose second coordinate is
+forced by the first to equal the $\mathbb P$-name we started with.
+
+::: {#lem-caballito}
+Let $\mathbb P$ and $\dot{\mathbb Q}$ be as in the previous
+definition. If $G$ is a $(V, \mathbb P)$-generic filter,
+$\mathbb Q = \dot{\mathbb Q}_G$ and $\dot q \in V^{\mathbb P}$
+satisfies $\dot q_G \in \mathbb Q$, then there is
+$(p, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$ such that $p \in G$
+and $p \Vdash \dot q = \dot q_0$.
+:::
+
+::: {.proof}
+By @thm-teoremadeforcing (2), for some $r \in G$,
+$r \Vdash \exists x \, (x \in \dot{\mathbb Q} \,\&\, x = \dot q)$. By
+@lem-nombreeneldominio, there are $p \in G$ and
+$\dot q_0 \in \operatorname{dom} \dot{\mathbb Q}$ with $p \leq r$ and
+$p \Vdash \dot q_0 = \dot q$. So by @def-composicion,
+$(p, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$.
+:::
+
+Whenever context is clear, we will simplify the notation in the
+following results by writing $\leq$ instead of $\dot{\leq}$.
+
+::: {#prp-composicion-es-orden}
+If $\mathbb P$ is a partial order and $\dot{\mathbb Q} \in V$ is the
+$\mathbb P$-name of a partial order, then $\mathbb P * \dot{\mathbb Q}$
+is a partial order.
+:::
+
+::: {.proof}
+$(p, \dot x) \leq (p, \dot x)$ because $p \leq p$ and
+$p \Vdash \dot x \leq \dot x$. If $(p, \dot x) \leq (q, \dot y)$ and
+$(q, \dot y) \leq (r, \dot z)$, then $p \leq q$,
+$p \Vdash \dot x \leq \dot y$, $q \leq r$ and
+$q \Vdash \dot y \leq \dot z$. So $p \leq r$ and
+$p \Vdash \dot y \leq \dot z$. Hence
+$p \Vdash \dot x \leq \dot z$.
+:::
+
+::: {#def-inclusioncomposicion}
+Let $i : \mathbb P \to \mathbb P * \dot{\mathbb Q}$ be the function
+defined by $i(p) = (p, \mathbb{1}_{\dot{\mathbb Q}})$.
+:::
+
+Note that $i \in V$. This follows because
+$\mathbb P * \dot{\mathbb Q} \in V$. For the rest of the section, $i$
+will always denote the function of the previous definition. In this
+vein, the next lemma concludes that via the function $i$, every
+partial order is completely embedded into the composition we have
+been talking about.
+
+::: {#lem-encajeiteracion}
+Let $\mathbb P \in V$ be a partial order and $\dot{\mathbb Q} \in V$
+the $\mathbb P$-name for a partial order. Then:
+
+1. For every $p, q \in \mathbb P$, $p \leq q$ if and only if
+   $(p, \mathbb{1}_{\dot{\mathbb Q}}) \leq (q, \mathbb{1}_{\dot{\mathbb Q}})$.
+2. $i(\mathbb{1}_{\mathbb P}) = \mathbb{1}_{\mathbb P * \dot{\mathbb Q}}$.
+3. If $(p, \dot x), (q, \dot y) \in \mathbb P * \dot{\mathbb Q}$ and
+   $p \perp q$, then $(p, \dot x) \perp (q, \dot y)$.
+4. For every $(p, \dot x) \in \mathbb P * \dot{\mathbb Q}$ and
+   $q \in \mathbb P$, $p \perp q$ if and only if
+   $(p, \dot x) \perp (q, \mathbb{1}_{\dot{\mathbb Q}})$.
+5. For every $p, q \in \mathbb P$, $p \perp q$ if and only if
+   $i(p) \perp i(q)$.
+6. The function $i : \mathbb P \to \mathbb P * \dot{\mathbb Q}$ is a
+   complete embedding.
+:::
+
+::: {.proof}
+(1). Let $p, q \in \mathbb P$. If $p \leq q$, since
+$p \Vdash \mathbb{1}_{\dot{\mathbb Q}} \leq \mathbb{1}_{\dot{\mathbb Q}}$,
+$(p, \mathbb{1}_{\dot{\mathbb Q}}) \leq (q, \mathbb{1}_{\dot{\mathbb Q}})$.
+Conversely, if
+$(p, \mathbb{1}_{\dot{\mathbb Q}}) \leq (q, \mathbb{1}_{\dot{\mathbb Q}})$,
+by @def-composicion $p \leq q$.
+
+(2). By @def-inclusioncomposicion and @def-composicion,
+$i(\mathbb{1}) = (\mathbb{1}, \mathbb{1}_{\dot{\mathbb Q}}) =
+\mathbb{1}_{\mathbb P * \dot{\mathbb Q}}$.
+
+(3). By contrapositive. Suppose $(p, \dot x) \mid (q, \dot y)$. Then
+$(r, \dot z) \leq (p, \dot x), (q, \dot y)$ for some
+$(r, \dot z) \in \mathbb P * \dot{\mathbb Q}$. Hence $p \mid q$.
+
+(4). Since
+$(q, \mathbb{1}_{\dot{\mathbb Q}}) \in \mathbb P * \dot{\mathbb Q}$,
+the left-to-right implication follows from (3). We prove the
+converse by contrapositive. If $r \leq p, q$ for some
+$r \in \mathbb P$, by @lem-alguienmasfuerte (1)
+$r \Vdash \dot x \in \dot{\mathbb Q}$, hence
+$(r, \dot x) \in \mathbb P * \dot{\mathbb Q}$. Also
+$r \Vdash \dot x \leq \dot x$ and
+$r \Vdash \dot x \leq \mathbb{1}_{\dot{\mathbb Q}}$. So
+$(r, \dot x) \leq (p, \dot x), (q, \mathbb{1}_{\dot{\mathbb Q}})$.
+
+(5). Follows from (4) applied to the pairs
+$(p, \mathbb{1}_{\dot{\mathbb Q}}), (q, \mathbb{1}_{\dot{\mathbb Q}})
+\in \mathbb P * \dot{\mathbb Q}$.
+
+(6). By (1) and (5), $i$ preserves order and incompatibility. So
+$i : \mathbb P \to \mathbb P * \dot{\mathbb Q}$ is an embedding.
+
+We prove $i$ is a complete embedding using the equivalence of
+@thm-equivalenciaencaje. Let
+$(p, \dot x) \in \mathbb P * \dot{\mathbb Q}$ be arbitrary. Take any
+$q \leq p$. In particular, $q \mid p$. Hence, by (4),
+$(p, \dot x) \mid i(q)$, that is, $p$ is an $i$-reduction of
+$(p, \dot x)$ to $\mathbb P$.
+:::
+
+We now analyse the connections between the generic filters of
+$\mathbb P$ and $\dot{\mathbb Q}$ with respect to those of
+$\mathbb P * \dot{\mathbb Q}$.
+
+::: {#def-iteracionfiltros}
+Let $\mathbb P$ be a partial order and $\dot{\mathbb Q}$ the
+$\mathbb P$-name of a partial order. If $G$ is a
+$(V, \mathbb P)$-generic filter and $H \subseteq \dot{\mathbb Q}_G$,
+we define
+$$
+G * H = \{(p, \dot q) \in \mathbb P * \dot{\mathbb Q} :
+         p \in G \,\&\, \dot q_G \in H\}.
+$$
+:::
+
+A first sample from our analysis is that the generic filters of
+$\mathbb P$ and $\dot{\mathbb Q}$ are determined by their composition,
+as the next result shows.
+
+::: {#lem-igualdadgenericos}
+Let $\mathbb P \in V$ be a partial order, and $\dot{\mathbb Q} \in V$
+the $\mathbb P$-name of a partial order. Let $G$ be a
+$(V, \mathbb P)$-generic filter and let $\mathbb Q = \dot{\mathbb Q}_G$.
+If $H$ is a $(V[G], \mathbb Q)$-generic filter, then:
+
+1. $G = \{p : \exists \dot q \, ((p, \dot q) \in G * H)\}$.
+2. $H = \{\dot q_G : \exists p \, ((p, \dot q) \in G * H)\}$.
+:::
+
+::: {.proof}
+(1). If $p \in G$, then
+$i(p) = (p, \mathbb{1}_{\dot{\mathbb Q}}) \in G * H$, since
+$(\mathbb{1}_{\dot{\mathbb Q}})_G \in H$. This same argument shows
+$p \in i^{-1}[G * H]$, that is, $G \subseteq i^{-1}[G * H]$. The
+remaining containment holds: given $p \in \mathbb P$ such that
+$(p, \dot q) \in G * H$ for some $\dot q \in V^{\mathbb P}$, by
+@def-iteracionfiltros $p \in G$.
+
+(2). If $q \in H \subseteq \mathbb Q$, then $q = \dot q_G$ for some
+$\dot q \in V^{\mathbb P}$. So by @lem-caballito, there is
+$(p_0, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$ with $p_0 \in G$ and
+$p_0 \Vdash \dot q_0 = \dot q$. But then $(\dot q_0)_G = q \in H$, so
+by @def-iteracionfiltros, $(p_0, \dot q_0) \in G * H$, which proves
+the first containment. Conversely, if
+$x \in \{\dot q_G : \exists p \, ((p, \dot q) \in G * H)\}$, there
+is $(p, \dot q) \in G * H$ with $\dot q_G = x$, and since
+$\dot q_G \in H$, the result holds.
+:::
+
+The next theorem presents the following situation: in $V[G]$, the
+generic extension given by $\mathbb P$, $\dot{\mathbb Q}_G = \mathbb Q$
+is a partial order, so it makes sense to force with $\mathbb Q$ over
+$V[G]$. Denote by $V[G][H]$ this latter forcing extension, where $H$
+is a generic filter on $\mathbb Q$. The theorem states that $V[G][H]$
+coincides with the extension given by the composition
+$\mathbb P * \dot{\mathbb Q}$. In this way we answer the question
+posed at the start of the section: $\mathbb P * \dot{\mathbb Q}$ is
+the forcing notion in $V$ that we were looking for.
+
+::: {#thm-iteraciondos}
+Let $\mathbb P, \dot{\mathbb Q}, G$ and $H$ be as in the previous
+lemma. Then:
+
+1. $G * H$ is a $(V, \mathbb P * \dot{\mathbb Q})$-generic filter.
+2. $V[G * H] = V[G][H]$.
+:::
+
+::: {.proof}
+We prove $G * H$ is a filter. Let
+$(p_0, \dot q_0), (p_1, \dot q_1) \in G * H$. Then $p_0, p_1 \in G$
+and $(\dot q_0)_G, (\dot q_1)_G \in H$. So there are $r \in G$ and
+$x \in H$ with $r \leq p_0, p_1$ and
+$x \leq (\dot q_0)_G, (\dot q_1)_G$. By @lem-igualdadgenericos (2),
+there is $(p, \dot q) \in G * H$ with $x = \dot q_G$. By
+@def-iteracionfiltros, $p \in G$. Now, by @thm-teoremadeforcing (2),
+there is $t \in G$ with $t \Vdash \dot q \leq \dot q_0, \dot q_1$. By
+@prp-extensionparamuchos, there is $s \in G$ with
+$s \leq r, p, t$. Observe that since
+$(p, \dot q) \in \mathbb P * \dot{\mathbb Q}$, by
+@def-composicion, $\dot q \in \operatorname{dom} \dot{\mathbb Q}$ and
+$p \Vdash \dot q \in \dot{\mathbb Q}$. So by
+@lem-alguienmasfuerte (1), $s \Vdash \dot q \in \dot{\mathbb Q}$,
+which guarantees $(s, \dot q) \in \mathbb P * \dot{\mathbb Q}$. Now,
+since $s \leq t$, by @lem-alguienmasfuerte (1)
+$s \Vdash \dot q \leq \dot q_0, \dot q_1$. Since $\dot q_G \in H$,
+$(s, \dot q) \in G * H$ and
+$(s, \dot q) \leq (p_0, \dot q_0), (p_1, \dot q_1)$.
+
+Suppose now that $(p_0, \dot q_0) \in G * H$ and
+$(p, \dot q) \in \mathbb P * \dot{\mathbb Q}$ satisfy
+$(p_0, \dot q_0) \leq (p, \dot q)$. Then by @def-composicion,
+$p_0 \leq p$ and $p_0 \Vdash \dot q_0 \leq \dot q$. Since
+$p_0 \in G$, $p \in G$ and $(\dot q_0)_G \leq (\dot q)_G$. By
+hypothesis $(\dot q_0)_G \in H$, hence $\dot q_G \in H$. So
+$(p, \dot q) \in G * H$.
+
+We prove the genericity of $G * H$. Let $D \in V$ be any dense
+subset of $\mathbb P * \dot{\mathbb Q}$.
+
+We first verify that
+$E = \{\dot q_G : \exists p \in G \, ((p, \dot q) \in D)\}$ is a
+dense subset of $\mathbb Q$. Let $q \in \mathbb Q$ be arbitrary. So
+$q = \dot s_G$ for some $\dot s \in \operatorname{dom} \dot{\mathbb Q}$.
+By @lem-caballito, there is
+$(p_0, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$ with $p_0 \in G$ and
+$p_0 \Vdash \dot s = \dot q_0$. Define
+$$
+E_1 = \{p \in \mathbb P : \exists x \, (p \Vdash x \leq \dot q_0
+                                        \,\&\, (p, x) \in D)\}.
+$$
+
+We claim $E_1$ is dense below $p_0$. Let $r \leq p_0$. By
+@lem-alguienmasfuerte (1), $r \Vdash \dot q_0 \in \dot{\mathbb Q}$.
+Hence $(r, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$. Since $D$ is
+dense in $\mathbb P * \dot{\mathbb Q}$, $(p, x) \leq (r, \dot q_0)$
+for some $(p, x) \in D$. By @def-composicion,
+$p \Vdash x \leq \dot q_0$. Hence $p \leq r$ and $p \in E_1$.
+
+Now, $E_1 \in V$ because $\mathbb P, D, \dot q_0 \in V$
+($\dot q_0 \in V$, since $\dot q_0 \in \operatorname{dom}
+\dot{\mathbb Q} \in V$ and $V$ is transitive). Since $p_0 \in G$, by
+@lem-lemadenso (2) $G \cap E_1 \neq \emptyset$. Let
+$p \in G \cap E_1$. Then $p \in G$ and for some $x$,
+$p \Vdash x \leq \dot q_0$ and $(p, x) \in D$. Note that since
+$D \subseteq \mathbb P * \dot{\mathbb Q}$, $x = (\dot q_1)_G$ for
+some $\dot q_1 \in \operatorname{dom} \dot{\mathbb Q}$. So
+$(\dot q_1)_G \leq (\dot q_0)_G = \dot s_G = q$. So
+$(\dot q_1)_G \leq q$ and $(\dot q_1)_G \in E$, proving the density
+of $E$.
+
+$E \in V[G]$, since $G \in V[G]$ and $D \in V \subseteq V[G]$. By
+the genericity of $H$, $H \cap E \neq \emptyset$. So there is
+$(p, \dot q) \in D$ with $\dot q_G \in H$ and $p \in G$. Hence
+$(p, \dot q) \in D \cap (G * H)$, proving the genericity of $G * H$.
+
+Finally, we prove (2). On one hand,
+$G \in V[G] \subseteq V[G][H]$ and $H \in V[G][H]$, so
+$G * H \in V[G][H]$. By @lem-minimalidad,
+$V[G * H] \subseteq V[G][H]$. On the other hand, we have proved that
+$G * H$ is a $(V, \mathbb P * \dot{\mathbb Q})$-generic filter and
+since the embedding $i : \mathbb P \to \mathbb P * \dot{\mathbb Q}$
+is complete (see @lem-encajeiteracion), by @thm-encajeuno
+$i^{-1}[G * H]$ is a $(V, \mathbb P)$-generic filter. Since
+$G \subseteq i^{-1}[G * H]$ (see the proof of
+@lem-igualdadgenericos (1)), @lem-filtrosiguales gives
+$G = i^{-1}[G * H]$. So by @thm-encajeuno,
+$V[G] \subseteq V[G * H]$, hence $G \in V[G * H]$ since $G \in V[G]$.
+Also, by @lem-igualdadgenericos, $H = \{\dot q_G : \exists p \,
+((p, \dot q) \in G * H)\}$, and since $G * H \in V[G * H]$,
+$H \in V[G * H]$. So by @lem-minimalidad,
+$V[G][H] \subseteq V[G * H]$. This proves the equality of the
+extensions.
+:::
+
+Schematically: $\mathbb P \leq_c \mathbb P * \dot{\mathbb Q}$,
+$\dot{\mathbb Q}_G = \mathbb Q$ lets one force on $V[G]$, and the
+composition $G * H$ is the $(V, \mathbb P * \dot{\mathbb Q})$-generic
+filter that returns the two-step extension $V[G][H]$:
+$$
+V \;\subseteq\; V[G] \;\subseteq\; V[G][H] \;=\; V[G * H],
+\qquad G * H \subseteq \mathbb P * \dot{\mathbb Q}.
+$$
+
+A converse of the previous theorem follows. This result will show
+that every generic filter for $\mathbb P * \dot{\mathbb Q}$ is of the
+form $G * H$ for certain filters $G$ and $H$.
+
+::: {#thm-iteracionuno}
+Let $\mathbb P \in V$ be a partial order and let
+$\dot{\mathbb Q} \in V$ be a $\mathbb P$-name for a partial order.
+If $K$ is a $(V, \mathbb P * \dot{\mathbb Q})$-generic filter,
+$H = \{\dot q_G : \exists r \, ((r, \dot q) \in K)\}$ and
+$G = i^{-1}[K]$, then:
+
+1. $G$ is a $(V, \mathbb P)$-generic filter.
+2. $H$ is a $(V[G], \mathbb Q)$-generic filter, where
+   $\mathbb Q = \dot{\mathbb Q}_G$.
+3. $K = G * H$.
+4. $V[K] = V[G][H]$.
+:::
+
+::: {.proof}
+By @lem-encajeiteracion (6), $i$ is a complete embedding. So by
+@thm-encajeuno, $G = i^{-1}[K]$ is a $(V, \mathbb P)$-generic filter.
+
+We verify $H$ is a filter. Let $p_0, p_1 \in H$. Then there are
+$(r_0, \dot q_0), (r_1, \dot q_1) \in K$ with
+$\dot q_0, \dot q_1 \in \operatorname{dom} \dot{\mathbb Q}$,
+$(\dot q_0)_G = p_0$ and $(\dot q_1)_G = p_1$.
+@prp-extensionparamuchos guarantees there is $(r, \dot q) \in K$ with
+$(r, \dot q) \leq (r_0, \dot q_0), (r_1, \dot q_1)$. So
+$r \leq r_0, r_1$ and $r \Vdash \dot q \leq \dot q_0$ and
+$r \Vdash \dot q \leq \dot q_1$. Also
+$(r, \dot q) \leq (r, \mathbb{1}_{\dot{\mathbb Q}})$, so
+$i(r) = (r, \mathbb{1}_{\dot{\mathbb Q}}) \in K$, hence $r \in G$.
+Therefore $\dot q_G \in H$ and
+$\dot q_G \leq (\dot q_0)_G, (\dot q_1)_G$.
+
+Let $p \in H$ and $q \in \mathbb Q$ with $p \leq q$. So there are
+$(r, \dot q_0) \in K$ and $\dot q \in V^{\mathbb P}$ with
+$\dot q_0, \dot q \in \operatorname{dom} \dot{\mathbb Q}$,
+$(\dot q_0)_G = p$ and $\dot q_G = q$. By @thm-teoremadeforcing (2),
+for some $p_0 \in G$, $p_0 \Vdash \dot q_0, \dot q \in \dot{\mathbb Q}$
+and $p_0 \Vdash \dot q_0 \leq \dot q$. Observe that since
+$p_0 \in G = i^{-1}[K]$,
+$i(p_0) = (p_0, \mathbb{1}_{\dot{\mathbb Q}}) \in K$. Let
+$(r_1, \dot q_1) \in K$ with
+$(r_1, \dot q_1) \leq (r, \dot q_0), (p_0, \mathbb{1}_{\dot{\mathbb Q}})$.
+By @def-composicion, $r_1 \Vdash \dot q_1 \leq \dot q_0$ and
+$r_1 \leq p_0$. From this latter inequality and by
+@lem-alguienmasfuerte (1),
+$r_1 \Vdash \dot q_0 \leq \dot q$ and
+$r_1 \Vdash \dot q \in \dot{\mathbb Q}$. Hence
+$r_1 \Vdash \dot q_1 \leq \dot q$ and
+$(r_1, \dot q) \in \mathbb P * \dot{\mathbb Q}$. But then
+$(r_1, \dot q_1) \leq (r_1, \dot q)$, so $(r_1, \dot q) \in K$.
+Hence $\dot q_G = q \in H$.
+
+We prove the genericity of $H$. Let $D \in V[G]$ be a dense subset
+of $\dot{\mathbb Q}_G$. So there is $\dot D \in V^{\mathbb P}$ with
+$\dot D_G = D$. By @thm-teoremadeforcing (2), for some $p \in G$,
+$p \Vdash \dot D$ is dense in $\dot{\mathbb Q}$. Define
+$$
+E = \{(r, \dot q) \in \mathbb P * \dot{\mathbb Q} :
+     r \Vdash \dot q \in \dot D\}.
+$$
+
+We claim $E$ is dense below $(p, \mathbb{1}_{\dot{\mathbb Q}})$. Let
+$(p_0, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$ with
+$(p_0, \dot q_0) \leq (p, \mathbb{1}_{\dot{\mathbb Q}})$. So
+$p_0 \leq p$, hence by @lem-alguienmasfuerte (1)
+$p_0 \Vdash \dot D$ is dense in $\dot{\mathbb Q}$, and since also
+$p_0 \Vdash \dot q_0 \in \dot{\mathbb Q}$,
+$p_0 \Vdash \exists x \, (x \in \dot{\mathbb Q} \,\&\, x \in \dot D
+\,\&\, x \leq \dot q_0)$. By @lem-nombreeneldominio (1), there are
+$r \in \mathbb P$ and $\dot q_1 \in \operatorname{dom}
+\dot{\mathbb Q}$ with $r \leq p_0$ and
+$r \Vdash (\dot q_1 \in \dot D \,\&\, \dot q_1 \leq \dot q_0)$. So
+by @lem-alguienmasfuerte (2),
+$r \Vdash \dot q_1 \in \dot D \subseteq \dot{\mathbb Q}$ and
+$r \Vdash \dot q_1 \leq \dot q_0$. So
+$(r, \dot q_1) \in \mathbb P * \dot{\mathbb Q}$ with
+$(r, \dot q_1) \in E$ and $(r, \dot q_1) \leq (p_0, \dot q_0)$,
+which proves the claim.
+
+Since $\mathbb P * \dot{\mathbb Q} \in V \subseteq V[G]$ and
+$D \in V[G]$, $E \in V[G]$. Now,
+$(p, \mathbb{1}_{\dot{\mathbb Q}}) \in K$ and $E$ is dense below
+$(p, \mathbb{1}_{\dot{\mathbb Q}})$, so by @lem-lemadenso (2),
+$K \cap E \neq \emptyset$. Let $(r, \dot q) \in K \cap E$. Then
+$(r, \dot q) \in K$ and since
+$(r, \dot q) \leq (r, \mathbb{1}_{\dot{\mathbb Q}})$,
+$(r, \mathbb{1}_{\dot{\mathbb Q}}) \in K$, which implies $r \in G$.
+Also $\dot q_G \in H$, while $(r, \dot q) \in E$ implies
+$r \Vdash \dot q \in \dot D$. So $\dot q_G \in D \cap H$.
+
+We now prove (3). If $(p, \dot q) \in K$, then $p \in G$ since
+$G = i^{-1}[K]$ (recall
+$(p, \dot q) \leq (p, \mathbb{1}_{\dot{\mathbb Q}}) = i(p)$, hence
+$i(p) \in K$, so $p \in G$). Since
+$K \subseteq \mathbb P * \dot{\mathbb Q}$,
+$\dot q \in \operatorname{dom} \dot{\mathbb Q}$. So by the
+definition of $H$, $\dot q_G \in H$. Hence $K \subseteq G * H$. But
+by @thm-iteraciondos $G * H$ is a $(V, \mathbb P *
+\dot{\mathbb Q})$-generic filter, so by @lem-filtrosiguales,
+$K = G * H$.
+
+Finally, (4) holds since by (3) $K = G * H$, so
+@thm-iteraciondos (2) gives $V[K] = V[G][H]$.
+:::
+
+The resemblance between the two previous results and the theorems
+@thm-lorestante and @thm-primerreciproco makes it natural to ask
+what relation there is between $(\mathbb P * \dot{\mathbb Q})/G$
+(where the quotient is taken with respect to the complete embedding
+$i$) and the valuation of $\dot{\mathbb Q}$ at $G$.
+
+::: {#lem-igualdadcomposicion}
+Let $\mathbb P \in V$ be a partial order and let
+$\dot{\mathbb Q} \in V$ be the $\mathbb P$-name of a partial order.
+If $G$ is a $(V, \mathbb P)$-generic filter, then
+$(\mathbb P * \dot{\mathbb Q})/G = \{(p, \dot q) \in \mathbb P *
+\dot{\mathbb Q} : p \in G\}$.
+:::
+
+::: {.proof}
+We prove the first containment. Let $(p, \dot q) \in (\mathbb P *
+\dot{\mathbb Q})/G$. Let $s \in G$ be arbitrary. Then by definition
+$i(s) = (s, \mathbb{1}_{\dot{\mathbb Q}})$ and $(p, \dot q)$ are
+compatible. Hence $s \mid p$. So by @lem-lemadenso (1) applied to
+$E = \{p\} \in V$, $G \cap E \neq \emptyset$. Hence $p \in G$.
+
+We prove the remaining containment. Let $(p, \dot q) \in \mathbb P *
+\dot{\mathbb Q}$ with $p \in G$. Let $r \in G$ be arbitrary and we
+prove $i(r) = (r, \mathbb{1}_{\dot{\mathbb Q}})$ and $(p, \dot q)$
+are compatible. There is $s \in G$ with $s \leq p, r$. Since
+$p \Vdash \dot q \in \dot{\mathbb Q}$ and $s \leq p$, by
+@lem-alguienmasfuerte (1) $s \Vdash \dot q \in \dot{\mathbb Q}$. So
+$(s, \dot q) \in \mathbb P * \dot{\mathbb Q}$. By @def-composicion
+and @lem-alguienmasfuerte (1),
+$s \Vdash \dot q \leq \mathbb{1}_{\dot{\mathbb Q}}$. Also
+$s \Vdash \dot q \leq \dot q$. So
+$(s, \dot q) \leq (r, \mathbb{1}_{\dot{\mathbb Q}}), (p, \dot q)$.
+:::
+
+The next result guarantees that the quotient
+$(\mathbb P * \dot{\mathbb Q})/G$ and $\dot{\mathbb Q}_G$ always
+produce the same generic extension.
+
+::: {#thm-encajeentrecomposicion}
+Let $\mathbb P, \dot{\mathbb Q}$ and $G$ be as in the previous lemma.
+Then $(\mathbb P * \dot{\mathbb Q})/G \leq_d \dot{\mathbb Q}_G$.
+:::
+
+::: {.proof}
+Define $e : (\mathbb P * \dot{\mathbb Q})/G \to \dot{\mathbb Q}_G$ by
+$e(p, \dot q) = \dot q_G$ for each
+$(p, \dot q) \in (\mathbb P * \dot{\mathbb Q})/G$.
+
+Let $(p_1, \dot q_1), (p_2, \dot q_2) \in (\mathbb P *
+\dot{\mathbb Q})/G$ and we prove $e$ is a dense embedding.
+
+Suppose $(p_1, \dot q_1) \leq (p_2, \dot q_2)$. Then $p_1 \leq p_2$
+and $p_1 \Vdash \dot q_1 \leq \dot q_2$. Since by the previous lemma
+$p_1 \in G$, $(\dot q_1)_G \leq (\dot q_2)_G$, that is,
+$e(p_1, \dot q_1) \leq e(p_2, \dot q_2)$.
+
+We prove $e$ preserves incompatibility. Suppose
+$(\dot q_1)_G \mid (\dot q_2)_G$. There is
+$\dot q_0 \in V^{\mathbb P}$ with $(\dot q_0)_G \in \dot{\mathbb Q}_G$
+and $(\dot q_0)_G \leq (\dot q_1)_G, (\dot q_2)_G$. On one hand, by
+@lem-caballito there is $(r_0, \dot q) \in \mathbb P *
+\dot{\mathbb Q}$ with $r_0 \in G$ and
+$r_0 \Vdash \dot q = \dot q_0$. On the other hand, by
+@thm-teoremadeforcing (2), for some $r_1 \in G$,
+$r_1 \Vdash \dot q_0 \leq \dot q_1, \dot q_2$. Take $r \in G$, a
+common extension of $r_0$ and $r_1$. By @lem-alguienmasfuerte (1),
+$r \Vdash \dot q = \dot q_0$ and
+$r \Vdash \dot q_0 \leq \dot q_1, \dot q_2$, that is,
+$r \Vdash \dot q \leq \dot q_1, \dot q_2$. Since
+$(p_1, \dot q_1), (p_2, \dot q_2) \in (\mathbb P *
+\dot{\mathbb Q})/G$, by @lem-igualdadcomposicion $p_1, p_2 \in G$.
+By @prp-extensionparamuchos, for some $s \in G$, $s \leq p_1, p_2, r$,
+so by @lem-alguienmasfuerte (2), $s \Vdash \dot q \leq \dot q_1,
+\dot q_2$. Since $s \in G$, $\dot q \in \operatorname{dom}
+\dot{\mathbb Q}$ and $s \Vdash \dot q \in \dot{\mathbb Q}$, by
+@lem-igualdadcomposicion $(s, \dot q) \in (\mathbb P *
+\dot{\mathbb Q})/G$ and $(s, \dot q) \leq (p_1, \dot q_1),
+(p_2, \dot q_2)$.
+
+We verify $e$ is surjective, hence
+$e\,{}''(\mathbb P * \dot{\mathbb Q})/G$ is a dense subset of
+$\dot{\mathbb Q}_G$. If $q \in \dot{\mathbb Q}_G$, there is
+$\dot q \in V^{\mathbb P}$ with $\dot q_G = q$. By @lem-caballito,
+there is $(r, \dot q_0) \in \mathbb P * \dot{\mathbb Q}$ with
+$r \in G$ and $r \Vdash \dot q_0 = \dot q$. By
+@lem-igualdadcomposicion, $(r, \dot q_0) \in (\mathbb P *
+\dot{\mathbb Q})/G$. Hence $e(r, \dot q_0) = (\dot q_0)_G = q$.
+:::
+
+It is natural to ask whether $(\mathbb P * \dot{\mathbb Q})/G$ and
+$\dot{\mathbb Q}_G$ are isomorphic in general. To show the answer is
+negative, we need an auxiliary notion that will simplify things.
+
+::: {#def-predecesor-inmediato}
+Let $\mathbb P$ be a partial order. We say that $p$ is an **immediate
+predecessor** of $q$ in $\mathbb P$ if and only if $p < q$ and there
+is no $r \in \mathbb P$ with $p < r < q$.
+:::
+
+We now show that being an immediate predecessor is preserved under
+isomorphisms.
+
+::: {#lem-predecesores}
+Let $\mathbb P$ and $\mathbb Q$ be two partial orders. If
+$f : \mathbb P \to \mathbb Q$ is an isomorphism and $p$ is an
+immediate predecessor of $q$ in $\mathbb P$, then $f(p)$ is an
+immediate predecessor of $f(q)$ in $\mathbb Q$.
+:::
+
+::: {.proof}
+Suppose $p$ is an immediate predecessor of $q$ in $\mathbb P$. Then
+$p < q$. Since $f$ is an isomorphism, $f(p) < f(q)$.
+
+If $f(p) < r < f(q)$ for some $r \in \mathbb Q$, we would have
+$p < f^{-1}(r) < q$, that is, $p$ would not be an immediate
+predecessor of $q$.
+:::
+
+Given a partial order $\mathbb P \in V$, when we refer to
+$\check{\mathbb P}$ as the canonical $\mathbb P$-name of a partial
+order we understand the triple $(\check{\mathbb P}, \check{\leq},
+\check{\mathbb{1}}_{\mathbb P})$.
+
+::: {#lem-ordenreducido}
+Let $\mathbb P$ be a partial order and $\check{\mathbb P}$ its
+canonical $\mathbb P$-name. Then:
+
+1. $\mathbb P * \check{\mathbb P} = \{(p, \check q) : p, q \in
+   \mathbb P\}$.
+2. For every $(p, \check q_1), (r, \check q_2) \in \mathbb P *
+   \check{\mathbb P}$, $(p, \check q_1) \leq (r, \check q_2)$ if and
+   only if $p \leq r$ and $q_1 \leq q_2$.
+:::
+
+::: {.proof}
+(1). Let $(p, \dot q) \in \mathbb P * \check{\mathbb P}$. By
+@def-composicion, $p \in \mathbb P$,
+$\dot q \in \operatorname{dom} \check{\mathbb P}$ and
+$p \Vdash \dot q \in \check{\mathbb P}$. Recall
+$\check{\mathbb P} = \{(\check r, \mathbb{1}) : r \in \mathbb P\}$,
+where $\mathbb{1}$ is the maximum element of $\mathbb P$. So
+$\dot q \in \operatorname{dom} \check{\mathbb P}$ implies
+$\dot q = \check r$ for some $r \in \mathbb P$. So
+$(p, \dot q) = (p, \check r)$ for some $r \in \mathbb P$.
+
+Let $p, q \in \mathbb P$ and we show $(p, \check q) \in \mathbb P *
+\check{\mathbb P}$. It remains to prove $\check q \in
+\operatorname{dom} \check{\mathbb P}$ and
+$p \Vdash \check q \in \check{\mathbb P}$. Since $q \in \mathbb P$,
+$(\check q, \mathbb{1}) \in \check{\mathbb P}$, hence
+$\check q \in \operatorname{dom} \check{\mathbb P}$. Now, since
+$\mathbb{1} \Vdash \check q \in \check{\mathbb P}$ and
+$p \leq \mathbb{1}$, by @lem-alguienmasfuerte
+$p \Vdash \check q \in \check{\mathbb P}$.
+
+(2). By @def-composicion, $(p, \check q_1) \leq (r, \check q_2)$ if
+and only if $p \leq r$ and $p \Vdash \check q_1 \leq \check q_2$.
+The latter happens if and only if for every $(V, \mathbb P)$-generic
+filter $G$ with $p \in G$, $(\check q_1)_G \leq (\check q_2)_G$,
+equivalently, $q_1 \leq q_2$.
+:::
+
+We now show that there is a forcing notion $\mathbb P$ such that
+composing it with the canonical $\mathbb P$-name of itself and
+taking the quotient of this composition modulo a generic filter, the
+result is a partial order not isomorphic to $\mathbb P$. This answers
+our initial question negatively.
+
+::: {#prp-pp-no-iso-p}
+Let $\mathbb P := 2^{<\omega}$ and $\check{\mathbb P}$ its canonical
+$\mathbb P$-name. Then $(\mathbb P * \check{\mathbb P})/G \ncong
+\mathbb P$ for any $(V, \mathbb P)$-generic filter $G$.
+:::
+
+::: {.proof}
+Let $G$ be an arbitrary $(V, \mathbb P)$-generic filter. To prove
+our proposition we need three preliminary observations:
+
+(i) Let $p_0 := \{(0, 0)\}$ and $p_1 := \{(0, 1)\}$. Since
+$p \leq \emptyset$ for every $p \in \mathbb P$, in particular
+$p_0$ and $p_1$ are predecessors of $\emptyset$ in $\mathbb P$.
+
+We prove $p_0$ and $p_1$ are immediate predecessors of $\emptyset$
+in $\mathbb P$. If $p_k < r < \emptyset$ for some $r \in \mathbb P$
+and some $k \in \{0, 1\}$, then by our order
+$\emptyset \subset r \subset p_k$. The first containment gives
+$0 \in \operatorname{dom} r$, while the second implies
+$r(0) = p_k(0)$. Hence $r = p_k$. Observe $p_0$ and $p_1$ are
+unique. If $t \in \mathbb P \setminus \{\emptyset\}$ is an
+immediate predecessor of $\emptyset$, then $\operatorname{dom} t = 1$:
+otherwise $\operatorname{dom} t > 1$, and then $t < p_0$ or
+$t < p_1$, impossible. So $\operatorname{dom} t = 1$ and therefore
+$t = p_0$ or $t = p_1$.
+
+(ii) $p_k \in G$ for some $k < 2$.
+
+Let $D = \{p \in \mathbb P : p \leq p_0 \text{ or } p \leq p_1\}$ and
+we show this set is dense in $\mathbb P$.
+
+Let $p \in \mathbb P$. First note $p_0 \in D$, so if $p = \emptyset$,
+then $p_0 \leq p$. Suppose $p \neq \emptyset$. Then
+$0 \in \operatorname{dom} p$. Since $p(0) \in \{0, 1\}$,
+$p \leq p_0$ or $p \leq p_1$, hence $p \in D$ and, since $p \leq p$,
+we have the desired extension in $D$.
+
+Note $D \in V$ since both $p_0$ and $p_1$ are functions definable
+in $V$. So $G \cap D \neq \emptyset$. Let $p \in G \cap D$. Then
+$p \in G$ and $p \leq p_k$ for some $k < 2$. Hence $p_k \in G$.
+
+(iii) The pairs $(\emptyset, \check p_0), (\emptyset, \check p_1)$
+and $(p_k, \check{\emptyset})$ are distinct immediate predecessors
+of $(\emptyset, \check{\emptyset})$ in $(\mathbb P *
+\check{\mathbb P})/G$. By @lem-ordenreducido (1), all of these
+pairs are elements of $\mathbb P * \check{\mathbb P}$. Since
+$\emptyset \in G$, by @lem-igualdadcomposicion these pairs are
+elements of $(\mathbb P * \check{\mathbb P})/G$.
+
+By @lem-ordenreducido (2), every pair in
+$(\mathbb P * \check{\mathbb P})/G$ precedes
+$(\emptyset, \check{\emptyset})$. We see that for $\ell < 2$,
+$(\emptyset, \check p_\ell)$ is an immediate predecessor of
+$(\emptyset, \check{\emptyset})$ in
+$(\mathbb P * \check{\mathbb P})/G$.
+
+If some pair $(p, \check q) \in (\mathbb P * \check{\mathbb P})/G$
+satisfies
+$(\emptyset, \check p_\ell) < (p, \check q) <
+(\emptyset, \check{\emptyset})$, by @lem-ordenreducido (2),
+$p_\ell < q < \emptyset$, contradicting (i).
+
+We now show that $(p_k, \check{\emptyset})$ is an immediate
+predecessor of $(\emptyset, \check{\emptyset})$. Otherwise, if some
+pair $(p, \check q) \in (\mathbb P * \check{\mathbb P})/G$
+satisfies
+$(p_k, \check{\emptyset}) < (p, \check q) <
+(\emptyset, \check{\emptyset})$, by @lem-ordenreducido (2),
+$p_k < p < \emptyset$, contradicting (i).
+
+We prove the proposition by contradiction. Let
+$f : (\mathbb P * \check{\mathbb P})/G \to \mathbb P$ be an
+isomorphism.
+
+First note $f(\emptyset, \check{\emptyset}) = \emptyset$. Since
+$f^{-1}(\emptyset) \in (\mathbb P * \check{\mathbb P})/G$,
+$f^{-1}(\emptyset) \leq (\emptyset, \check{\emptyset})$, hence
+$f(f^{-1}(\emptyset)) \leq f(\emptyset, \check{\emptyset})$, i.e.
+$\emptyset \leq f(\emptyset, \check{\emptyset})$, equivalently
+$f(\emptyset, \check{\emptyset}) \subseteq \emptyset$. So the claim
+holds.
+
+Now, by (iii) and @lem-predecesores,
+$f(\emptyset, \check p_0), f(\emptyset, \check p_1)$ and
+$f(p_k, \check{\emptyset})$ are distinct immediate predecessors of
+$\emptyset$ in $\mathbb P$, contradicting (i).
+:::
+
+By @thm-encajeentrecomposicion and the previous result, we can give
+an example of two non-isomorphic partial orders each densely
+embedded in the other.
+
+::: {#prp-encaje-denso-pp}
+Let $G$ be a $(V, \mathbb P)$-generic filter. If
+$\mathbb P := 2^{<\omega}$ and
+$\mathbb Q := (\mathbb P * \check{\mathbb P})/G$, then
+$\mathbb P \leq_d \mathbb Q$.
+:::
+
+::: {.proof}
+By @prp-unnuevoreal (1) and (2), if $g = \bigcup G$, then
+$g : \omega \to 2$ and $G = \{g \restriction n : n \in \omega\}$.
+
+Note this implies $\mathbb Q = \{(g \restriction n, \check q) :
+n \in \omega \,\&\, q \in \mathbb P\}$. Indeed, by
+@lem-ordenreducido, $\mathbb P * \check{\mathbb P} = \{(p, \check q) :
+p, q \in \mathbb P\}$. So by @lem-igualdadcomposicion,
+$\mathbb Q = \{(p, \check q) : p \in G \,\&\, q \in \mathbb P\} =
+\{(g \restriction n, \check q) : n \in \omega \,\&\, q \in \mathbb P\}$.
+
+Define a function $e : \mathbb P \to \mathbb Q$ by
+$e(p) = (g \restriction \operatorname{dom} p, \check p)$. By the
+previous observation $e(p) \in \mathbb Q$, so $e$ is well defined.
+We prove $e : \mathbb P \to \mathbb Q$ is a dense embedding.
+
+Let $p, r \in \mathbb P$ with $p \leq r$. By @lem-ordenreducido, it
+suffices to prove $g \restriction \operatorname{dom} p \leq
+g \restriction \operatorname{dom} r$. By hypothesis,
+$\operatorname{dom} r \leq \operatorname{dom} p$, hence
+$g \restriction \operatorname{dom} p \leq g \restriction
+\operatorname{dom} r$.
+
+We prove $e\,{}''\mathbb P$ is a dense subset of $\mathbb Q$. Let
+$q \in \mathbb Q$. So $q = (g \restriction n, \check p)$ for some
+$n \in \omega$ and $p \in \mathbb P$. We have the following cases:
+
+I. If $n = \operatorname{dom} p$, then $q = (g \restriction n,
+\check p)$ is precisely $e(p)$ and the result holds.
+
+II. If $n < \operatorname{dom} p$, then
+$g \restriction \operatorname{dom} p \leq g \restriction n$, hence
+$(g \restriction \operatorname{dom} p, \check p) \leq
+(g \restriction n, \check p)$, that is, $e(p) \leq q$.
+
+III. If $n > \operatorname{dom} p$, consider $s : n \to 2$ defined
+by
+$$
+s(i) = \begin{cases}
+p(i), & \text{if } i \in \operatorname{dom} p, \\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+So $s \leq p$ and $\operatorname{dom} s = n$. Hence
+$(g \restriction \operatorname{dom} s, \check s) \leq
+(g \restriction \operatorname{dom} p, \check p)$, i.e.
+$e(s) \leq q$.
+:::
+
+## Separative quotient
+
+The last section of this work is devoted to partial orders that
+satisfy an interesting property: separativity.
+
+::: {#def-separativo}
+Let $\mathbb P$ be a partial order. We say that $\mathbb P$ is
+**separative** if and only if for every $p, q \in \mathbb P$, if
+$p \nleq q$, then there is $r \in \mathbb P$ with $r \leq p$ and
+$r \perp q$.
+:::
+
+The next lemma gives a comparability criterion between elements of a
+separative partial order.
+
+::: {#lem-comparabilidadseparativa}
+If $\mathbb P$ is a separative partial order, then for every
+$p, q \in \mathbb P$, $p \leq q$ if and only if every extension of
+$p$ is compatible with $q$.
+:::
+
+::: {.proof}
+The first implication holds since if $p \leq q$ and $r \leq p$, then
+$r \leq q$, which implies $r \mid q$. The remaining implication is
+verified by contrapositive: if $p \nleq q$, since $\mathbb P$ is
+separative, there is $r \in \mathbb P$ with $r \leq p$ and
+$r \perp q$.
+:::
+
+The connection between separativity and the relation $\Vdash$ is
+established in the next result.
+
+::: {#prp-equivalenciaseparativa}
+If $\mathbb P$ is a partial order, the following are equivalent.
+
+1. $\mathbb P$ is separative.
+2. For every $p, q \in \mathbb P$: $p \Vdash \check q \in \Gamma$ if
+   and only if $p \leq q$.
+:::
+
+::: {.proof}
+Suppose $\mathbb P$ is separative with maximum element $\mathbb{1}$.
+Consider $p, q \in \mathbb P$ with $p \nleq q$. Then there is
+$r \leq p$ with $r \perp q$. Now, since
+$\mathbb{1} \Vdash \Gamma$ is a filter and
+$r \Vdash \check r \in \Gamma$, by @lem-alguienmasfuerte (1),
+$r \Vdash \Gamma$ is a filter. So $r \Vdash \check q \notin \Gamma$.
+Hence $p \nVdash \check q \in \Gamma$. Conversely, if $p \leq q$,
+since $q \Vdash \check q \in \Gamma$, by @lem-alguienmasfuerte (1)
+$p \Vdash \check q \in \Gamma$.
+
+We prove (2) implies (1). Let $p, q \in \mathbb P$. If $p \nleq q$,
+then $p \nVdash \check q \in \Gamma$. So for some $r \leq p$,
+$r \Vdash \check q \notin \Gamma$. By @lem-condicionenG, we can
+consider a $(V, \mathbb P)$-generic filter $G$ containing $r$.
+Hence $q \notin G$. By @lem-lemadenso (1) applied to $\{q\}$,
+$r_0 \perp q$ for some $r_0 \in G$. Take $r_1 \in G$, a common
+extension of $r$ and $r_0$. We can claim $r_1 \perp q$: otherwise,
+$s \leq r_1, q$ for some $s \in \mathbb P$, hence $s \leq r_0, q$,
+impossible. So $r_1 \leq p$ and $r_1 \perp q$, that is, $\mathbb P$
+is separative.
+:::
+
+The next proposition gives a sufficient condition for a complete
+embedding to be injective.
+
+::: {#prp-encaje-completo-inyectivo}
+If $e : \mathbb P \to \mathbb Q$ is a complete embedding where
+$\mathbb P$ and $\mathbb Q$ are two antisymmetric separative partial
+orders, then:
+
+1. $e$ is injective.
+2. $e(\mathbb{1}_{\mathbb P}) = \mathbb{1}_{\mathbb Q}$.
+3. For every $p, q \in \mathbb P$: $p \leq q$ if and only if
+   $e(p) \leq e(q)$.
+:::
+
+::: {.proof}
+Let $p, q \in \mathbb P$ with $e(p) = e(q)$. We prove $p = q$ by
+contradiction. If $p \neq q$, then $p \nleq q$ or $q \nleq p$ since
+$\mathbb P$ is antisymmetric. Suppose $p \nleq q$. Then there is
+$r \leq p$ with $r \perp q$. Hence $e(r) \leq e(p)$ and
+$e(r) \perp e(q)$. But then $e(r) \leq e(q)$ and $e(r) \perp e(q)$
+since $e(p) = e(q)$, impossible. The case $q \nleq p$ is analogous.
+
+We verify $e(\mathbb{1}_{\mathbb P}) = \mathbb{1}_{\mathbb Q}$.
+Since $q \leq \mathbb{1}_{\mathbb Q}$ for every $q \in \mathbb Q$,
+the inequality $e(\mathbb{1}_{\mathbb P}) \leq
+\mathbb{1}_{\mathbb Q}$ always holds. It remains to prove
+$\mathbb{1}_{\mathbb Q} \leq e(\mathbb{1}_{\mathbb P})$. If not,
+$\mathbb{1}_{\mathbb Q} \nleq e(\mathbb{1}_{\mathbb P})$, so
+$q_0 \perp e(\mathbb{1}_{\mathbb P})$ for some
+$q_0 \in \mathbb Q$ since $\mathbb Q$ is separative. By
+@thm-equivalenciaencaje, $q_0$ admits an $e$-reduction to
+$\mathbb P$, say $p$. So $e(p) \mid q_0$. Let
+$s \leq e(p), q_0$. Since $p \leq \mathbb{1}_{\mathbb P}$,
+$e(p) \leq e(\mathbb{1}_{\mathbb P})$. Hence
+$s \leq e(\mathbb{1}_{\mathbb P}), q_0$, a contradiction. So
+$\mathbb{1}_{\mathbb Q} \leq e(\mathbb{1}_{\mathbb P})$.
+
+Let $p, q \in \mathbb P$. If $p \leq q$, then $e(p) \leq e(q)$ since
+$e$ is an embedding. We prove the remaining implication by
+contradiction. If $e(p) \leq e(q)$ and $p \nleq q$, then $r \perp q$
+for some $r \leq p$ since $\mathbb P$ is separative. So
+$e(r) \leq e(p)$ and $e(r) \perp e(q)$. Since $e(p) \leq e(q)$,
+$e(r) \leq e(q)$, hence $e(r) \mid e(q)$, impossible.
+:::
+
+Naturally, there are partial orders that are not separative (see the
+remarks immediately following @lem-compatibilidadomega); however,
+every order can be densely embedded into a separative one. The
+construction of this order requires defining an equivalence relation.
+
+::: {#def-relacionseparativa}
+Let $\mathbb P$ be a partial order and $p, q \in \mathbb P$. Then:
+
+1. $p \sim q$ if and only if for every $r \in \mathbb P$, $r \mid p$
+   if and only if $r \mid q$.
+2. $[p] = \{s \in \mathbb P : s \sim p\}$.
+:::
+
+**Remark.** $\sim$ is an equivalence relation.
+
+- $\sim$ is reflexive, since $p$ is compatible with the same elements
+  that are compatible with $p$.
+- If $p \sim q$, since $p$ and $q$ are compatible with the same
+  elements of $\mathbb P$, $q \sim p$ trivially.
+- If $p \sim r$ and $r \sim q$, then $p$ and $r$ are compatible with
+  the same elements of $\mathbb P$, and $r$ and $q$ are compatible
+  with the same elements of $\mathbb P$. So $p$ and $q$ are
+  compatible with the same elements of $\mathbb P$, that is,
+  $p \sim q$.
+
+::: {#def-ordenseparativo}
+We define the **separative quotient** of a partial order $\mathbb P$
+as
+$$
+\mathbb P/_\sim = \{[p] : p \in \mathbb P\}.
+$$
+
+Define the binary relation $\trianglelefteq$ on
+$\mathbb P/_\sim$ by $[p] \trianglelefteq [q]$ if and only if for
+every $r \leq p$, $r \mid q$.
+:::
+
+**Remark.** The relation $\trianglelefteq$ is well defined. Indeed,
+if $[p] = [p']$, $[q] = [q']$ and $[p] \trianglelefteq [q]$, then
+given $r \leq p'$, in particular $r \mid p'$. Hence $r \mid p$. Let
+$p_1 \leq r, p$. Then $p_1 \mid q$ since
+$[p] \trianglelefteq [q]$. Let $p_2 \leq p_1, q$. So
+$p_2 \leq r, q$, i.e. $r \mid q$. Hence $r \mid q'$, so
+$[p'] \trianglelefteq [q']$.
+
+The next lemma tells us that order and incompatibility in any partial
+order imply the corresponding facts in its separative quotient. For
+convenience we write $\mathbb P/_\sim$ to mean
+$(\mathbb P/_\sim, \trianglelefteq)$.
+
+::: {#lem-preservacionseparativa}
+If $\mathbb P$ is a partial order and $\mathbb P/_\sim$ is its
+separative quotient, then for every $p, q \in \mathbb P$:
+
+1. $p \leq q$ implies $[p] \trianglelefteq [q]$.
+2. $p \perp q$ implies $[p] \perp [q]$.
+:::
+
+::: {.proof}
+Suppose $p \leq q$. If $r \leq p$, then $r \leq q$, in particular
+$r \mid q$. Hence $[p] \trianglelefteq [q]$, which proves (1).
+
+We verify (2) by contrapositive. Let $[p]$ and $[q]$ be compatible.
+So $[r] \trianglelefteq [p], [q]$ for some $r \in \mathbb P$. But by
+@def-ordenseparativo, every extension of $r$ is compatible with $p$
+and $q$. In particular, $r$ and $p$ admit a common extension, say
+$s$. So $s$ and $q$ are compatible. Let $t \leq s, q$. So
+$t \leq p, q$.
+:::
+
+::: {#prp-cociente-separativo-orden}
+Let $\mathbb P$ be a partial order. Then $\mathbb P/_\sim$ is an
+antisymmetric separative partial order.
+:::
+
+::: {.proof}
+$[p] \trianglelefteq [p]$, since $r \leq p$ implies $r \mid p$ for
+every $r \in \mathbb P$.
+
+Let $p, q, r \in \mathbb P$ with $[p] \trianglelefteq [q]$ and
+$[q] \trianglelefteq [r]$. Let $s \leq p$. Then $s \mid q$, so
+$p_0 \leq s, q$ for some $p_0 \in \mathbb P$. So $p_0$ and $r$ are
+compatible. Let $p_1 \leq p_0, r$. So $p_1 \leq s, r$. Hence
+$[p] \trianglelefteq [r]$.
+
+$\mathbb P/_\sim$ is separative: if $[p], [q] \in
+\mathbb P/_\sim$ satisfy $[p] \not\trianglelefteq [q]$, by
+@def-ordenseparativo there is $r \leq p$ with $r \perp q$. By
+@lem-preservacionseparativa, $[r] \trianglelefteq [p]$ and
+$[r] \perp [q]$.
+
+We prove antisymmetry. Suppose $p, q \in \mathbb P$ satisfy
+$[p] \trianglelefteq [q]$ and $[q] \trianglelefteq [p]$. Let
+$r \in \mathbb P$ with $r \mid p$. Take $s \leq p, r$. Since
+$[p] \trianglelefteq [q]$, $s \mid q$. So there is $t \leq s, q$.
+Hence $t \leq r, q$. Analogously,
+$[q] \trianglelefteq [p]$ implies that every condition compatible
+with $q$ is compatible with $p$. So $[p] = [q]$.
+:::
+
+We use what we have done to prove that every partial order densely
+embeds into its separative quotient.
+
+::: {#thm-encaje-denso-cociente}
+$\mathbb P \leq_d \mathbb P/_\sim$.
+:::
+
+::: {.proof}
+Define $\pi : \mathbb P \to \mathbb P/_\sim$ by $\pi(p) = [p]$.
+
+By @lem-preservacionseparativa, $\pi$ preserves order and
+incompatibility. The function $\pi : \mathbb P \to \mathbb P/_\sim$
+is clearly surjective, hence $\pi\,{}''\mathbb P$ is a dense subset
+of $\mathbb P/_\sim$. So $\pi$ is a dense embedding.
+:::
+
+The separative quotient has a certain uniqueness, as the next
+proposition reveals.
+
+::: {#prp-unicidadcociente}
+If $(\mathbb Q, \sqsubseteq)$ is an antisymmetric separative partial
+order for which there exists $e : \mathbb P \to \mathbb Q$, a
+surjective embedding (hence dense), then $\mathbb P/_\sim \cong
+\mathbb Q$.
+:::
+
+::: {.proof}
+Define $f : \mathbb P/_\sim \to \mathbb Q$ by $f([p]) = e(p)$. Note
+that $f$ makes commutative the diagram $\mathbb P \xrightarrow{e}
+\mathbb Q$ and $\mathbb P \xrightarrow{\pi} \mathbb P/_\sim
+\xrightarrow{f} \mathbb Q$, since $f \circ \pi = e$.
+
+We verify $f$ is well defined, i.e. if $p \sim r$ then
+$e(p) = e(r)$. By contrapositive, if $e(p) \neq e(r)$, then
+$e(p) \not\sqsubseteq e(r)$ or $e(r) \not\sqsubseteq e(p)$ since
+$\mathbb Q$ is antisymmetric. Suppose the former. Since $\mathbb Q$
+is separative, $q \sqsubseteq e(p)$ and $q \perp e(r)$ for some
+$q \in \mathbb Q$. By surjectivity of $e$, $q = e(p_0)$ for some
+$p_0 \in \mathbb P$, hence $e(p_0) \sqsubseteq e(p)$ and
+$e(p_0) \perp e(r)$, that is, $p \not\sim r$. The case
+$e(r) \not\sqsubseteq e(p)$ is analogous.
+
+We prove $f$ is an isomorphism between $\mathbb P/_\sim$ and
+$\mathbb Q$. $f$ is injective, since if $e(p) = e(r)$, then
+$p \sim r$. Indeed, if $p \not\sim r$, then $s \mid p$ and
+$s \perp r$ for some $s \in \mathbb P$. So $e(s) \mid e(p)$ and
+$e(s) \perp e(r)$, hence $e(p) \neq e(r)$. So $e(p) = e(r)$ implies
+$[p] = [r]$. Since $f \circ \pi = e$ and $e$ is surjective, $f$ is
+too.
+
+We prove by contrapositive in both directions that $f$ and $f^{-1}$
+preserve the order. Let $[p], [r] \in \mathbb P/_\sim$ with
+$[p] \trianglelefteq [r]$. Suppose $e(p) \not\sqsubseteq e(r)$.
+Since $\mathbb Q$ is separative, there is $q \sqsubseteq e(p)$ with
+$q \perp e(r)$. By surjectivity of $e$, $q = e(p_0)$ for some
+$p_0 \in \mathbb P$, hence $e(p_0) \sqsubseteq e(p)$ and
+$e(p_0) \perp e(r)$. Since $e(p_0) \sqsubseteq e(p)$ implies
+$e(p_0) \mid e(p)$, $p_0 \mid p$. Let $p_1 \leq p_0, p$. So
+$e(p_1) \sqsubseteq e(p_0)$. Also, $p_1$ and $r$ are incompatible:
+otherwise, $p_1 \mid r$, hence $e(p_1) \mid e(r)$, i.e. there is
+$q_0 \sqsubseteq e(p_1), e(r)$, hence
+$q_0 \sqsubseteq e(p_0), e(r)$, impossible. So
+$p_1 \in \mathbb P$ satisfies $p_1 \leq p$ and $p_1 \perp r$, that
+is, $[p] \not\trianglelefteq [r]$.
+
+Now suppose $[p] \not\trianglelefteq [r]$. By @def-ordenseparativo,
+there is $p_0 \in \mathbb P$ with $p_0 \leq p$ and $p_0 \perp r$.
+Hence $e(p_0) \sqsubseteq e(p)$ and $e(p_0) \perp e(r)$, i.e.
+$f([p]) \not\sqsubseteq f([r])$.
+:::
+
+As a corollary of the above and @thm-igualdadextensiones, every
+generic extension can be seen as the generic extension given by a
+separative partial order.
+
+Below we present an alternative way to densely embed any partial
+order into a separative partial order.
+
+::: {#def-ordenestrella}
+For every $p, q \in \mathbb P$:
+
+1. $p \leq^\star q$ if and only if for every $r \leq p$, $r \mid q$.
+2. $\mathbb P^\star = (\mathbb P, \leq^\star, \mathbb{1}_{\mathbb P})$.
+:::
+
+It is interesting that clause (1) of the previous definition is
+motivated by @lem-comparabilidadseparativa, so we expect
+$\mathbb P^\star$ to be a separative partial order. A treatment of
+separativity in terms of the relation $\leq^\star$ can be found in
+[@barto]. Before proving that $\mathbb P^\star$ is separative, we
+verify that order and incompatibility in $\mathbb P$ imply the
+corresponding facts in $\mathbb P^\star$.
+
+::: {#lem-implicacionestrella}
+For every $p, q \in \mathbb P$:
+
+1. $p \leq q$ implies $p \leq^\star q$.
+2. $p \perp q$ implies $p \perp^\star q$ — that is, there is no
+   $r \in \mathbb P^\star$ with $r \leq^\star p$ and
+   $r \leq^\star q$.
+:::
+
+::: {.proof}
+The first holds because given $r \leq p$, the hypothesis gives
+$r \leq q$. Hence $r \mid q$.
+
+We prove (2) by contrapositive. Suppose there is $r \in \mathbb P$
+with $r \leq^\star p$ and $r \leq^\star q$. Then $r \mid p$. Let
+$s \leq r, p$. So $s \mid q$ since $r \leq^\star q$. Take
+$t \in \mathbb P$ with $t \leq s, q$. Hence $t \leq p, q$, as
+required.
+:::
+
+::: {#prp-pestrella-separativo}
+$\mathbb P^\star$ is a separative partial order.
+:::
+
+::: {.proof}
+Our order is reflexive: $p \leq^\star p$ since every extension of
+$p$ is compatible with $p$.
+
+Suppose $p \leq^\star q$ and $q \leq^\star r$. We check
+$p \leq^\star r$. If $s \leq p$, then $s \mid q$, so
+$p_0 \leq s, q$ for some $p_0 \in \mathbb P$. So $p_0$ and $r$ are
+compatible. Let $p_1 \leq p_0, r$. So $p_1 \leq s, r$, hence
+$p \leq^\star r$.
+
+Now, by @def-ordenestrella, for every $p, q \in \mathbb P$,
+$p \nleq^\star q$ implies there is $r \leq p$ with $r \perp q$. By
+@lem-implicacionestrella, $r \leq^\star p$ and $r \perp^\star q$.
+So $\mathbb P^\star$ is separative.
+:::
+
+By the previous proposition and @prp-equivalenciaseparativa, for
+every $p, q \in \mathbb P$, $p \Vdash \check q \in \Gamma$ is
+equivalent to $p \leq^\star q$.
+
+::: {#thm-encaje-denso-pestrella}
+$\mathbb P \leq_d \mathbb P^\star$.
+:::
+
+::: {.proof}
+Let $e : \mathbb P \to \mathbb P^\star$ be the identity. By
+@lem-implicacionestrella, $e$ is an embedding, and since
+$e\,{}''\mathbb P = \mathbb P$, it is dense.
+:::
+
+We illustrate the constructions of this section with an example. Let
+$\mathbb P = ([\omega]^\omega, \subseteq)$. We first see that two
+elements in this order are compatible if and only if their
+intersection is infinite.
+
+::: {#lem-compatibilidadomega}
+For every $p, q \in \mathbb P$, $p \mid q$ if and only if
+$|p \cap q| = \omega$.
+:::
+
+::: {.proof}
+If $p \mid q$, there is $r \in \mathbb P$ with $r \subseteq p$ and
+$r \subseteq q$. So $r \subseteq p \cap q$, hence
+$|p \cap q| = \omega$. Conversely, if $|p \cap q| = \omega$, then
+$p \cap q \in \mathbb P$ and is a common extension of $p$ and $q$
+since both contain $p \cap q$.
+:::
+
+Observe that the partial order considered is not separative. Let
+$p = \omega$ and $q = \omega \setminus \{0\}$. So $p \nsubseteq q$
+and yet every subset of $p$ in $\mathbb P$ is compatible with $q$.
+Indeed, if $r \in \mathbb P$ and $r \subseteq p$, then
+$r \cap q = r \setminus \{0\}$ since $q \subseteq p$, hence
+$|r \cap q| = \omega$.
+
+By our compatibility criterion for $\mathbb P$ and following
+@def-ordenestrella, for every $p, q \in \mathbb P$:
+$p \subseteq^\star q$ if and only if for every $r \in \mathbb P$,
+$r \subseteq p$ implies $|r \cap q| = \omega$.
+
+::: {#lem-subseteq-estrella}
+For every $p, q \in \mathbb P$, $p \subseteq^\star q$ if and only if
+$|p \setminus q| < \omega$.
+:::
+
+::: {.proof}
+We prove the first implication by contrapositive. Suppose
+$p \setminus q$ is infinite. So $r := p \setminus q \in \mathbb P$,
+$r \subseteq p$ and $r \perp q$, since $r \cap q = \emptyset$.
+
+We prove the remaining implication directly. Let $r \in \mathbb P$
+with $r \subseteq p$. By hypothesis, $|p \setminus q| < \omega$.
+Since $r = (r \cap q) \cup (r \setminus q)$,
+$|r \setminus q| < \omega$. Hence $|r \cap q| = \omega$.
+:::
+
+So $\mathbb P^\star = ([\omega]^\omega, \subseteq^\star)$. Note that
+$\mathbb P^\star$ is not antisymmetric. Indeed, if $p = \omega$ and
+$q = \omega \setminus \{0\}$, then $p \subseteq^\star q$ and
+$q \subseteq^\star p$, since $|p \setminus q| = 1 < \omega$ and
+$|q \setminus p| = 0 < \omega$. Yet $p \neq q$.
+
+We are now interested in $\mathbb P/_\sim$, i.e. the separative
+quotient of $\mathbb P$ (see @def-ordenseparativo). By
+@def-relacionseparativa, two conditions $p, q \in \mathbb P$ are
+related if and only if they are compatible with the same elements,
+which by @lem-compatibilidadomega is equivalent to: $p \sim q$ if
+and only if for every $r \in \mathbb P$,
+$|p \cap r| = |q \cap r| = \omega$. The latter lets us state:
+
+::: {#prp-simetrica-diferencia}
+For every $p, q \in \mathbb P$, $p \sim q$ if and only if
+$|p \bigtriangleup q| < \omega$, where $p \bigtriangleup q =
+(p \setminus q) \cup (q \setminus p)$.
+:::
+
+::: {.proof}
+We prove the first implication by contrapositive. If
+$|p \bigtriangleup q| = \omega$, then $|p \setminus q| = \omega$ or
+$|q \setminus p| = \omega$. If $|p \setminus q| = \omega$, then
+$p \setminus q$ is an element of $\mathbb P$ for which
+$|p \cap (p \setminus q)| = \omega$ and
+$|q \cap (p \setminus q)| = 0 < \omega$, hence $p \not\sim q$. The
+case $|q \setminus p| = \omega$ is analogous.
+
+Suppose $|p \bigtriangleup q| < \omega$. Let $r \in \mathbb P$ be
+compatible with $q$, i.e. $|r \cap q| = \omega$. Since
+$r \cap q = (r \cap q \cap p) \cup (r \cap q \setminus p)$ and by
+hypothesis $|q \setminus p| < \omega$,
+$|r \cap q \cap p| = \omega$. Since $r \cap q \cap p \subseteq
+r \cap p$, $|r \cap p| = \omega$. An analogous argument shows every
+element compatible with $p$ is also compatible with $q$.
+:::
+
+In other contexts the quotient $\mathbb P/_\sim$ presented here is
+denoted $([\omega]^\omega, \subseteq)/\mathrm{fin}$, for which there
+is an extensive literature. By @prp-cociente-separativo-orden,
+$\mathbb P/_\sim$ is an antisymmetric partial order. So
+$\mathbb P/_\sim$ and $\mathbb P^\star$ cannot be isomorphic. This
+shows that antisymmetry cannot be dropped from
+@prp-unicidadcociente.
