@@ -1,0 +1,21 @@
+# Quarto build outputs
+/_site/
+/_book/
+/_freeze/
+/.quarto/
+*.tex.bak
+
+# Project brief — must never be tracked (per project contract)
+unam-tesis-site-project.*
+**/unam-tesis-site-project.*
+
+# Editor / OS cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local environment
+.env
+.env.local

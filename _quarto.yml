@@ -1,0 +1,79 @@
+# Base profile renders the Spanish book at site root (/).
+# The `en` and `fr` profiles (in _quarto-en.yml / _quarto-fr.yml) override
+# `output-dir`, `book.chapters`, and `lang` to produce /en/ and /fr/.
+
+project:
+  type: book
+  output-dir: _site
+  resources:
+    - "assets/**"
+    - "pdf/**"
+
+book:
+  title: "Encajes entre nociones de forcing"
+  subtitle: "Tesis de licenciatura — Facultad de Ciencias, UNAM"
+  author: "Alonso Celis"
+  language: es
+  reader-mode: true
+  page-navigation: true
+  search: true
+  repo-url: https://github.com/Alonso-Celis/Mathematics
+  repo-actions: [edit, source]
+  # downloads: [pdf]  # re-enable once TinyTeX is added to the CI runner
+  sidebar:
+    style: docked
+    collapse-level: 1
+  navbar:
+    background: primary
+    pinned: true
+    right:
+      - text: "ES"
+        href: /
+      - text: "EN"
+        href: /en/
+      - text: "FR"
+        href: /fr/
+      - icon: github
+        href: https://github.com/Alonso-Celis/Mathematics
+        aria-label: GitHub
+  chapters:
+    - index.es.qmd
+    # Chapters land here once tex-source is migrated:
+    # - chapters/00-introduccion.es.qmd
+    # - chapters/01-preliminares.es.qmd
+  page-footer:
+    left: "© Alonso Celis"
+    right: "Sitio construido con Quarto"
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: [cosmo, assets/css/custom.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    html-math-method: katex
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    crossrefs-hover: true
+  # pdf: re-add and enable TinyTeX in the workflow to ship per-language PDFs.
+
+# Theorem / proof crossref labels (Quarto built-in)
+crossref:
+  thm-title: "Teorema"
+  lem-title: "Lema"
+  cor-title: "Corolario"
+  prp-title: "Proposición"
+  def-title: "Definición"
+  exm-title: "Ejemplo"
+  exr-title: "Ejercicio"
+
+execute:
+  freeze: auto
+
+lang: es

@@ -1,0 +1,94 @@
+/*-- scss:defaults --*/
+
+$primary:        #002147 !default;   // UNAM blue (placeholder)
+$secondary:      #B89B4C !default;   // UNAM gold (placeholder)
+$body-bg:        #FBFAF6 !default;
+$body-color:     #1A1A1A !default;
+$link-color:     #002147 !default;
+$link-hover-color: lighten($link-color, 12%) !default;
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif !default;
+$font-family-serif:      "EB Garamond", "Source Serif Pro", Georgia, serif !default;
+$font-family-monospace:  "JetBrains Mono", "SFMono-Regular", Menlo, monospace !default;
+
+$headings-font-family:   $font-family-sans-serif !default;
+$headings-font-weight:   600 !default;
+$headings-line-height:   1.25 !default;
+
+$font-size-root:         18px !default;
+$line-height-base:       1.65 !default;
+
+/*-- scss:rules --*/
+
+// Body text in serif — academic feel
+body {
+  font-family: $font-family-serif;
+  font-feature-settings: "kern", "liga", "onum", "pnum";
+  text-rendering: optimizeLegibility;
+}
+
+// Tighten code blocks and inline math
+code, .sourceCode {
+  font-feature-settings: normal;
+}
+
+// Make displayed equations breathe
+.math.display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+// Theorem-style proposition blocks (Quarto crossref renders these as divs
+// with classes like .theorem, .lemma, .proof — style them as prose boxes)
+.theorem, .lemma, .corollary, .proposition, .definition,
+.example, .exercise, .remark {
+  border-left: 3px solid $primary;
+  padding: 0.6rem 1rem 0.6rem 1.1rem;
+  margin: 1.5rem 0;
+  background: rgba(0, 33, 71, 0.03);
+
+  .theorem-title, .lemma-title, .corollary-title, .proposition-title,
+  .definition-title, .example-title, .exercise-title, .remark-title {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    color: $primary;
+    margin-right: 0.4rem;
+  }
+}
+
+.proof {
+  margin: 1rem 0 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px dotted $secondary;
+  font-style: normal;
+
+  &::after {
+    content: " ∎";
+    font-weight: bold;
+    color: $primary;
+  }
+}
+
+// Subtle navbar
+.navbar {
+  border-bottom: 1px solid rgba(0, 33, 71, 0.12);
+}
+
+// Language switcher chips — picked out by the navbar text items "ES" "EN" "FR"
+.navbar-nav .nav-link {
+  font-family: $font-family-sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+// Sidebar headings sharper
+.sidebar-title, .sidebar nav .chapter-title {
+  font-family: $font-family-sans-serif;
+}
+
+// Print niceties
+@media print {
+  .navbar, .sidebar, .page-footer { display: none; }
+  body { font-size: 11pt; }
+}

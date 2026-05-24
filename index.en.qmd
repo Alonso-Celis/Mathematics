@@ -1,0 +1,35 @@
+---
+title: "Embeddings between forcing notions"
+subtitle: "Bachelor's thesis — School of Sciences, UNAM"
+author: "Alonso Celis"
+lang: en
+---
+
+# About this work
+
+This thesis studies **embedding** relations between *forcing* notions —
+a central tool of modern set theory, introduced by Paul Cohen to settle
+the independence of the continuum hypothesis.
+
+The complete PDF (Spanish original) is available
+[here](../pdf/ENCAJES_ENTRE_NOCIONES_DE_FORCING.pdf).
+
+## Languages
+
+The content is available in three languages:
+
+- [**Español**](/) (original)
+- **English** — current
+- [**Français**](/fr/)
+
+## Structure
+
+Chapters will appear here as the original `.tex` manuscript is migrated and
+translated.
+
+## Citation
+
+If you find this work useful:
+
+> Celis, A. *Embeddings between forcing notions* [Encajes entre nociones de
+> forcing]. Bachelor's thesis, School of Sciences, UNAM.

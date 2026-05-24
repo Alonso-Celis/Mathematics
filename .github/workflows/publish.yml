@@ -1,0 +1,69 @@
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.5.57"
+
+      - name: Cache _freeze
+        uses: actions/cache@v4
+        with:
+          path: _freeze
+          key: freeze-${{ runner.os }}-${{ hashFiles('**/*.qmd', '_quarto*.yml') }}
+          restore-keys: |
+            freeze-${{ runner.os }}-
+
+      - name: Render (Spanish — root)
+        run: quarto render
+
+      - name: Render (English — /en/)
+        run: quarto render --profile en
+
+      - name: Render (French — /fr/)
+        run: quarto render --profile fr
+
+      - name: Verify language outputs exist
+        run: |
+          test -f _site/index.html
+          test -f _site/en/index.html
+          test -f _site/fr/index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
