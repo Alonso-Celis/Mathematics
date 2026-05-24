@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use or build on this thesis, please cite it as below."
+title: "Encajes entre nociones de forcing"
+abstract: >-
+  Bachelor's thesis on advanced set theory: a study of embeddings between
+  forcing notions and the generic extensions they produce. The work develops
+  complete and dense embeddings, the quotient construction Q/G, composition
+  of forcing notions, and the result that every countable atomless forcing
+  notion contains Cohen forcing as a dense suborder. Concludes with
+  separative quotients and two distinct ways to densely embed any partial
+  order into a separative one.
+type: thesis
+authors:
+  - family-names: Celis Martínez
+    given-names: Alonso Lenin
+    affiliation: "Universidad Nacional Autónoma de México"
+    orcid: ""  # add ORCID here when available
+keywords:
+  - forcing
+  - set theory
+  - generic extensions
+  - complete embeddings
+  - dense embeddings
+  - Cohen real
+  - separative quotient
+  - countable transitive model
+  - UNAM
+url: "https://alonso-celis.github.io/Mathematics/"
+repository-code: "https://github.com/Alonso-Celis/Mathematics"
+# Add a DOI here once the first GitHub release is published with the
+# Zenodo integration enabled — see README.md "Citing this work".
+# doi: 10.5281/zenodo.XXXXXXX
+preferred-citation:
+  type: thesis
+  title: "Encajes entre nociones de forcing"
+  authors:
+    - family-names: Celis Martínez
+      given-names: Alonso Lenin
+  year: 2013
+  month: 1
+  url: "https://alonso-celis.github.io/Mathematics/"
+  thesis-type: "Bachelor's thesis"
+  institution:
+    name: "Facultad de Ciencias, Universidad Nacional Autónoma de México"
+    city: "Ciudad de México"
+    country: MX

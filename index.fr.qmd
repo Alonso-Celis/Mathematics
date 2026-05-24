@@ -31,5 +31,23 @@ d'origine sera migré et traduit.
 
 Si cet ouvrage vous est utile :
 
-> Celis, A. *Plongements entre notions de forcing* [Encajes entre nociones
-> de forcing]. Mémoire de licence, Faculté des Sciences, UNAM.
+> Celis Martínez, A. L. (2013). *Plongements entre notions de forcing*
+> [*Encajes entre nociones de forcing*]. Mémoire de licence, Faculté
+> des Sciences, UNAM. <https://alonso-celis.github.io/Mathematics/>
+
+::: {.callout-tip collapse="true" title="BibTeX"}
+```bibtex
+@phdthesis{celis2013encajes,
+  author    = {Celis Mart{\'i}nez, Alonso Lenin},
+  title     = {Encajes entre nociones de forcing},
+  school    = {Facultad de Ciencias, UNAM},
+  type      = {Mémoire de licence},
+  year      = {2013},
+  url       = {https://alonso-celis.github.io/Mathematics/}
+}
+```
+:::
+
+Métadonnées lisibles par machine dans
+[`CITATION.cff`](https://github.com/Alonso-Celis/Mathematics/blob/main/CITATION.cff).
+Le DOI Zenodo, une fois émis, remplacera le champ `url:` ci-dessus.
