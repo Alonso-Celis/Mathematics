@@ -1,0 +1,50 @@
+es,en,notes
+encaje,embedding,Jech / Kunen canonical
+encaje completo,complete embedding,
+encaje denso,dense embedding,
+orden parcial,partial order,
+preorden,preorder,
+orden parcial antisimétrico,antisymmetric partial order,
+noción de forcing,forcing notion,
+elemento máximo,maximum element,top element of P
+condición,condition,element of a forcing notion
+extensión,extension,p extends q when p ≤ q
+extensión común,common extension,
+compatible,compatible,p | q
+incompatible,incompatible,p ⊥ q
+anticadena,antichain,
+anticadena maximal,maximal antichain,
+anticadena trivial,trivial antichain,
+denso,dense,
+subconjunto denso,dense subset,
+denso por debajo de,dense below,
+filtro,filter,
+filtro genérico,generic filter,
+filtro (V P)-genérico,(V P)-generic filter,parens around V P comma omitted for CSV cleanliness
+modelo base,ground model,
+modelo transitivo numerable,countable transitive model,
+relativización,relativization,
+absoluta (noción),absolute (notion),model-theoretic sense
+P-nombre,P-name,P with blackboard P in source
+nombre canónico,canonical name,
+valuación,valuation,Kunen also uses 'value'
+extensión genérica,generic extension,V[G]
+no atómico,atomless,Kunen-canonical
+sin átomos,atomless,
+forzar (verbo),force,p forces phi
+relación de forzar,forcing relation,
+forcing de Cohen,Cohen forcing,omega^<omega
+real de Cohen,Cohen real,
+añadir un real de Cohen,add a Cohen real,
+suborden,suborder,
+isomorfismo,isomorphism,
+biyección / biyectiva,bijection / bijective,
+preservar el orden,preserve the order / order-preserving,
+Axioma de Buena Fundación,Axiom of Foundation,also Axiom of Regularity
+Axioma de Regularidad,Axiom of Regularity,
+Lema de Zorn,Zorn's Lemma,
+cardinal regular,regular cardinal,
+iteración con soportes contables,countable-support iteration,Phase B-2 vocabulary
+extensión propia,proper extension,
+hipótesis del continuo,continuum hypothesis,CH
+composición de nociones de forcing,composition of forcing notions,P * dot{Q}
