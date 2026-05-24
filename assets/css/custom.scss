@@ -1,11 +1,22 @@
 /*-- scss:defaults --*/
 
-$primary:        #002147 !default;   // UNAM blue (placeholder)
-$secondary:      #B89B4C !default;   // UNAM gold (placeholder)
+// Aligned with _brand.yml. See assets/logos/PROVENANCE.md for the
+// reasoning behind these specific values.
+
+// Azul UNAM (Pantone 540 C) and Oro UNAM (Pantone 7406 C)
+$primary:        #003D7C !default;
+$secondary:      #FFB81C !default;
+
+// Deeper hover / accent shades
+$primary-deep:   #002147 !default;
+$secondary-deep: #B8870C !default;
+
 $body-bg:        #FBFAF6 !default;
 $body-color:     #1A1A1A !default;
-$link-color:     #002147 !default;
-$link-hover-color: lighten($link-color, 12%) !default;
+$rule-color:     #E5E2DA !default;
+
+$link-color:     $primary !default;
+$link-hover-color: $primary-deep !default;
 
 $font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif !default;
 $font-family-serif:      "EB Garamond", "Source Serif Pro", Georgia, serif !default;
@@ -32,6 +43,19 @@ code, .sourceCode {
   font-feature-settings: normal;
 }
 
+// Links carry the UNAM blue
+a {
+  color: $link-color;
+  text-decoration-color: rgba($primary, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration-color: $link-hover-color;
+  }
+}
+
 // Make displayed equations breathe
 .math.display {
   margin: 1.5rem 0;
@@ -39,14 +63,13 @@ code, .sourceCode {
   overflow-y: hidden;
 }
 
-// Theorem-style proposition blocks (Quarto crossref renders these as divs
-// with classes like .theorem, .lemma, .proof — style them as prose boxes)
+// Theorem-style boxes — left-rule in UNAM blue, faint blue tint
 .theorem, .lemma, .corollary, .proposition, .definition,
 .example, .exercise, .remark {
   border-left: 3px solid $primary;
   padding: 0.6rem 1rem 0.6rem 1.1rem;
   margin: 1.5rem 0;
-  background: rgba(0, 33, 71, 0.03);
+  background: rgba($primary, 0.04);
 
   .theorem-title, .lemma-title, .corollary-title, .proposition-title,
   .definition-title, .example-title, .exercise-title, .remark-title {
@@ -57,10 +80,11 @@ code, .sourceCode {
   }
 }
 
+// Proof boxes use the oro accent as a quieter complement
 .proof {
   margin: 1rem 0 1.5rem 0;
   padding-left: 1rem;
-  border-left: 2px dotted $secondary;
+  border-left: 2px dotted $secondary-deep;
   font-style: normal;
 
   &::after {
@@ -72,19 +96,47 @@ code, .sourceCode {
 
 // Subtle navbar
 .navbar {
-  border-bottom: 1px solid rgba(0, 33, 71, 0.12);
+  border-bottom: 1px solid rgba($primary, 0.12);
 }
 
-// Language switcher chips — picked out by the navbar text items "ES" "EN" "FR"
+// Language switcher chips ("ES" "EN" "FR") + GitHub icon
 .navbar-nav .nav-link {
   font-family: $font-family-sans-serif;
   font-weight: 500;
   letter-spacing: 0.02em;
+
+  // Active language pill — light gold underline
+  &.active {
+    border-bottom: 2px solid $secondary;
+  }
 }
 
 // Sidebar headings sharper
 .sidebar-title, .sidebar nav .chapter-title {
   font-family: $font-family-sans-serif;
+}
+
+// Sidebar active item picks up the oro accent
+.sidebar nav .active > a,
+.sidebar nav .sidebar-item-text.active {
+  color: $primary !important;
+  border-left: 3px solid $secondary;
+  margin-left: -3px;
+  padding-left: calc(0.5rem - 3px);
+}
+
+// Horizontal rules use the rule-color for a quieter look on paper bg
+hr {
+  border: 0;
+  border-top: 1px solid $rule-color;
+  margin: 1.5rem 0;
+}
+
+// Footer
+.page-footer {
+  border-top: 1px solid $rule-color;
+  color: $body-color;
+  opacity: 0.85;
 }
 
 // Print niceties
