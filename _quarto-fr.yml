@@ -10,8 +10,7 @@ book:
   subtitle: "Mémoire de licence — Faculté des Sciences, UNAM"
   chapters:
     - index.fr.qmd
-    # - chapters/00-introduccion.fr.qmd
-    # - chapters/01-preliminares.fr.qmd
+    - chapters/01-preliminares.fr.qmd
   page-footer:
     left: "© Alonso Celis"
     right: "Site construit avec Quarto"
