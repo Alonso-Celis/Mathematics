@@ -43,11 +43,13 @@ Si cet ouvrage vous est utile :
   school    = {Facultad de Ciencias, UNAM},
   type      = {Mémoire de licence},
   year      = {2013},
-  url       = {https://alonso-celis.github.io/Mathematics/}
+  url       = {https://alonso-celis.github.io/Mathematics/},
+  doi       = {10.5281/zenodo.20370496}
 }
 ```
 :::
 
+DOI Zenodo :
+[10.5281/zenodo.20370496](https://doi.org/10.5281/zenodo.20370496).
 Métadonnées lisibles par machine dans
 [`CITATION.cff`](https://github.com/Alonso-Celis/Mathematics/blob/main/CITATION.cff).
-Le DOI Zenodo, une fois émis, remplacera le champ `url:` ci-dessus.

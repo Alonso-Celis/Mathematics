@@ -108,6 +108,8 @@ deployment: GitHub Actions**.
 
 ## Citing this work
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20370496.svg)](https://doi.org/10.5281/zenodo.20370496)
+
 Machine-readable metadata lives in [`CITATION.cff`](CITATION.cff) — GitHub
 renders a *"Cite this repository"* widget from it in the sidebar. BibTeX:
 
@@ -118,32 +120,20 @@ renders a *"Cite this repository"* widget from it in the sidebar. BibTeX:
   school    = {Facultad de Ciencias, UNAM},
   type      = {Tesis de licenciatura},
   year      = {2013},
-  url       = {https://alonso-celis.github.io/Mathematics/}
+  url       = {https://alonso-celis.github.io/Mathematics/},
+  doi       = {10.5281/zenodo.20370496}
 }
 ```
 
-### Minting a Zenodo DOI
+### Re-archiving future releases
 
-A persistent DOI can be issued automatically through the GitHub–Zenodo
-integration. One-time setup (Alonso):
-
-1. Sign in to <https://zenodo.org/> with your GitHub account.
-2. Visit <https://zenodo.org/account/settings/github/> and toggle the
-   `Alonso-Celis/Mathematics` repository **on**.
-3. Cut a release on GitHub:
-   ```bash
-   gh release create v1.0.0 \
-     --title "v1.0.0 — Spanish layer + EN/FR translations of all chapters" \
-     --notes "Trilingual publication of *Encajes entre nociones de forcing*."
-   ```
-4. Zenodo picks up the release within a minute, archives the tarball,
-   and issues a DOI (e.g. `10.5281/zenodo.XXXXXXX`).
-5. Add the DOI to `CITATION.cff` (uncomment the `doi:` field) and
-   replace the placeholder badge below with the live one from Zenodo.
-
-Until the first release is cut, the placeholder above stands.
-
-[![DOI](https://img.shields.io/badge/DOI-pending--zenodo-lightgrey)](https://zenodo.org/)
+Each subsequent `gh release create vX.Y.Z` fires a release webhook to
+Zenodo, which archives the source tarball and issues a fresh
+version-specific DOI under the umbrella concept-DOI
+[`10.5281/zenodo.20370496`](https://doi.org/10.5281/zenodo.20370496).
+After a new release lands, update the `doi:` field in
+[`CITATION.cff`](CITATION.cff) and the four BibTeX blocks (this one
+plus the three landing pages) to the new version DOI.
 
 ## Refreshing site screenshots
 

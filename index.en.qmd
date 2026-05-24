@@ -43,11 +43,13 @@ If you find this work useful:
   school    = {Facultad de Ciencias, UNAM},
   type      = {Bachelor's thesis},
   year      = {2013},
-  url       = {https://alonso-celis.github.io/Mathematics/}
+  url       = {https://alonso-celis.github.io/Mathematics/},
+  doi       = {10.5281/zenodo.20370496}
 }
 ```
 :::
 
+Zenodo DOI:
+[10.5281/zenodo.20370496](https://doi.org/10.5281/zenodo.20370496).
 Machine-readable metadata in
 [`CITATION.cff`](https://github.com/Alonso-Celis/Mathematics/blob/main/CITATION.cff).
-Once a Zenodo DOI is issued, it will supersede the `url:` field above.
