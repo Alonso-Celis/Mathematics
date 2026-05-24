@@ -13,11 +13,43 @@ multilingual static site on GitHub Pages.
 | 🇬🇧 English       | <https://alonso-celis.github.io/Mathematics/en/>                           |
 | 🇫🇷 Français      | <https://alonso-celis.github.io/Mathematics/fr/>                           |
 
-Chapter 1 (*Preliminaries* / *Preliminares* / *Préliminaires*) is published
-in all three languages with cross-referenced theorems, proofs, and the full
-bibliography of [@kunen] / Jech / Shelah / Krivine. Chapters 2 and 3
-(*Encajes* / *Embeddings* / *Plongements* and *Aplicaciones* /
-*Applications* / *Applications*) will land via Phase B PRs.
+The full thesis — *Encajes entre nociones de forcing* — is published in all
+three languages: landing + Preliminares + Encajes + Aplicaciones, with
+cross-referenced theorems, proofs, the canonical bibliography
+([Kunen](references.bib), Jech, Shelah, Krivine, …), a per-language
+"Download PDF" button on every page, and a built-in search restricted to
+the visitor's current language.
+
+### Landing pages
+
+<a href="https://alonso-celis.github.io/Mathematics/">
+  <img src="assets/screenshots/landing-es.png"
+       alt="Spanish landing page"
+       width="32%" />
+</a>
+<a href="https://alonso-celis.github.io/Mathematics/en/">
+  <img src="assets/screenshots/landing-en.png"
+       alt="English landing page"
+       width="32%" />
+</a>
+<a href="https://alonso-celis.github.io/Mathematics/fr/">
+  <img src="assets/screenshots/landing-fr.png"
+       alt="French landing page"
+       width="32%" />
+</a>
+
+<sub>
+🇲🇽 <a href="https://alonso-celis.github.io/Mathematics/">Español</a>
+&nbsp;·&nbsp;
+🇬🇧 <a href="https://alonso-celis.github.io/Mathematics/en/">English</a>
+&nbsp;·&nbsp;
+🇫🇷 <a href="https://alonso-celis.github.io/Mathematics/fr/">Français</a>
+</sub>
+
+Full-page chapter captures (multi-MB each) live alongside the landings:
+[`chapter-es.png`](assets/screenshots/chapter-es.png) ·
+[`chapter-en.png`](assets/screenshots/chapter-en.png) ·
+[`chapter-fr.png`](assets/screenshots/chapter-fr.png).
 
 ## Current memoir
 
