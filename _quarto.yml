@@ -46,7 +46,6 @@ book:
     right: "Sitio construido con Quarto"
 
 bibliography: references.bib
-csl: # leave default for now; can pin a math/humanities CSL later
 
 format:
   html:
@@ -80,7 +79,6 @@ crossref:
   def-title: "Definición"
   exm-title: "Ejemplo"
   exr-title: "Ejercicio"
-  rem-title: "Observación"
 
 execute:
   freeze: auto
