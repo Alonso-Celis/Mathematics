@@ -1,13 +1,26 @@
-# Brand palette inspired by UNAM identity — refine once logos are decoded
-# and exact Pantones can be lifted from the source PDF.
+# Brand palette aligned with UNAM's institutional identity.
+#
+# The escudo PDFs shipped with the thesis source are monochrome (1-bit
+# bitmap for escudo-unam, grayscale indexed image for escudo-ciencias),
+# so they don't carry the official Pantones directly. The values below
+# are the canonical UNAM identity colours from the Manual de Identidad
+# Gráfica de la UNAM:
+#
+#   azul UNAM   - Pantone 540 C  ≈ #003D7C
+#   oro UNAM    - Pantone 7406 C ≈ #FFB81C
+#
+# Plus an academic neutral palette tuned for long-form reading.
 
 color:
   palette:
-    unam-blue: "#002147"     # azul universitario (placeholder)
-    unam-gold: "#B89B4C"     # oro universitario (placeholder)
-    ink: "#1A1A1A"
-    paper: "#FBFAF6"
-    muted: "#5F6770"
+    unam-blue:   "#003D7C"   # Azul UNAM (Pantone 540 C)
+    unam-gold:   "#FFB81C"   # Oro UNAM (Pantone 7406 C)
+    unam-blue-deep: "#002147" # darker shade for hover / dark accents
+    unam-gold-deep: "#B8870C" # darker gold for hover / small print
+    ink:         "#1A1A1A"
+    paper:       "#FBFAF6"
+    muted:       "#5F6770"
+    rule:        "#E5E2DA"   # divider/border on a paper background
   primary: unam-blue
   secondary: unam-gold
   foreground: ink
@@ -30,7 +43,7 @@ typography:
   base:
     family: "EB Garamond"
     size: 18px
-    line-height: 1.6
+    line-height: 1.65
   headings:
     family: "Inter"
     weight: 600
