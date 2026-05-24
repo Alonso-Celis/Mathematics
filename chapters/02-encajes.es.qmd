@@ -1,0 +1,1672 @@
+---
+title: "Encajes"
+lang: es
+---
+
+En este capítulo introducimos los conceptos centrales de la tesis. Se
+introducen funciones entre órdenes parciales tales como encaje, encaje
+completo y encaje denso. Se muestra que todo encaje denso es completo
+pero no a la inversa. Bajo estos encajes entre órdenes parciales, todos
+ellos en el modelo base $V$, se obtienen extensiones genéricas de $V$
+que dependiendo de la naturaleza del encaje, serán en algunos casos,
+extensiones propias, mientras que en otros, las extensiones producidas
+serán las mismas. Finalmente, se prueba que el forcing de Cohen se
+encaja densamente en todo orden parcial numerable y sin átomos.
+
+## Encajes completos
+
+Por lo que resta del capítulo, $\mathbb P$ y $\mathbb Q$ siempre
+denotarán dos órdenes parciales.
+
+::: {#def-encaje}
+Sea $e : \mathbb P \to \mathbb Q$ una función. Decimos que $e$ es un
+**encaje** si para cualesquiera $p, r \in \mathbb P$, se satisface lo
+siguiente:
+
+1. $p \leq r$ implica $e(p) \leq e(r)$, es decir, $e$ preserva el orden;
+2. $p \perp r$ implica $e(p) \perp e(r)$, es decir, $e$ preserva la
+   incompatibilidad.
+:::
+
+Es importante señalar que el término encaje no debe confundirse con una
+función inyectiva, pues si por ejemplo, todos los elementos de
+$\mathbb P$ son compatibles (verbigracia, un orden lineal), entonces la
+función $e : \mathbb P \to \mathbb Q$ definida mediante
+$e(p) = \mathbb{1}_{\mathbb Q}$ es un encaje no inyectivo.
+
+**Notación.** Si $e : \mathbb P \to \mathbb Q$ es una función y
+$X \subseteq \mathbb P$, denotamos a la imagen directa de $X$ por
+$e\,{}''X$.
+
+Estamos interesados en aquellos encajes que preservan anticadenas
+maximales.
+
+::: {#def-encajecompleto}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje. Decimos que $e$ es un
+**encaje completo** si para cualquier $A$, anticadena maximal en
+$\mathbb P$, se tiene que $e\,{}''A$ es una anticadena maximal en
+$\mathbb Q$.
+:::
+
+**Notación.** Cada vez que entre dos órdenes parciales $\mathbb P$ y
+$\mathbb Q$ exista una función $e$ como la de la @def-encajecompleto
+escribiremos $\mathbb P \leq_c \mathbb Q$.
+
+La siguiente es una equivalencia que nos será útil más adelante.
+
+::: {#thm-equivalenciaencaje}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje. Son equivalentes:
+
+1. $e$ es un encaje completo.
+2. Dado cualquier $q \in \mathbb Q$, existe $p \in \mathbb P$ tal que si
+   $r \leq p$, entonces $e(r) \mid q$. En este caso diremos que $p$ es
+   una **$e$-reducción** de $q$ a $\mathbb P$.
+:::
+
+::: {.proof}
+Es suficiente probar que preservar anticadenas maximales es equivalente
+a que cualquier $q \in \mathbb Q$ tiene una $e$-reducción a $\mathbb P$.
+
+Probemos que (1) implica (2) por contrapositiva. Así, si no se cumple
+(2), entonces existe $q \in \mathbb Q$ tal que para todo
+$p \in \mathbb P$ hay alguna $r \leq p$ de modo que $e(r) \perp q$. Sea
+$D = \{r \in \mathbb P : e(r) \perp q\}$. Por nuestra suposición, $D$ es
+denso en $\mathbb P$. Consideremos $A \subseteq D$ una anticadena
+maximal en $D$. Por la @prp-amaximalendenso, $A$ es maximal en
+$\mathbb P$. Como $e$ preserva incompatibilidad, $e\,{}''A$ es
+anticadena. Ahora bien, $q \notin e\,{}''A$, pues en caso contrario
+$q \perp q$, lo que no es posible. Además, $q \perp e(r)$ para todo
+$r \in A$, es decir, $e\,{}''A \cup \{q\}$ es anticadena. Pero entonces
+$e\,{}''A \subsetneq e\,{}''A \cup \{q\}$, por lo que $e\,{}''A$ no es
+maximal.
+
+Probemos que (2) implica (1) por contradicción. Sea $A \subseteq
+\mathbb P$ una anticadena maximal en $\mathbb P$ para la cual
+$e\,{}''A$ no es una anticadena maximal en $\mathbb Q$. Entonces existe
+$q \in \mathbb Q$ incompatible con todo elemento de $e\,{}''A$. Sea $p$
+una $e$-reducción de $q$ a $\mathbb P$. Como $A$ es anticadena maximal
+en $\mathbb P$, $p \mid a$ para alguna $a \in A$. Sea $r \leq p, a$.
+Entonces $e(r) \leq e(a)$ y además $e(r) \mid q$. Así,
+$s \leq e(r), q$ para alguna $s \in \mathbb Q$. Pero entonces
+$s \leq e(a), q$, es decir, $e(a) \mid q$, lo cual es una contradicción,
+pues $e(a) \in e\,{}''A$.
+:::
+
+Si $e : \mathbb P \to \mathbb Q$ es un encaje completo y
+$q \in \mathbb Q$, el @thm-equivalenciaencaje garantiza que existe una
+$e$-reducción $p$ de $q$ a $\mathbb P$. Sin embargo, $p$ no es única.
+Por ejemplo, si $p_1 \leq p$, entonces dado $p_2 \leq p_1$, se tiene que
+$e(p_2) \mid q$, pues $p_2 \leq p$. Luego, $p_1$ es también una
+$e$-reducción de $q$ a $\mathbb P$.
+
+Por otro lado, volviendo al encaje $e(p) = \mathbb{1}_{\mathbb Q}$,
+donde todos los elementos de $\mathbb P$ son compatibles, se observa,
+recurriendo a la equivalencia del @thm-equivalenciaencaje, que nuestro
+encaje (no inyectivo) es completo. En efecto, si $q \in \mathbb Q$,
+entonces cualquier $p \in \mathbb P$ es una $e$-reducción de $q$ a
+$\mathbb P$, pues $e(r) = \mathbb{1}_{\mathbb Q} \geq q$ para toda
+$r \leq p$. En particular, $e(r) \mid q$.
+
+El teorema anterior es una caracterización del concepto de encaje
+completo en la que no se hace mención alguna de modelos de ZFC. En este
+contexto y dados nuestros intereses, el siguiente resultado resulta de
+suma importancia.
+
+Previo a nuestro teorema observemos que si una función
+$f : \mathbb P \to \mathbb Q$ es un elemento de $V$, entonces
+$\operatorname{dom} f \in V$, ya que $\operatorname{dom} f$ es una noción
+absoluta.
+
+::: {#thm-encajeuno}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje con
+$e, \mathbb P, \mathbb Q \in V$. Entonces los siguientes enunciados son
+equivalentes.
+
+1. $e$ es completo.
+2. Para cualquier filtro $(V, \mathbb Q)$-genérico $H$ se tiene que
+   $e^{-1}[H]$ es un filtro $(V, \mathbb P)$-genérico y
+   $V[e^{-1}[H]] \subseteq V[H]$.
+:::
+
+::: {.proof}
+Probemos que (1) implica (2). Sea $H$ un filtro $(V, \mathbb Q)$-genérico.
+Hagamos $G = e^{-1}[H]$ y demostremos que $G$ satisface las propiedades
+del @lem-filtroequivalencia. Sean $p, q \in \mathbb P$.
+
+Si $p, q \in G$, entonces $e(p), e(q) \in H$. Como $H$ es un filtro, se
+tiene que $e(p) \mid e(q)$. Pero como $e$ preserva incompatibilidad,
+$p \mid q$, es decir, existe $r \in \mathbb P$ tal que $r \leq p, q$.
+
+Supongamos que $p \in G$ y $p \leq q$. Así, $e(p) \in H$,
+$e(q) \in \mathbb Q$ y además, por ser $e$ un encaje, $e(p) \leq e(q)$.
+Pero entonces, como $H$ es un filtro, $e(q) \in H$, de donde $q \in G$.
+
+Probemos la genericidad de $G$ por contradicción. Supongamos que
+$G \cap D = \emptyset$ para algún conjunto $D \in V$ denso en
+$\mathbb P$. Observemos que esta suposición implica que
+$H \cap e\,{}''D = \emptyset$. Esto se verifica pues si
+$q \in H \cap e\,{}''D$, entonces $q \in H$ y $q = e(p)$ para alguna
+$p \in D$. De donde $e(p) \in H$ y, por tanto, $p \in G$, es decir,
+$G \cap D \neq \emptyset$.
+
+De acuerdo con el párrafo anterior, $H \cap e\,{}''D = \emptyset$. Como
+$H$ es $(V, \mathbb Q)$-genérico, por el @lem-lemadenso (1) aplicado a
+$e\,{}''D$, existe $q \in H$ tal que $r \perp q$ para todo
+$r \in e\,{}''D$, es decir, $e(r') \perp q$ para todo $r' \in D$. Por
+ser $e$ completo, $q$ admite una reducción a $\mathbb P$, digamos $p'$.
+Así, $e(t) \mid q$ para cualquier $t \leq p'$, de donde $t \notin D$,
+lo cual no es posible pues $D$ es denso en $\mathbb P$.
+
+Demostremos por contrapositiva que (2) implica (1). Supongamos que
+existe $q \in \mathbb Q$ la cual no admite una $e$-reducción. Por el
+@lem-condicionenG, existe $H$ un filtro $(V, \mathbb Q)$-genérico con
+$q \in H$. Definimos $D = \{p \in \mathbb P : e(p) \perp q\}$, el cual
+es un subconjunto denso en $\mathbb P$. En efecto, dado cualquier
+$r \in \mathbb P$, existe $p \leq r$ de modo que $e(p) \perp q$ ($p$ no
+es una $e$-reducción de $q$), de donde, $p \in D$. Ahora bien,
+$D \in V$ porque $\mathbb P, e, q \in V$ (note que $q \in V$ ya que
+$q \in \mathbb Q \in V$ y $V$ es transitivo). Sin embargo,
+$D \cap e^{-1}[H] = \emptyset$, pues si $p \in D$, entonces
+$e(p) \perp q$, y como $q \in H$, tenemos que $e(p) \notin H$, es
+decir, $p \in D \setminus e^{-1}[H]$. Por tanto, $e^{-1}[H]$ no es un
+filtro $(V, \mathbb P)$-genérico.
+
+Probemos ahora la contención de las extensiones genéricas. Puesto que
+$e \in V \subseteq V[H]$ y $H \in V[H]$, se tiene que
+$e^{-1}[H] \in V[H]$. Por tanto, de acuerdo con el @lem-minimalidad,
+$V[e^{-1}[H]] \subseteq V[H]$.
+:::
+
+Una forma de leer el teorema anterior es: si $\mathbb P \leq_c \mathbb Q$,
+entonces la extensión genérica dada por $\mathbb Q$ siempre contiene a
+la dada por $\mathbb P$. Esquemáticamente:
+
+$$
+V \;\subseteq\; V[G] \;\subseteq\; V[H],
+\qquad G = e^{-1}[H] \subseteq \mathbb P, \;\; H \subseteq \mathbb Q.
+$$
+
+::: {#cor-encaje-isomorfismo}
+Sea $e : \mathbb P \to \mathbb Q$ un isomorfismo, donde
+$e, \mathbb P, \mathbb Q \in V$, y $G \subseteq \mathbb P$. Entonces
+$G$ es un filtro $(V, \mathbb P)$-genérico si y sólo si $e\,{}''G$ es
+un filtro $(V, \mathbb Q)$-genérico.
+:::
+
+Es importante resaltar que si $\mathbb P$ es un suborden de $\mathbb Q$
+(véase la @def-suborden), no necesariamente se tiene que la extensión
+genérica dada por $\mathbb Q$ contiene a la extensión dada por
+$\mathbb P$. Un ejemplo de lo anterior es considerar los órdenes
+$\mathbb P := 2^{<\omega}$ y $\mathbb Q := 2^{<\omega_1}$ (véase la
+sección de ejemplos en el Capítulo 1). En este caso, $\mathbb P$ es un
+suborden de $\mathbb Q$ y según las @prp-unnuevoreal y @prp-nadanuevo,
+la noción de forcing $\mathbb P$ añade una nueva función de $\omega$ en
+$2$ mientras que la noción $\mathbb Q$ no lo hace, por lo que no es
+posible que $\mathbb P$ se encaje completamente en $\mathbb Q$.
+
+En el contexto del @thm-encajeuno, es natural preguntarse si hay alguna
+noción de forcing en $V[e^{-1}[H]]$ que añada a esta extensión los
+objetos faltantes para poder obtener $V[H]$. Demos respuesta a esta
+cuestión en sentido positivo introduciendo antes el concepto del
+cociente de un orden parcial módulo un conjunto.
+
+::: {#def-moduloG}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje completo con
+$e, \mathbb Q \in V$. Para cualquier $P \subseteq \mathbb P$, definimos
+$$
+\mathbb Q / P = \{q \in \mathbb Q :
+                 \forall p \in P \, (e(p) \mid q)\}.
+$$
+:::
+
+Recordemos que de acuerdo con la @def-gamma,
+$\Gamma = \{(\check{p}, p) : p \in \mathbb P\}$ mientras que el
+@lem-gammaesg garantiza que $\Gamma_G = G$, para cualquier filtro
+$(V, \mathbb P)$-genérico $G$ en $\mathbb P$. De este modo, como
+$\mathbb{1}_{\mathbb P} \in G$ para cada filtro
+$(V, \mathbb P)$-genérico $G$, se sigue del @thm-teoremadeforcing (2)
+que $\mathbb{1}_{\mathbb P} \Vdash \Gamma \subseteq \check{\mathbb P}$.
+Ahora bien, como $\mathbb Q \in V$, $\mathbb Q$ posee un nombre
+canónico $\check{\mathbb Q}$ (véase la @def-nombrecanonico) y por ende
+podemos denotar por $\check{\mathbb Q}/\Gamma$ a un $\mathbb P$-nombre
+para el cociente $\mathbb Q/G$.
+
+::: {#prp-reduccion}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje completo con
+$e, \mathbb P, \mathbb Q \in V$, y sea $q \in \mathbb Q$. Entonces
+$p \in \mathbb P$ es una $e$-reducción de $q$ a $\mathbb P$ si y sólo
+si $p \Vdash \check{q} \in \check{\mathbb Q}/\Gamma$.
+:::
+
+::: {.proof}
+Supongamos que $p$ es una $e$-reducción de $q$ a $\mathbb P$. Sea $G$
+cualquier filtro $(V, \mathbb P)$-genérico tal que $p \in G$ y sea
+$r \in G$ arbitrario. Entonces existe $s \in G$ tal que $s \leq p, r$.
+Como $s \leq p$, por hipótesis se tiene que $e(s) \mid q$, es decir,
+$t \leq e(s), q$ para alguna $t \in \mathbb Q$. Por otra parte,
+$e(s) \leq e(r)$, pues $e$ es un encaje. Así, $e(s) \leq e(r), q$ y en
+consecuencia $q \in \mathbb Q/G$. Por lo tanto,
+$p \Vdash \check{q} \in \check{\mathbb Q}/\Gamma$.
+
+Probemos la implicación restante por contrapositiva. Si $p$ no es una
+reducción de $q$, entonces existe $r \leq p$ tal que $e(r) \perp q$.
+Sea $G$ un filtro $(V, \mathbb P)$-genérico de modo que $r \in G$
+(véase el @lem-condicionenG). Como $G$ es un filtro, se tiene que
+$p \in G$. En suma, $p \in G$ y $r \in G$ es tal que $r \leq p$ y
+$e(r) \perp q$, es decir, $q \notin \mathbb Q/G$. Por lo tanto,
+$p \nVdash \check{q} \in \check{\mathbb Q}/\Gamma$.
+:::
+
+Normalmente, la notación para la extensión genérica no hace referencia
+a la noción de forcing con la cual se obtuvo. Sin embargo, en los
+siguientes dos teoremas se da el caso siguiente: un conjunto
+$S \subseteq \mathbb Q/G$ es, simultáneamente, un filtro
+$(V, \mathbb Q)$-genérico y un filtro $(V[G], \mathbb Q/G)$-genérico.
+Por esta razón añadiremos un subíndice al símbolo empleado para denotar
+a la extensión genérica. En otras palabras,
+$V[S]_{\mathbb Q} = \{\dot x_S : \dot x \in V^{\mathbb Q}\}$, mientras
+que $V[G][S]_{\mathbb Q/G} = \{\dot x_S : \dot x \in
+(V[G])^{\mathbb Q/G}\}$.
+
+Notemos ahora que si $e : \mathbb P \to \mathbb Q$ es un encaje completo
+y $G$ es un filtro $(V, \mathbb P)$-genérico, entonces el conjunto
+$\mathbb Q/G$ hereda el orden de $\mathbb Q$. Por otro lado, para cada
+$p \in G$ se tiene que $e(p) \leq \mathbb{1}_{\mathbb Q}$ y por ende
+$e(p) \mid \mathbb{1}_{\mathbb Q}$. Luego,
+$\mathbb{1}_{\mathbb Q} \in \mathbb Q/G$. De este modo, la terna
+$(\mathbb Q/G, \leq, \mathbb{1}_{\mathbb Q})$ es un orden parcial, al
+cual siempre consideraremos como un suborden de $\mathbb Q$.
+
+Estamos en condiciones de mostrar que hay una noción de forcing en
+$V[e^{-1}[H]]$ que iguala las extensiones del @thm-encajeuno.
+
+::: {#thm-lorestante}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje completo con
+$e, \mathbb P, \mathbb Q \in V$. Si $G$ es un filtro
+$(V, \mathbb P)$-genérico y $K$ es un filtro
+$(V[G], \mathbb Q/G)$-genérico, entonces:
+
+1. $K$ es $(V, \mathbb Q)$-genérico.
+2. $V[K]_{\mathbb Q} = V[G][K]_{\mathbb Q/G}$.
+:::
+
+::: {.proof}
+Verifiquemos la genericidad de $K$. Sea $D \in V$ un subconjunto denso
+de $\mathbb Q$. Probemos que $D \cap (\mathbb Q/G)$ es denso en
+$\mathbb Q/G$. Sea $q_0 \in \mathbb Q/G$ arbitrario. Como
+$\mathbb Q/G \subseteq \mathbb Q$, se tiene que
+$q_0 \in \mathbb Q \in V$. Se sigue de la transitividad de $V$ que
+$q_0 \in V$. Entonces $(\check{q}_0)_G \in (\check{\mathbb Q}/\Gamma)_G$
+y, por el @thm-teoremadeforcing (2), existe $p_0 \in G$ tal que
+$p_0 \Vdash \check{q}_0 \in \check{\mathbb Q}/\Gamma$. Definimos:
+$$
+E = \{p \in \mathbb P : \exists q \in \mathbb Q \,
+      (q \leq q_0 \,\&\, q \in D \,\&\,
+       p \Vdash \check{q} \in \check{\mathbb Q}/\Gamma)\}.
+$$
+
+Afirmamos que $E$ es denso bajo $p_0$. Sea $p_1 \leq p_0$. Según la
+@prp-reduccion, $p_0$ es una $e$-reducción de $q_0$ a $\mathbb P$. De
+donde, $e(p_1) \mid q_0$. Sea $q_1 \in \mathbb Q$ una extensión común
+de $e(p_1)$ y $q_0$. Por la densidad de $D$, se tiene que $q \leq q_1$
+para alguna $q \in D$. Tomemos $p_2 \in \mathbb P$, una $e$-reducción
+de $q$. Entonces $e(p_2) \mid q$ y, por la @prp-reduccion,
+$p_2 \Vdash \check{q} \in \check{\mathbb Q}/\Gamma$. Sea
+$q_2 \leq e(p_2), q$. Como $q \leq q_1 \leq e(p_1)$, se tiene que
+$q_2 \leq e(p_2), e(p_1)$. Luego, $p_1 \mid p_2$. Sea
+$p \leq p_1, p_2$. Por tanto, $p \leq p_1$ y $p \in E$.
+
+$E \in V$ porque $\mathbb P, \mathbb Q, D, q_0 \in V$. Como $p_0 \in G$,
+se sigue del @lem-lemadenso (2) que $G \cap E \neq \emptyset$. Sea
+$p \in G \cap E$. Así, $p \in G$ y existe $q \in \mathbb Q \cap D$ tal
+que $q \leq q_0$ y $p \Vdash \check{q} \in \check{\mathbb Q}/\Gamma$.
+De donde, de acuerdo con la @def-forzar,
+$\check{q}_G = q \in \mathbb Q/G$. En suma, hemos encontrado un
+elemento $q \in D \cap (\mathbb Q/G)$ de tal modo que $q \leq q_0$, lo
+que prueba la densidad de $D \cap (\mathbb Q/G)$.
+
+$D \cap (\mathbb Q/G) \in V[G]$ porque $D \in V \subseteq V[G]$ y
+$\mathbb Q/G \in V[G]$. Puesto que $K$ es un filtro
+$(V[G], \mathbb Q/G)$-genérico, se tiene que
+$K \cap D \cap (\mathbb Q/G) \neq \emptyset$, de donde
+$K \cap D \neq \emptyset$, lo que prueba la genericidad de $K$.
+
+Probemos la igualdad del inciso (2). Observemos que si $p \in G$,
+entonces $e(p) \in K$. En caso contrario, por el @lem-lemadenso (1)
+aplicado a $\{e(p)\}$, existiría $q \in K$ de modo que $q \perp e(p)$,
+lo cual contradice que $K \subseteq \mathbb Q/G$. Esto prueba que
+$G \subseteq e^{-1}[K]$. Por otra parte, el @thm-encajeuno nos dice
+que $e^{-1}[K]$ es un filtro $(V, \mathbb P)$-genérico, por lo que
+aplicando el @lem-filtrosiguales, se tiene que $G = e^{-1}[K]$. Así,
+de acuerdo con el @thm-encajeuno, $V[G] \subseteq V[K]_{\mathbb Q}$.
+Pero entonces, se desprende del @lem-minimalidad que
+$V[G][K]_{\mathbb Q/G} \subseteq V[K]_{\mathbb Q}$. Por otra parte,
+$V \subseteq V[G] \subseteq V[G][K]_{\mathbb Q/G}$ y
+$K \in V[G][K]_{\mathbb Q/G}$. Así, por el @lem-minimalidad,
+$V[K]_{\mathbb Q} \subseteq V[G][K]_{\mathbb Q/G}$.
+:::
+
+Esquemáticamente: existe una noción de forcing, $\mathbb Q/G$, tal que
+al considerar un filtro $(V, \mathbb Q/G)$-genérico $K$, este mismo
+conjunto resulta ser un filtro $(V, \mathbb Q)$-genérico de tal modo
+que, al hacer forcing vía $\mathbb Q$, se obtiene la misma extensión
+genérica que al forcing vía $\mathbb P$ seguida de la extensión de
+forcing vía $\mathbb Q/G$:
+
+$$
+\begin{array}{lcl}
+V \;\subseteq\; V[G] \;\subseteq\; V[G][K]_{\mathbb Q/G} &=& V[K]_{\mathbb Q}, \\
+G = e^{-1}[K] \subseteq \mathbb P, & & K \subseteq \mathbb Q/G \subseteq \mathbb Q.
+\end{array}
+$$
+
+Mostremos ahora un resultado que puede ser pensado como el recíproco
+del teorema anterior.
+
+::: {#thm-primerreciproco}
+Si $e : \mathbb P \to \mathbb Q$ es un encaje completo donde
+$e, \mathbb P, \mathbb Q \in V$, $H$ es un filtro
+$(V, \mathbb Q)$-genérico y $G = e^{-1}[H]$, entonces:
+
+1. $H \subseteq \mathbb Q/G$.
+2. $H$ es un filtro $(V[G], \mathbb Q/G)$-genérico.
+3. $V[H]_{\mathbb Q} = V[G][H]_{\mathbb Q/G}$.
+:::
+
+::: {.proof}
+Probemos el inciso (1). Sean $q \in H$ y $p \in G$, elementos
+arbitrarios. Entonces $q = e(p_0)$ para alguna $p_0 \in G$ y así,
+$p \mid p_0$. De donde, $e(p) \mid e(p_0)$ por ser $e$ un encaje. Hemos
+probado que $q$ es compatible con la imagen bajo $e$ de todo elemento
+en $G$, es decir, $q \in \mathbb Q/G$. De acuerdo con el @thm-encajeuno,
+se tiene además que $G$ es un filtro $(V, \mathbb P)$-genérico.
+
+(2). Verifiquemos la genericidad de $H$. Sea $D \in V[G]$ un
+subconjunto denso de $\mathbb Q/G$. Así, $D \in V[G]$ implica la
+existencia de $\dot D \in V^{\mathbb P}$ de tal modo que
+$\dot D_G = D$ y por el @thm-teoremadeforcing (2), para cierta
+$p_0 \in G$, se tiene que $p_0 \Vdash \dot D$ es denso en
+$\check{\mathbb Q}/\Gamma$. Definimos:
+$$
+E = \{q \in \mathbb Q : \exists p \in \mathbb P \,
+                       \exists q_1 \in \mathbb Q \,
+   [(p \Vdash \check q_1 \in \dot D) \,\&\, q \leq e(p) \,\&\, q \leq q_1]\}.
+$$
+
+Afirmamos que $E$ es un conjunto denso por debajo de $e(p_0)$. Sea
+$q_0 \leq e(p_0)$. Como $e$ es un encaje completo, $q_0$ admite una
+$e$-reducción a $\mathbb P$, digamos $p_1$. Así, $e(p_1) \mid q_0$ y,
+por la @prp-reduccion, $p_1 \Vdash \check q_0 \in \check{\mathbb Q}/\Gamma$.
+Consideremos $s \leq e(p_1), q_0$. Dado que $q_0 \leq e(p_0)$, se tiene
+que $s \leq e(p_1), e(p_0)$. En consecuencia, $p_1 \mid p_0$. Sea
+$p_2 \leq p_1, p_0$. En este caso, el @lem-alguienmasfuerte garantiza
+que $p_2 \Vdash (\check q_0 \in \check{\mathbb Q}/\Gamma \,\&\,
+\dot D$ es denso en $\check{\mathbb Q}/\Gamma)$. Esto es,
+$p_2 \Vdash \exists x \, (x \in \check{\mathbb Q} \,\&\, x \in \dot D
+\,\&\, x \leq \check q_0)$. De acuerdo con el @lem-nombreeneldominio
+(1), existen $p \in \mathbb P$ y
+$\dot s_1 \in \operatorname{dom} \check{\mathbb Q}$ de modo tal que
+$p \leq p_2$ y $p \Vdash (\dot s_1 \in \dot D \,\&\,
+\dot s_1 \leq \check q_0)$. Ahora bien, como
+$\operatorname{dom} \check{\mathbb Q} = \{\check r : r \in \mathbb Q\}$,
+se tiene que $\dot s_1 \in \operatorname{dom} \check{\mathbb Q}$
+implica que $\dot s_1 = \check q_1$ para cierta $q_1 \in \mathbb Q$.
+En suma, $p \Vdash \check q_1 \in \dot D \subseteq \check{\mathbb Q}/\Gamma$
+y $p \Vdash \check q_1 \leq \check q_0$. Por el @lem-condicionenG,
+podemos fijar $K$ un filtro $(V, \mathbb P)$-genérico tal que $p \in K$.
+Luego, $p$ es una $e$-reducción de $q_1$ a $\mathbb P$ (ver
+@prp-reduccion) y $(\check q_1)_K = q_1 \leq (\check q_0)_K = q_0$, es
+decir, $q_1 \leq q_0$. Se tiene entonces que $e(p) \mid q_1$, donde
+$q_1 \leq q_0$. Entonces existe $q \in \mathbb Q$ tal que
+$q \leq e(p), q_1$. Por tanto, $q \leq q_0$ y $q \in E$.
+
+Tenemos que $E \in V$, pues $\mathbb P, \mathbb Q, e \in V$ y
+$\dot D$ también es un elemento de $V$ porque, por definición,
+$V^{\mathbb P}$ es la colección de todos los $\mathbb P$-nombres que
+son elementos de $V$. De esta manera, de acuerdo con el @lem-lemadenso
+(2), $E \cap H \neq \emptyset$. Sea $q \in E \cap H$. Existen entonces
+$p \in \mathbb P$ y $q_1 \in \mathbb Q$ de tal modo que $q \leq e(p)$,
+$q \leq q_1$ y $p \Vdash \check q_1 \in \dot D$. Ahora bien,
+$q \leq e(p)$ y $q \leq q_1$ implican que $e(p)$ y $q_1$ son ambos
+elementos de $H$, ya que $q \in H$ y como $G = e^{-1}[H]$, se sigue
+que $p \in G$. Esto último y dado que
+$p \Vdash \check q_1 \in \dot D$, permite establecer que
+$(\check q_1)_G = q_1 \in D$. En suma, $q_1 \in H \cap D$, con lo que
+se verifica la genericidad de $H$.
+
+Demostremos el inciso (3). Por hipótesis, $G = e^{-1}[H]$ y $H$ es un
+filtro $(V, \mathbb Q)$-genérico, así, de acuerdo con el
+@thm-encajeuno, $V[G] \subseteq V[H]_{\mathbb Q}$. Pero entonces, por
+el @lem-minimalidad, $V[G][H]_{\mathbb Q/G} \subseteq V[H]_{\mathbb Q}$.
+Ahora bien, como $H \in V[G][H]_{\mathbb Q/G}$ y
+$V \subseteq V[G][H]_{\mathbb Q/G}$, se sigue del lema citado que
+$V[H]_{\mathbb Q} \subseteq V[G][H]_{\mathbb Q/G}$, lo que prueba la
+igualdad de las extensiones.
+:::
+
+## Encajes densos
+
+En la presente sección estudiaremos aquellos encajes cuya imagen sea un
+subconjunto denso de su contradominio.
+
+::: {#def-encajedenso}
+Decimos que $e : \mathbb P \to \mathbb Q$ es un **encaje denso** si y
+sólo si $e$ es un encaje tal que $e\,{}''\mathbb P$ es un conjunto
+denso en $\mathbb Q$.
+:::
+
+**Notación.** Cada vez que entre dos órdenes parciales $\mathbb P$ y
+$\mathbb Q$ exista una función $e$ como la de la @def-encajedenso
+escribiremos $\mathbb P \leq_d \mathbb Q$.
+
+::: {#prp-densoimplicacompleto}
+Todo encaje denso es completo.
+:::
+
+::: {.proof}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje denso. Utilizando la
+equivalencia del @thm-equivalenciaencaje, basta con probar que todo
+elemento de $\mathbb Q$ tiene una $e$-reducción a $\mathbb P$.
+
+Sea $q \in \mathbb Q$. Por ser $e\,{}''\mathbb P$ densa en $\mathbb Q$,
+existe $p \in \mathbb P$ tal que $e(p) \leq q$. Sea $r \leq p$.
+Entonces $e(r) \leq e(p)$, pues $e$ es un encaje. De este modo
+$e(r) \leq q$, y en particular $e(r) \mid q$. Por tanto, $p$ es la
+$e$-reducción deseada.
+:::
+
+A estas alturas el lector podría preguntarse si el converso de la
+proposición anterior es cierto. La respuesta es no, es decir, no todo
+encaje completo es denso, hecho que mostramos a continuación.
+
+::: {#prp-fn-completo-no-denso}
+Sean $I_0, I_1$ conjuntos no vacíos tales que $I_0 \subsetneq I_1$.
+Entonces la función
+$e : \operatorname{Fn}(I_0, 2) \to \operatorname{Fn}(I_1, 2)$ dada por
+$e(p) = p$, para cada $p \in \operatorname{Fn}(I_0, 2)$, es un encaje
+completo que no es denso.
+:::
+
+::: {.proof}
+Nuestra función $e : \operatorname{Fn}(I_0, 2) \to \operatorname{Fn}(I_1, 2)$
+preserva el orden y la incompatibilidad pues, por un lado, si
+$p, q \in \operatorname{Fn}(I_0, 2)$ son tales que $p \leq q$, entonces
+$e(p) \leq e(q)$. Si, por otro lado, $p \perp q$, de acuerdo con el
+@lem-unionesfuncion se tiene que $p \cup q$ no es función. Luego,
+$e(p) \cup e(q)$ no es función, es decir, $e(p) \perp e(q)$.
+
+De acuerdo con la equivalencia del @thm-equivalenciaencaje, resta
+probar que todo elemento en $\operatorname{Fn}(I_1, 2)$ admite una
+$e$-reducción a $\operatorname{Fn}(I_0, 2)$. Sea
+$q \in \operatorname{Fn}(I_1, 2)$. Afirmamos que
+$q \restriction I_0$ es una $e$-reducción de $q$ a
+$\operatorname{Fn}(I_0, 2)$. Esto se verifica gracias a que, si
+$r \leq q \restriction I_0$, podemos descomponer a $q$ como
+$q = q \restriction I_0 \cup q \restriction (I_1 \setminus I_0)$, por
+lo que $r \cup q = r \cup q \restriction (I_1 \setminus I_0)$, pues
+$q \restriction I_0 \subseteq r$. Puesto que
+$\operatorname{dom} r \cap \operatorname{dom}(q \restriction
+(I_1 \setminus I_0)) = \emptyset$, se tiene que $r \cup q$ es función,
+es decir, $r \mid q$, lo que prueba nuestra afirmación.
+
+Probemos ahora que nuestro encaje completo
+$e : \operatorname{Fn}(I_0, 2) \to \operatorname{Fn}(I_1, 2)$ no es
+denso. Sea $x \in I_1 \setminus I_0$. Definimos
+$q_0 \in \operatorname{Fn}(I_1, 2)$ como $q_0 = \{(x, 0)\}$.
+Observemos que ninguna extensión de $q_0$ es un elemento de
+$e\,{}''\operatorname{Fn}(I_0, 2)$. De ocurrir lo contrario, es decir,
+si $p_0 \leq q_0$ para algún
+$p_0 = e(p_0) \in e\,{}''\operatorname{Fn}(I_0, 2)$, se tendría que
+$q_0 \subseteq p_0$, de donde,
+$\operatorname{dom} q_0 \subseteq \operatorname{dom} p_0$, lo que
+implicaría que $x \in I_0$, lo cual no es posible. Por tanto,
+$e\,{}''\operatorname{Fn}(I_0, 2)$ no es un subconjunto denso en
+$\operatorname{Fn}(I_1, 2)$.
+:::
+
+El siguiente resultado afirma que hay un encaje denso entre órdenes
+parciales considerados en la sección de ejemplos del Capítulo 1. En la
+última sección de este capítulo se probará un resultado más general al
+presentado a continuación cuya prueba involucra el Axioma de Elección.
+Una de las virtudes del teorema aquí expuesto es que no es necesario
+usar este axioma para construir el encaje.
+
+::: {#thm-ejemplodenso}
+Se tiene que $\omega^{<\omega} \leq_d 2^{<\omega}$.
+:::
+
+::: {.proof}
+Sea $t \in \omega^{<\omega}$. Entonces $t : n \to \omega$ para alguna
+$n \in \omega$. Definimos $e(t)$ del siguiente modo:
+$$
+e(t) = \begin{cases}
+\emptyset, & \text{si } n = 0, \\
+\langle \underbrace{0\,0\,\cdots\,0}_{t(0) \text{ veces}}\, 1\,
+        \underbrace{0\,0\,\cdots\,0}_{t(1) \text{ veces}}\, 1 \,\cdots\, 1\,
+        \underbrace{0\,0\,\cdots\,0}_{t(n-1) \text{ veces}}\, 1 \rangle,
+& \text{si } n > 0.
+\end{cases}
+$$
+
+En otras palabras, cuando $t \neq \emptyset$, $e(t) \in 2^{<\omega}$
+queda determinada por:
+
+- $\operatorname{dom} e(t) = \sum_{i=0}^{n-1} t(i) + n$; y
+- para toda $k \in \operatorname{dom} e(t)$, $e(t)(k) = 1$ ssi existe
+  $\ell < n$ tal que $k = \sum_{i=0}^{\ell} t(i) + \ell$.
+
+De este modo tenemos definida una función
+$e : \omega^{<\omega} \to 2^{<\omega}$.
+
+Sean $t, s \in \omega^{<\omega}$ con dominios $n$ y $m$ respectivamente.
+Verifiquemos que $e$ es una función que preserva el orden, la
+incompatibilidad y cuya imagen es densa en $2^{<\omega}$.
+
+Supongamos que $t \leq s$ y probemos que $e$ preserva el orden. Así,
+$m \leq n$. Observemos que esta hipótesis implica que
+$\operatorname{dom} e(s) \leq \operatorname{dom} e(t)$. Si
+$s = \emptyset$, entonces $e(s) = \emptyset$ y, por ende, la desigualdad
+es trivial. Supongamos que $s \neq \emptyset$, esto es, que
+$0 < m \leq n$. Se tiene entonces:
+$$
+\begin{aligned}
+\operatorname{dom} e(t) &= \textstyle\sum_{i=0}^{n-1} t(i) + n \\
+&= \textstyle\sum_{i=0}^{m-1} t(i) + \sum_{i=m}^{n} t(i) + n \\
+&= \textstyle\sum_{i=0}^{m-1} s(i) + m + \sum_{i=m}^{n} t(i) + (n-m) \\
+&= \operatorname{dom} e(s) + \textstyle\sum_{i=m}^{n} t(i) + (n-m).
+\end{aligned}
+$$
+
+Puesto que $\sum_{i=m}^{n} t(i) + (n-m) \geq 0$, se sigue que
+$\operatorname{dom} e(s) \leq \operatorname{dom} e(t)$.
+
+Ahora bien, si $s = \emptyset$, entonces $e(s) = \emptyset$, y por ende
+$e(t) \leq e(s)$. Supongamos que $s \neq \emptyset$ y probemos que
+$e(t) \leq e(s)$ viendo que dada cualquier
+$k \in \operatorname{dom} e(s)$, se tiene que $e(s)(k) = 1$ si y sólo
+si $e(t)(k) = 1$.
+
+Tomemos $k \in \operatorname{dom} e(s)$ tal que $e(s)(k) = 1$. Así,
+$k = \sum_{i=0}^{\ell} s(i) + \ell$ para alguna $\ell < m$. Como
+$t \leq s$, se tiene que $s(i) = t(i)$ para cada $i \leq \ell$ y así,
+$k = \sum_{i=0}^{\ell} t(i) + \ell$ con $\ell < m \leq n$, lo que
+implica que $e(t)(k) = 1$.
+
+Supongamos ahora que $k \in \operatorname{dom} e(s)$ satisface
+$e(t)(k) = 1$. Así, por la definición de $e$, existe $\ell < n$ tal
+que $k = \sum_{i=0}^{\ell} t(i) + \ell$. Afirmamos que $\ell < m$. Si
+por el contrario, $\ell \geq m$, se tiene lo siguiente:
+$$
+\begin{aligned}
+k &= \textstyle\sum_{i=0}^{m-1} t(i) + \sum_{i=m}^{\ell} t(i) + \ell \\
+&= \textstyle\sum_{i=0}^{m-1} s(i) + m + \sum_{i=m}^{\ell} t(i) + (\ell - m).
+\end{aligned}
+$$
+
+Como $\operatorname{dom} e(s) = \sum_{i=0}^{m-1} s(i) + m$, se tiene
+que $k = \operatorname{dom} e(s) + \sum_{i=m}^{\ell} t(i) + (\ell - m)$,
+donde $\ell - m \geq 0$. Pero entonces $\operatorname{dom} e(s) \leq k$,
+lo cual contradice que $k \in \operatorname{dom} e(s)$ y, por tanto,
+$\ell < m$. De este modo, como hemos supuesto que $t \leq s$, se tiene
+que $\sum_{i=0}^{\ell} t(i) = \sum_{i=0}^{\ell} s(i)$, de donde
+$k = \sum_{i=0}^{\ell} s(i) + \ell$ con $\ell < m$, es decir,
+$e(s)(k) = 1$.
+
+Veamos que $e$ preserva la incompatibilidad. Supongamos que
+$t \perp s$. Así, existe
+$i \in \operatorname{dom} t \cap \operatorname{dom} s$ tal que
+$t(i) \neq s(i)$. Sea
+$\ell = \min \{i \in \operatorname{dom} t \cap \operatorname{dom} s :
+t(i) \neq s(i)\}$. Sin perder la generalidad, supongamos que
+$t(\ell) < s(\ell)$.
+
+De este modo, para $k = \sum_{i=0}^{\ell} t(i) + \ell$ se tiene que
+$e(t)(k) = 1$. Observemos que $k \in \operatorname{dom} e(s)$. Si por
+el contrario, $k \geq \operatorname{dom} e(s)$, se tiene lo siguiente:
+$$
+\textstyle\sum_{i=0}^{\ell} t(i) + \ell \geq
+\sum_{i=0}^{m-1} s(i) + m =
+\sum_{i=0}^{\ell-1} s(i) + \sum_{i=\ell}^{m-1} s(i) + m.
+$$
+
+Como $s(i) = t(i)$ para toda $i < \ell$,
+$$
+\textstyle\sum_{i=0}^{\ell} t(i) + \ell \geq
+\sum_{i=0}^{\ell-1} t(i) + \sum_{i=\ell}^{m-1} s(i) + m;
+$$
+de donde,
+$t(\ell) \geq \sum_{i=\ell}^{m-1} s(i) + (m - \ell)$ y en particular
+$t(\ell) \geq s(\ell)$, lo que contradice la suposición
+$t(\ell) < s(\ell)$.
+
+Probemos que $e(s)(k) \neq 1$. Si por el contrario, $e(s)(k) = 1$,
+entonces $k = \sum_{i=0}^{r} s(i) + r$ para alguna $r < m$. Tenemos los
+siguientes casos:
+
+I. Si $r = \ell$, entonces $\sum_{i=0}^{\ell} t(i) =
+\sum_{i=0}^{\ell} s(i)$. Puesto que $t(i) = s(i)$ para toda $i < \ell$,
+se sigue que $t(\ell) = s(\ell)$, lo que contradice la definición de
+$\ell$.
+
+II. Si $r < \ell$, entonces
+$$
+\begin{aligned}
+k &= \textstyle\sum_{i=0}^{\ell} t(i) + \ell \\
+&= \textstyle\sum_{i=0}^{r} t(i) + r +
+   \sum_{i=r+1}^{\ell} t(i) + (\ell - r) \\
+&= \textstyle\sum_{i=0}^{r} s(i) + r +
+   \sum_{i=r+1}^{\ell} t(i) + (\ell - r) \\
+&= k + \textstyle\sum_{i=r+1}^{\ell} t(i) + (\ell - r).
+\end{aligned}
+$$
+
+Puesto que $\sum_{i=r+1}^{\ell} t(i) \geq 0$ y $\ell - r > 0$, se sigue
+que $k < k$, lo cual es una contradicción.
+
+III. Si $\ell < r$, entonces
+$$
+\begin{aligned}
+k &= \textstyle\sum_{i=0}^{r} s(i) + r \\
+&= \textstyle\sum_{i=0}^{\ell} s(i) + \ell +
+   \sum_{i=\ell+1}^{r} s(i) + (r - \ell) \\
+&= \textstyle\sum_{i=0}^{\ell} t(i) + \ell +
+   \sum_{i=\ell+1}^{r} s(i) + (r - \ell) \\
+&= k + \textstyle\sum_{i=\ell+1}^{r} s(i) + (r - \ell).
+\end{aligned}
+$$
+
+Puesto que $\sum_{i=\ell+1}^{r} s(i) \geq 0$ y $r - \ell > 0$, se tiene
+entonces que $k < k$, lo cual no es posible.
+
+En suma, $e(t)(k) = 1$ y $e(s)(k) \neq 1$, es decir,
+$e(t) \perp e(s)$.
+
+Veamos que $e\,{}''(\omega^{<\omega})$ es densa en $2^{<\omega}$. Sea
+$p \in 2^{<\omega}$. Así, existe $n < \omega$ tal que
+$n = \operatorname{dom} p$. Consideremos
+$p^{-1}[1] = \{k < n : p(k) = 1\}$. Si $p^{-1}[1] = \emptyset$,
+consideramos $t := \{(0, n+1)\}$. Así, $e(t) = p^{\frown}1$ (véase la
+@def-concatenacion (3)), de donde $e(t) \leq p$. Si
+$p^{-1}[1] \neq \emptyset$, ordenamos este conjunto como
+$p^{-1}[1] = \{k_0, k_1, \ldots, k_m\}$, donde:
+
+- (i) $k_0 < k_1 < \cdots < k_m$,
+- (ii) $m \leq n$.
+
+Definimos $t : m + 2 \to \omega$ como sigue:
+
+- $t(0) = k_0$,
+- $t(i+1) = k_{i+1} - k_i - 1$ para $i < m$,
+- $t(m+1) = n - k_m - 1$.
+
+Así,
+$$
+\begin{aligned}
+\operatorname{dom} e(t) &= \textstyle\sum_{i=0}^{m+1} t(i) + m + 2 \\
+&= k_0 + (k_1 - k_0 - 1) + \cdots + (k_m - k_{m-1} - 1) +
+   (n - k_m - 1) + m + 2 \\
+&= n + 2.
+\end{aligned}
+$$
+
+Notemos que por (ii) y según lo anterior,
+$\operatorname{dom} p \leq \operatorname{dom} e(t)$.
+
+Verifiquemos que $e(t) \leq p$ probando que para toda $k < n$,
+$p(k) = 1$ si y sólo si $e(t)(k) = 1$.
+
+**Observación.** Para todo $\ell \leq m$, se tiene que
+$\sum_{i=0}^{\ell} t(i) = k_{\ell} - \ell$. Esto se verifica pues
+$k_\ell$ se puede escribir como
+$$
+k_{\ell} = k_0 + (k_1 - k_0 - 1) + \cdots + (k_{\ell} - k_{\ell-1} - 1) + \ell.
+$$
+Es decir, $k_\ell = \sum_{i=0}^{\ell} t(i) + \ell$.
+
+Supongamos que $p(k) = 1$ para cierta $k < n$. Entonces
+$k \in p^{-1}[1]$. Así, $k = k_j$ para alguna $j \leq m$. Por lo
+observado previamente, $k_j = \sum_{i=0}^{j} t(i) + j$, donde
+$j < m + 2$. Por lo tanto, $e(t)(k_j) = 1$.
+
+Supongamos ahora que $e(t)(k) = 1$ para alguna $k < n$. Así, existe
+$\ell < m + 2$ tal que $k = \sum_{i=0}^{\ell} t(i) + \ell$. De acuerdo
+con nuestra observación, si $\ell \leq m$, entonces $k \in p^{-1}[1]$.
+Probemos la desigualdad anterior suponiendo lo contrario, es decir,
+que $\ell = m + 1$. Entonces:
+$$
+\begin{aligned}
+k &= \textstyle\sum_{i=0}^{m+1} t(i) + m + 1 \\
+&= \textstyle\sum_{i=0}^{m} t(i) + t(m+1) + m + 1 \\
+&= t(0) + \cdots + t(m) + t(m+1) + m + 1 \\
+&= k_0 + (k_1 - k_0 - 1) + \cdots + (k_m - k_{m-1} - 1) +
+   (n - k_m - 1) + m + 1 \\
+&= n,
+\end{aligned}
+$$
+lo cual contradice la suposición de que $k < n$.
+:::
+
+Los encajes densos son importantes porque si una noción de forcing se
+encaja densamente en otra, entonces las extensiones genéricas dadas por
+estas nociones son las mismas (en un sentido que se hará claro en el
+enunciado del @thm-igualdadextensiones).
+
+::: {#def-tildee}
+Sean $\mathbb P$ y $\mathbb Q$ dos órdenes parciales y
+$e : \mathbb P \to \mathbb Q$ una función. Para cada
+$X \subseteq \mathbb P$, definimos
+$\tilde e(X) = \{q \in \mathbb Q : \exists p \in X \, (e(p) \leq q)\}$.
+:::
+
+Observemos que de acuerdo con la definición anterior, para cada
+$X \subseteq \mathbb P$, siempre ocurre que
+$e\,{}''X \subseteq \tilde e(X)$. En efecto, si $q \in e\,{}''X$,
+entonces $q = e(p)$ para alguna $p \in X$. Luego, $q \in \tilde e(X)$.
+
+::: {#thm-igualdadextensiones}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje denso. Si
+$e, \mathbb P, \mathbb Q \in V$, entonces:
+
+1. Si $G$ es un filtro $(V, \mathbb P)$-genérico, entonces
+   $\tilde e(G)$ es un filtro $(V, \mathbb Q)$-genérico y
+   $G = e^{-1}[\tilde e(G)]$. En este caso, $V[G] = V[\tilde e(G)]$.
+2. Si $H \subseteq \mathbb Q$ es un filtro $(V, \mathbb Q)$-genérico,
+   entonces $e^{-1}[H]$ es un filtro $(V, \mathbb P)$-genérico y
+   $H = \tilde e(e^{-1}[H])$. En este caso, $V[e^{-1}[H]] = V[H]$.
+:::
+
+::: {.proof}
+(1). Probemos que $\tilde e(G)$ es un filtro. Sean
+$q_1, q_2 \in \tilde e(G)$. Entonces $e(p_1) \leq q_1$ y
+$e(p_2) \leq q_2$ para algunas $p_1, p_2 \in G$. Como $G$ es un filtro,
+existe $p \in G$ tal que $p \leq p_1, p_2$. De donde
+$e(p) \leq e(p_1), e(p_2)$. Por tanto, $e(p) \in \tilde e(G)$ y
+$e(p) \leq q_1, q_2$.
+
+Sean $r \in \tilde e(G)$ y $q \in \mathbb Q$ tales que $r \leq q$. Así,
+$e(p) \leq r$ para alguna $p \in G$. En consecuencia, $e(p) \leq q$ y,
+por tanto, $q \in \tilde e(G)$.
+
+Verifiquemos la genericidad de $\tilde e(G)$. Sea $D \in V$ un
+subconjunto denso en $\mathbb Q$ y sea
+$$
+E = \{p \in \mathbb P : \exists q \in D \, (e(p) \leq q)\}.
+$$
+
+Probemos que $E$ es un conjunto denso en $\mathbb P$. Sea
+$p \in \mathbb P$. Como $D$ es denso en $\mathbb Q$ y $e(p) \in
+\mathbb Q$, se tiene que $q \leq e(p)$ para alguna $q \in D$. Por
+hipótesis, $e\,{}''\mathbb P$ es un conjunto denso en $\mathbb Q$, de
+donde $e(r) \leq q$ para alguna $r \in \mathbb P$. Entonces
+$e(r) \leq e(p)$ y en particular $e(r) \mid e(p)$, de donde $r \mid p$.
+Sea $s \leq r, p$. Así, $e(s) \leq q$ con $q \in D$ y además
+$s \leq p$. Por tanto, $E$ es denso en $\mathbb P$.
+
+Puesto que $\mathbb P, D, e \in V$, se tiene que $E \in V$. Luego,
+$G \cap E \neq \emptyset$, de donde existen $p \in G$ y $q \in D$ tales
+que $e(p) \leq q$. En consecuencia, $q \in \tilde e(G)$. Por tanto,
+$\tilde e(G) \cap D \neq \emptyset$.
+
+Verifiquemos que $G = e^{-1}[\tilde e(G)]$. Como hemos visto,
+$\tilde e(G)$ es un filtro $(V, \mathbb Q)$-genérico, por lo que, de
+acuerdo con el @thm-encajeuno y la @prp-densoimplicacompleto,
+$e^{-1}[\tilde e(G)]$ es un filtro $(V, \mathbb P)$-genérico. Ahora
+bien, se tiene que $e(G) \subseteq \tilde e(G)$, equivalentemente,
+$G \subseteq e^{-1}[\tilde e(G)]$. Por tanto, de acuerdo con el
+@lem-filtrosiguales, $e^{-1}[\tilde e(G)] = G$.
+
+Hagamos $H = \tilde e(G)$ y veamos que $V[G] = V[H]$. Por lo probado
+en el párrafo anterior, $H$ es un filtro $(V, \mathbb Q)$-genérico, de
+donde, por el @thm-encajeuno, se sigue que $V[G] \subseteq V[H]$.
+Ahora bien, $H \in V[G]$, pues $G \in V[G]$ y
+$e, \mathbb P, \mathbb Q \in V \subseteq V[G]$. Así, por el
+@lem-minimalidad, se obtiene que $V[H] \subseteq V[G]$ y por tanto
+se cumple nuestra igualdad.
+
+(2). Dado que, de acuerdo con la @prp-densoimplicacompleto, $e$ es un
+encaje completo, se tiene, por el @thm-encajeuno, que $e^{-1}[H]$ es
+un filtro $(V, \mathbb P)$-genérico.
+
+Ahora bien, por lo probado en (1), $\tilde e(e^{-1}[H])$ es un filtro
+$(V, \mathbb Q)$-genérico. Observemos que
+$\tilde e(e^{-1}[H]) \subseteq H$: si $q \in \tilde e(e^{-1}[H])$,
+entonces $e(p) \leq q$ para alguna $p \in e^{-1}[H]$. De donde se
+sigue que $e(p) \in H$ y en consecuencia $q \in H$, pues $H$ es un
+filtro. En suma, $\tilde e(e^{-1}[H])$ es un filtro
+$(V, \mathbb Q)$-genérico contenido en $H$, el cual, por hipótesis,
+es un filtro $(V, \mathbb Q)$-genérico. Así, por el @lem-filtrosiguales,
+$H = \tilde e(e^{-1}[H])$.
+
+Hagamos $G = e^{-1}[H]$ y veamos que $V[G] = V[H]$. Por el
+@thm-encajeuno, $V[G] \subseteq V[H]$. Ahora bien, según nuestra
+suposición y por lo probado en el párrafo anterior, $H = \tilde e(G)$.
+Dado que $G \in V[G]$ y $e, \mathbb P, \mathbb Q \in V \subseteq V[G]$,
+se tiene que $H \in V[G]$. Así, por el @lem-minimalidad, se sigue
+que $V[H] \subseteq V[G]$ y, por tanto, $V[G] = V[H]$.
+:::
+
+Esquemáticamente, el @thm-igualdadextensiones afirma que las dos
+operaciones $\tilde e(\cdot)$ y $e^{-1}[\cdot]$ son inversas entre sí
+en el sentido apropiado, y que las extensiones genéricas producidas
+por $\mathbb P$ y $\mathbb Q$ coinciden:
+$$
+V[G] = V[\tilde e(G)], \qquad V[e^{-1}[H]] = V[H].
+$$
+
+De acuerdo con el @thm-ejemplodenso, $\omega^{<\omega} \leq_d 2^{<\omega}$.
+Así, es un corolario inmediato del @thm-igualdadextensiones que
+$\omega^{<\omega}$ y $2^{<\omega}$ producen las mismas extensiones de
+forcing. Sin embargo, es preciso aclarar que el resultado opuesto no
+necesariamente es cierto, es decir, dos nociones de forcing pueden
+producir las mismas extensiones genéricas sin estar encajada
+densamente una en la otra. Para verificar lo dicho consideraremos los
+órdenes parciales mencionados y veremos que no hay un encaje denso de
+$2^{<\omega}$ a $\omega^{<\omega}$.
+
+Previo a lo que se quiere, probemos que los encajes completos preservan
+anticadenas maximales no triviales.
+
+::: {#lem-atrivialenatrivial}
+Si $e : \mathbb P \to \mathbb Q$ es un encaje completo y
+$A \subseteq \mathbb P$ es una anticadena maximal no trivial en
+$\mathbb P$, entonces $e\,{}''A$ es una anticadena maximal no trivial
+en $\mathbb Q$.
+:::
+
+::: {.proof}
+Sea $A$ una anticadena maximal no trivial en $\mathbb P$. Dado que $e$
+es un encaje completo, se tiene que $e\,{}''A$ es una anticadena
+maximal (véase la @def-encajecompleto). Por hipótesis, $A$ no es la
+anticadena trivial, así, existen al menos dos elementos $p, q \in A$
+incompatibles. Pero entonces $e(p) \perp e(q)$ y por ende
+$e(p) \neq e(q)$. Con lo cual $e\,{}''A$ no es trivial.
+:::
+
+::: {#prp-2omega-no-c-en-omega}
+Se tiene que $2^{<\omega} \nleq_c \omega^{<\omega}$.
+:::
+
+::: {.proof}
+Probaremos primero que $2^{<\omega}$ admite anticadenas maximales
+finitas no triviales.
+
+Sean $p := \{(0, 0)\}$ y $q := \{(0, 1)\}$ y sea $A = \{p, q\}$. Veamos
+que $A$ es una anticadena maximal. Por definición, $p \neq q$.
+Observamos además que $p \cup q$ no es una función, así, por el
+@lem-unionesfuncion aplicado a nuestro caso, $p \perp q$. Por tanto,
+$A$ es una anticadena.
+
+Probemos ahora que $A$ es maximal viendo que satisface la equivalencia
+de la @prp-equivalencia. Sea $r \in 2^{<\omega}$ arbitraria. Así,
+existe $n < \omega$ tal que $\operatorname{dom} r = n$. Si $n = 0$,
+$r$ es la función vacía y por tanto $r$ es compatible con cualquier
+elemento de $A$. Supongamos que $n > 0$. Entonces
+$0 \in \operatorname{dom} r$ y en consecuencia $r(0) \in \{0, 1\}$. Si
+$r(0) = 0$, entonces $p \subseteq r$, es decir, $r \leq p$, y, como
+$r \leq r$, se tiene que $r \leq p, r$. Por tanto, $r \mid p$. Si
+ocurre que $r(0) = 1$, se tiene entonces que $q \subseteq r$, es
+decir, $r \leq q$, de donde $r \leq q, r$. Por tanto, $r \mid q$.
+
+Probemos nuestra proposición suponiendo lo contrario. Así, si
+$2^{<\omega} \leq_c \omega^{<\omega}$, entonces existe
+$e : 2^{<\omega} \to \omega^{<\omega}$ un encaje completo. Pero
+entonces, si $B$ es una anticadena maximal finita no trivial en
+$2^{<\omega}$, por el @lem-atrivialenatrivial, $e\,{}''B$ es una
+anticadena maximal finita no trivial en $\omega^{<\omega}$. Así, resta
+probar que ninguna anticadena finita no trivial en $\omega^{<\omega}$
+puede ser maximal.
+
+Sea $B$ una anticadena finita no trivial en $\omega^{<\omega}$. Como
+$B \subseteq \omega^{<\omega} \setminus \{\emptyset\}$, se tiene que
+$0 \in \operatorname{dom} b$ para toda $b \in B$. Consideremos
+$\{r(0) : r \in B\} \subseteq \omega$, el cual es finito por ser $B$
+finita. Tomemos $k \in \omega \setminus \{r(0) : r \in B\}$. Así, si
+$s = \{(0, k)\}$ y $t \in B$, entonces, por definición,
+$s(0) = k \neq t(0)$. Pero entonces $s \perp t$, y como $t$ fue
+arbitrario, se sigue que $s \notin B$. Así, $B \cup \{s\}$ es una
+anticadena en $\omega^{<\omega}$ que contiene propiamente a $B$. Por
+tanto, $B$ no es maximal.
+:::
+
+Según los teoremas @thm-ejemplodenso, @thm-igualdadextensiones y por el
+resultado anterior, hemos exhibido dos nociones de forcing que producen
+las mismas extensiones y que sin embargo, una no está densamente
+encajada en la otra. Esto se verifica, pues de ocurrir que
+$2^{<\omega} \leq_d \omega^{<\omega}$, como todo encaje denso es
+completo (ver @prp-densoimplicacompleto), se tendría que
+$2^{<\omega} \leq_c \omega^{<\omega}$, hecho que no es posible de
+acuerdo con la proposición previa.
+
+Hay un cierto tipo de orden parcial que resulta interesante por
+preservar alguna noción de interés, tal es el caso de los órdenes
+$\kappa$-cc, cuya virtud es preservar cofinalidades mayores o iguales
+que un cardinal infinito $\kappa$ (se invita al lector a consultar
+[@kunen, Lemma 6.9, p. 213]).
+
+::: {#def-kappacc}
+Sea $\kappa$ un cardinal infinito. Decimos que $\mathbb P$ tiene la
+**$\kappa$-cc** si toda anticadena en $\mathbb P$ tiene cardinalidad
+menor que $\kappa$.
+:::
+
+En este contexto, el resultado presentado enseguida nos muestra que
+siempre que haya un encaje denso entre dos nociones $\mathbb P$ y
+$\mathbb Q$, el tamaño de las anticadenas en ambos órdenes no excede a
+$\kappa$.
+
+::: {#prp-kappa-cc-preservada}
+$\mathbb P \leq_d \mathbb Q$ implica que $\mathbb P$ es $\kappa$-cc si
+y sólo si $\mathbb Q$ es $\kappa$-cc.
+:::
+
+::: {.proof}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje denso. Supongamos que
+$\mathbb P$ tiene la $\kappa$-cc y probemos que $\mathbb Q$ es
+$\kappa$-cc. Sea $A \subseteq \mathbb Q$ una anticadena. Como
+$e\,{}''\mathbb P$ es un subconjunto denso de $\mathbb Q$, se tiene
+que para cada $a \in A$, existe $p_a \in \mathbb P$ de tal modo que
+$e(p_a) \leq a$. Sea $B = \{p_a : a \in A\}$. Observemos que $B$ es una
+anticadena en $\mathbb P$. En efecto, si $a \neq b$, entonces
+$p_a \perp p_b$, pues de ocurrir lo contrario, $p_a \mid p_b$, se
+tendría en consecuencia que $e(p_a) \mid e(p_b)$, de donde
+$q \leq e(p_a), e(p_b)$ para alguna $q \in \mathbb Q$. Pero entonces
+$q \leq a, b$, pues $e(p_a) \leq a$ y $e(p_b) \leq b$. Esto último
+contradice el hecho de que $A$ es una anticadena. En suma, $B$ es una
+anticadena y por tanto $|B| < \kappa$.
+
+Ahora bien, sea $f : A \to B$ la función definida mediante
+$f(a) = p_a$ para cada $a \in A$. Observemos que $f$ es una biyección
+entre $A$ y $B$. En efecto, $f$ es inyectiva porque si $a \neq b$,
+hemos visto en el párrafo anterior que $p_a \perp p_b$ y en particular,
+$p_a \neq p_b$. Se tiene además que $f$ es suprayectiva porque cada
+elemento de $B$ es por la definición de $f$, la imagen de cierto
+elemento de $A$. Así, $|A| = |B|$ y, como $|B| < \kappa$, se tiene el
+resultado.
+
+Probemos la implicación restante. Sea $A \subseteq \mathbb P$ una
+anticadena. Observemos que $e \restriction A$ es una función
+inyectiva: si $e(p) = e(q)$ con $p, q \in A$, entonces en particular
+$e(p) \mid e(q)$. Luego, $p \mid q$, lo que implica que $p = q$, pues
+$A$ es una anticadena. Ahora bien, de acuerdo con la
+@def-encajecompleto, $e\,{}''A$ es una anticadena en $\mathbb Q$ y,
+por tanto, $|e\,{}''A| < \kappa$, pues $\mathbb Q$ es $\kappa$-cc. En
+suma, $e \restriction A$ es una función inyectiva de $A$ en
+$e\,{}''A$ con $|e\,{}''A| < \kappa$ y, por lo tanto, $|A| < \kappa$.
+:::
+
+::: {#def-kappacerrado}
+Diremos que $\mathbb P$ es **$\kappa$-cerrado** si toda sucesión
+decreciente $\langle p_\xi : \xi < \lambda \rangle$ de condiciones en
+$\mathbb P$ tiene una cota inferior en $\mathbb P$, para cualquier
+$\lambda \leq \kappa$.
+:::
+
+Los órdenes $\kappa$-cerrados son interesantes porque no añaden nuevos
+subconjuntos de $\kappa$, en otras palabras, si $\mathbb P \in V$ y
+$G$ es un filtro $(V, \mathbb P)$-genérico, entonces
+$V[G] \cap {}^{\kappa}\omega \subseteq V$. Una demostración de lo
+anterior es análoga a la prueba de la @prp-nadanuevo.
+
+El siguiente es un ejemplo de dos nociones de forcing, una encajada
+densamente en la otra, y donde una de ellas es un orden $\kappa$-cerrado
+pero no necesariamente la otra noción es un orden con esta propiedad.
+
+::: {#exm-kappacerrado-no-preservado}
+Existen $\mathbb P$ y $\mathbb Q$ tales que $\mathbb P$ es
+$\kappa$-cerrado, $\mathbb P \leq_d \mathbb Q$, y, sin embargo,
+$\mathbb Q$ no es $\kappa$-cerrado.
+:::
+
+Hagamos claro lo anterior considerando $\mathbb P$ y $\mathbb Q$, dos
+subconjuntos de $\omega^{<\omega}$ (ambos pensados como subórdenes de
+$\omega^{<\omega}$) del modo siguiente:
+
+(1) $\mathbb P$ consta de todas las funciones cuyo dominio es $\leq 1$,
+es decir, $p \in \mathbb P$ si y sólo si $p = \emptyset$ o existe
+$n \in \omega$ de modo que $p = \{(0, n)\}$. El orden de $\mathbb P$
+es el heredado de $\omega^{<\omega}$, así que $\mathbb P$ tiene la
+forma de un árbol en estrella con raíz $\emptyset$ y hojas
+$\{(0, n)\}$ para cada $n \in \omega$.
+
+(2) Sea $f \in {}^{\omega}\omega$ la función constante cero:
+$f(k) = 0$ para toda $k \in \omega$. Así, hacemos
+$$
+\mathbb Q = \{\emptyset\} \cup
+            \{(f \restriction n)^{\frown} k :
+              n \in \omega \,\&\, k \in \{0, 1\}\}.
+$$
+Igual que $\mathbb P$, el orden en $\mathbb Q$ es el heredado de
+$\omega^{<\omega}$. Visualmente, $\mathbb Q$ es un árbol binario
+"oblicuo": en cada nivel $n$ los hijos son $f \restriction (n+1)$
+(que continúa la rama central de ceros) y $(f \restriction n)^{\frown}1$
+(que cierra una hoja).
+
+Afirmamos que se satisfacen las siguientes propiedades:
+
+- (i) Si $p, q \in \mathbb P$ y $p < q$, entonces $q = \emptyset$.
+- (ii) $\mathbb P$ es $\omega$-cerrado.
+- (iii) $\mathbb P \leq_d \mathbb Q$.
+
+El inciso (i) se cumple, pues si contrariamente a lo que se afirma,
+$q \neq \emptyset$, entonces $0 \in \operatorname{dom} q$ y por tanto
+existe $m \in \omega$ de modo que $q = \{(0, m)\}$. Como $p < q$ y de
+acuerdo con la definición de $\mathbb P$, se sigue que $p = q$, lo
+cual no es posible.
+
+Demostremos el inciso (ii) viendo que si
+$\langle p_i : i \in \omega \rangle$ es una sucesión decreciente de
+condiciones en $\mathbb P$, entonces existen $m \in \omega$ y
+$p \in \mathbb P$ de modo tal que $p_n = p$ para toda $n \geq m$. Si
+por el contrario, para cualquier $m \in \omega$ se tiene que existe
+$n \geq m$ para la cual $p_n \neq p_m$, entonces en particular para
+$m = 0$ debe ocurrir que $p_n \neq p_0$ para alguna $n \geq 0$.
+Notemos que $n > 0$. Así, $p_n < p_0$, pues $p_n \neq p_0$ y son
+ambos elementos de una sucesión decreciente (nótese que como $p_n$ es
+una extensión propia de $p_0$, se tiene que
+$0 \in \operatorname{dom} p_n$). Pero entonces, para cualquier
+$k \geq n$, se tiene que $p_k \leq p_n$ (y por ende,
+$0 \in \operatorname{dom} p_k$) y en particular, $p_k(0) = p_n(0)$,
+es decir, $p_n = p_k$, lo cual no es posible. En suma, hemos probado
+que toda sucesión decreciente en $\mathbb P$ tiene una cota inferior,
+es decir, $\mathbb P$ es $\omega$-cerrado.
+
+Probemos el inciso (iii). Sea $e : \mathbb P \to \mathbb Q$ definida
+mediante $e(p) = \emptyset$ si $p = \emptyset$ y
+$e(\{(0, n)\}) = (f \restriction n)^{\frown} 1$, para cada
+$n \in \omega$.
+
+Comprobemos que $e$ es un encaje denso verificando en primera
+instancia que $e$ preserva el orden. Sean $p, q \in \mathbb P$ tales
+que $p \leq q$. Si ocurre que $p < q$, entonces por la Afirmación (i),
+se sigue que $q = \emptyset$. De donde, $e(q) = \emptyset$ y, por
+tanto, $e(p) \leq e(q)$. De ocurrir $p = q$, entonces $e(p) = e(q)$ y
+se sigue preservando el orden.
+
+Demos paso a probar que nuestra función $e$ preserva la
+incompatibilidad. Sean $p, q \in \mathbb P$ tales que $p \perp q$.
+Observemos que ninguna de estas funciones es $\emptyset$, pues toda
+condición en $\mathbb P$ es compatible con la función $\emptyset$.
+Así, existen $n, m \in \omega$ de modo tal que $p = \{(0, n)\}$ y
+$q = \{(0, m)\}$. Sin perder la generalidad, supongamos que $n < m$.
+De este modo, $e(p)(n) = 1$ y $e(q)(n) = 0$, pues $n < m$. Por tanto,
+$e(p) \perp e(q)$.
+
+Finalmente, comprobemos que $e\,{}''\mathbb P$ es un subconjunto denso
+de $\mathbb Q$. Sea $q \in \mathbb Q$. Si $q = \emptyset$, entonces la
+imagen bajo $e$ de cualquier elemento de $\mathbb P$ es una extensión
+de $q$. Ahora bien, si $q \neq \emptyset$, entonces existe
+$n \in \omega$ de modo que $q = (f \restriction n)^{\frown} k$ con
+$k \in \{0, 1\}$. Así, si por un lado, $q = (f \restriction n)^{\frown} 0$,
+entonces $q = f \restriction (n+1)$ y, por lo tanto,
+$(f \restriction (n+1))^{\frown} 1 = e(\{(0, n+1)\})$ y
+$e(\{(0, n+1)\}) \leq q$. Si por otro lado,
+$q = (f \restriction n)^{\frown} 1$, entonces $q = e(\{(0, n)\})$ y se
+tiene el resultado.
+
+De acuerdo con el @thm-igualdadextensiones, sabemos que si
+$\mathbb P \leq_d \mathbb Q$, entonces la extensión genérica dada por
+$\mathbb P$ es la misma que la dada por $\mathbb Q$. De esta forma y
+por el ejemplo anterior, si $\mathbb P$ es $\kappa$-cerrado y
+$\mathbb P \leq_d \mathbb Q$, entonces $\mathbb Q$ no añade nuevos
+subconjuntos de $\kappa$ a pesar de que $\mathbb Q$ no necesariamente
+es $\kappa$-cerrado.
+
+Nos interesa ahora hablar de órdenes parciales denominados
+$\kappa$-distributivos. Estos órdenes son interesantes porque no
+añaden funciones nuevas de $\kappa$ en $2$ (una prueba puede
+encontrarse en [@jech, Theorem 15.6, p. 228]). Sabemos por la
+@prp-nadanuevo que $2^{<\omega_1}$ no añade un nuevo real cuando
+$\kappa = \omega$, así que la pregunta natural es si este orden
+parcial es $\omega$-distributivo.
+
+::: {#def-abierto-kappadistributivo}
+Sea $\mathbb P$ un orden parcial.
+
+1. Un subconjunto $U \subseteq \mathbb P$ será llamado **abierto** si
+   para cualesquiera $p \in U$ y $q \leq p$, se tiene que $q \in U$.
+2. Si $\kappa$ es un cardinal infinito, $\mathbb P$ es
+   **$\kappa$-distributivo** si para cada sucesión
+   $\{D_\alpha : \alpha < \kappa\}$ de densos abiertos en $\mathbb P$,
+   se tiene que $\bigcap_{\alpha < \kappa} D_\alpha$ es denso.
+:::
+
+Observemos que la intersección de $\kappa$ subconjuntos densos
+abiertos siempre es abierta. En efecto, si
+$\{D_\alpha : \alpha < \kappa\}$ es tal colección y
+$D = \bigcap_{\alpha < \kappa} D_\alpha$, entonces $D$ es abierto,
+pues si $p \in D$ y $q \leq p$, entonces $p \in D_\alpha$, para toda
+$\alpha < \kappa$. Como cada $D_\alpha$ es abierto, se sigue que
+$q \in D_\alpha$. Luego, $q \in D$.
+
+::: {#lem-cerrado-implica-distributivo}
+Si $\mathbb P$ es $\kappa$-cerrado, entonces $\mathbb P$ es
+$\kappa$-distributivo.
+:::
+
+::: {.proof}
+Sea $\{D_\alpha : \alpha < \kappa\}$ una sucesión de subconjuntos
+densos abiertos en $\mathbb P$. Verifiquemos que
+$D = \bigcap_{\alpha < \kappa} D_\alpha$ es un conjunto denso en
+$\mathbb P$. Por inducción sobre $\alpha < \kappa$, probemos que
+existe $\langle p_\alpha : \alpha < \kappa \rangle$ de modo que:
+
+- (i) $p_0 \leq p$,
+- (ii) para cada $\alpha < \kappa$, se tiene que $p_\alpha \in D_\alpha$;
+  y
+- (iii) si $\alpha < \beta < \kappa$, entonces $p_\beta \leq p_\alpha$.
+
+Sea $p \in \mathbb P$. Así, existe $p_0 \in D_0$ tal que $p_0 \leq p$.
+Ahora bien, supongamos que para alguna $\alpha < \kappa$, la sucesión
+$\langle p_\xi : \xi < \alpha \rangle$ satisface (i), (ii) y (iii).
+Como $\mathbb P$ es $\kappa$-cerrado, existe $r \in \mathbb P$ de
+modo que para cada $\xi < \alpha$, se tiene que $r \leq p_\xi$. Dada
+la densidad de $D_\alpha$, existe $p_\alpha \in D_\alpha$ tal que
+$p_\alpha \leq r$. Por tanto, $p_\alpha \leq p_\xi$ y
+$p_\alpha \in D_\alpha$. Esto completa la inducción y, por ende,
+existe la sucesión mencionada. Entonces, dado que $\mathbb P$ es
+$\kappa$-cerrado, existe $q \in D$ de modo que $q \leq p_\alpha$,
+para cada $\alpha < \kappa$. Por tanto, $q \leq p$ y $q \in D$.
+:::
+
+De acuerdo con la prueba de la @prp-nadanuevo, $2^{<\omega_1}$ es
+$\omega$-cerrado. Así, se sigue del lema anterior que $2^{<\omega_1}$
+es $\omega$-distributivo.
+
+El resultado presentado a continuación adquiere importancia porque nos
+muestra que la $\kappa$-distributividad se preserva bajo encajes
+densos.
+
+::: {#prp-distributividad-preservada}
+Sea $e : \mathbb P \to \mathbb Q$ un encaje denso. Entonces lo
+siguiente se satisface:
+
+1. Si $D$ es un abierto denso en $\mathbb Q$, entonces $e^{-1}[D]$ es
+   un abierto denso en $\mathbb P$.
+2. Si $\mathbb P$ es $\kappa$-distributivo, entonces $\mathbb Q$ es
+   $\kappa$-distributivo.
+:::
+
+::: {.proof}
+Probemos el inciso (1). Sean $p \in e^{-1}[D]$ y $q \in \mathbb P$
+tales que $q \leq p$. Entonces $e(p) \in D$ y $e(q) \leq e(p)$. Como
+$D$ es abierto en $\mathbb Q$, se tiene que $e(q) \in D$. Luego,
+$q \in e^{-1}[D]$. En suma, $e^{-1}[D]$ es abierto. Verifiquemos que
+$e^{-1}[D]$ es un conjunto denso en $\mathbb P$. Sea $p \in \mathbb P$.
+Así, $e(p) \in \mathbb Q$ y dada la densidad de $D$, existe $q \in D$
+de modo que $q \leq e(p)$. Ahora bien, puesto que $e\,{}''\mathbb P$ es
+un conjunto denso en $\mathbb Q$, se tiene que para cierta
+$p_0 \in \mathbb P$, $e(p_0) \leq q$. Luego, $e(p_0) \leq e(p)$ y en
+particular, $e(p_0) \mid e(p)$. Por ende, $p_0 \mid p$. Sea
+$p_1 \leq p_0, p$. De este modo, $e(p_1) \leq e(p_0)$ y, como
+$e(p_0) \leq q$, se sigue que $e(p_1) \leq q$. En consecuencia,
+$e(p_1) \in D$ pues $q \in D$. En suma, $p_1 \in e^{-1}[D]$ y
+$p_1 \leq p$.
+
+Demostremos ahora el inciso (2). Sea
+$\{D_\alpha : \alpha < \kappa\}$ una sucesión de densos abiertos en
+$\mathbb Q$. Hagamos $D = \bigcap_{\alpha < \kappa} D_\alpha$ y
+verifiquemos la densidad de $D$. Sea $q \in \mathbb Q$. Así, existe
+$p_0 \in \mathbb P$ tal que $e(p_0) \leq q$. Dado que cada $D_\alpha$
+es denso y abierto, se sigue del inciso (1) que
+$\{e^{-1}[D_\alpha] : \alpha < \kappa\}$ es una colección de densos
+abiertos en $\mathbb P$. Ahora bien, como $\mathbb P$ es
+$\kappa$-distributivo, el conjunto
+$E = \bigcap_{\alpha < \kappa} e^{-1}[D_\alpha]$ es un denso abierto
+en $\mathbb P$. Por tanto, existe $p \in E$ tal que $p \leq p_0$.
+Entonces $e(p) \in D$, $e(p) \leq e(p_0)$ y, como $e(p_0) \leq q$, se
+tiene el resultado.
+:::
+
+## Añadir un real de Cohen
+
+Nuestro objetivo principal de esta sección es probar que
+$\omega^{<\omega}$ se encaja densamente en toda noción de forcing
+numerable y no atómica (según la @def-ordennoatomico). De este modo,
+hacer forcing con cualquiera de ellas es equivalente a hacer forcing
+con $\operatorname{Fn}(\omega, 2)$, es decir, la noción de forcing que
+añade un real de Cohen. La prueba de este resultado será dividida en
+una serie de lemas.
+
+::: {#def-downarrow}
+Sea $p \in \mathbb P$. Definimos
+$p^{\downarrow} = \{r \in \mathbb P : r \leq p\}$.
+:::
+
+::: {#lem-anticadenas}
+Sea $\mathbb P$ un orden parcial sin átomos. Sean $p, q \in \mathbb P$
+compatibles. Entonces existe $A \subseteq \mathbb P$ tal que:
+
+1. $A$ es una anticadena infinita;
+2. para cualquier $r \in \mathbb P$, si $r \leq p$, entonces existe
+   $a \in A$ compatible con $r$;
+3. hay un elemento $a_0 \in A$ tal que $a_0 \leq q$; y
+4. $A \subseteq p^{\downarrow}$.
+:::
+
+::: {.proof}
+Existe $t \in \mathbb P$ tal que $t \leq p, q$.
+
+Afirmamos que existen $\langle r_i : i \in \omega \rangle \subseteq
+\mathbb P$ y $\langle s_i : i \in \omega \rangle \subseteq \mathbb P$
+tales que:
+
+- (a) $\langle r_i : i \in \omega \rangle$ es decreciente,
+- (b) $s_{i+1} \leq r_i$ para todo $i \in \omega$, y
+- (c) $r_i \perp s_i$ para cada $i \in \omega$.
+
+Como $\mathbb P$ es no atómico y $t \in \mathbb P$, se tiene que hay
+$r_0, s_0 \in \mathbb P$ tales que $r_0, s_0 \leq t$ y $r_0 \perp s_0$.
+Supongamos que para alguna $n \in \omega$ existen
+$\langle r_i : i \leq n \rangle$ y $\langle s_i : i \leq n \rangle$
+que satisfacen (a), (b) y (c). Nuevamente, como $\mathbb P$ es no
+atómico, existen $r_{n+1}, s_{n+1} \in \mathbb P$ tales que
+$r_{n+1}, s_{n+1} \leq r_n$ y $r_{n+1} \perp s_{n+1}$, lo cual
+finaliza la inducción.
+
+Sea $B = \{s_i : i \in \omega\}$. Veamos que $B$ es una anticadena.
+Supongamos, buscando una contradicción, que existen $n$ y $m$ de tal
+modo que $m < n$ y $s_n \mid s_m$. Así, hay $s \leq s_n, s_m$. Por
+construcción $s_n \leq r_m$, de donde se tiene que $s \leq r_m, s_m$
+lo cual contradice el inciso (c) de la afirmación anterior. Por lo
+tanto, cualesquiera dos elementos en $B$ con subíndices distintos son
+incompatibles, es decir, $B$ es una anticadena. $B$ es infinita pues
+al tomar dos índices distintos $n$ y $m$ hemos visto que
+$s_n \perp s_m$ y, por lo tanto, $s_n \neq s_m$.
+
+Por la @prp-extenderanticadenamaximal, $B$ se puede extender a una
+anticadena maximal infinita en $p^{\downarrow}$, digamos $A$.
+Comprobemos que $A$ satisface además las condiciones (2) y (3).
+
+Para verificar (2) tomemos $r \in p^{\downarrow}$ arbitrario. Como $A$
+es una anticadena maximal en $p^{\downarrow}$, se sigue de la
+@prp-equivalencia que existe $a \in A$ de tal modo que $a \mid r$.
+
+Finalmente, $A$ satisface (3) debido a que $B \subseteq A$ y
+$s \leq t \leq q$ para todo $s \in B$.
+:::
+
+La construcción de la anticadena $B$ en el @lem-anticadenas se puede
+visualizar como un árbol con raíz $t$ y, en cada paso, una bifurcación
+hacia dos hijos $r_i$ y $s_i$ con $r_i \perp s_i$. La rama "izquierda"
+sigue refinándose ($r_{i+1} \leq r_i$) mientras que cada $s_i$ se
+queda como elemento candidato para la anticadena $B$.
+
+Notemos que el resultado anterior implica que todo orden parcial sin
+átomos es infinito.
+
+Para los siguientes cuatro resultados consideraremos un orden parcial
+$\mathbb P$ numerable sin átomos y lo identificaremos como
+$\mathbb P = \{p_n : n \in \omega\}$ donde para cualesquiera
+$n, m \in \omega$, $n \neq m$ implica que $p_n \neq p_m$ y donde
+$p_0 = \mathbb{1}_{\mathbb P}$.
+
+::: {#lem-lemados}
+Existe una sucesión $\langle A_n : n \in \omega \rangle$ de anticadenas
+en $\mathbb P$ tal que para cada $n \in \omega$:
+
+1. $A_n$ es una anticadena maximal infinita en $\mathbb P$;
+2. existe $a \in A_n$ tal que $a \leq p_n$;
+3. para todo $x \in A_n$, $|\{y \in A_{n+1} : y \leq x\}| = \omega$;
+   y
+4. para cada $y \in A_{n+1}$ existe $x \in A_n$ tal que $y \leq x$.
+:::
+
+::: {.proof}
+Consideremos $p_0 \in \mathbb P$. Por el @lem-anticadenas, existe
+$A_0 \subseteq \mathbb P$ que satisface las condiciones del
+@lem-anticadenas tomando $p = p_0 = q$.
+
+Supongamos que para alguna $n \in \omega$ existe
+$\langle A_i : i \leq n \rangle$ que satisface (1), (2), (3) y (4).
+Como $A_n$ es maximal en $\mathbb P$, por la @prp-equivalencia, para
+alguna $a_n \in A_n$ se tiene que $a_n \mid p_{n+1}$. Hagamos $p = a_n$
+y $q = p_{n+1}$ en el @lem-anticadenas y obtengamos una anticadena
+$A_n(a_n)$ la cual satisface los incisos del @lem-anticadenas.
+
+Para cada $x \in A_n \setminus \{a_n\}$ hagamos $p = x = q$ en el
+@lem-anticadenas para obtener una anticadena $A_n(x)$ que satisface las
+condiciones del @lem-anticadenas.
+
+Definamos $A_{n+1} = \bigcup \{A_n(x) : x \in A_n\}$ y veamos que
+$A_{n+1}$ satisface (1), (2), (3) y (4).
+
+Verifiquemos que $A_{n+1}$ satisface el inciso (1). Sean
+$y, z \in A_{n+1}$ y supongamos que $y \mid z$. Así, $y \in A_n(x)$ y
+$z \in A_n(x')$ para algunos $x, x' \in A_n$ y además existe
+$w \in A_{n+1}$ tal que $w \leq y, z$. Como $y \leq x$ y $z \leq x'$,
+se tiene que $w \leq x, x'$, esto es $x \mid x'$, donde
+$x, x' \in A_n$, la cual es una anticadena, por lo tanto $x = x'$. De
+donde, $y, z \in A_n(x)$, por lo que $z = y$. Por tanto, $A_{n+1}$ es
+una anticadena.
+
+Para ver que $A_{n+1}$ es una anticadena maximal tomemos
+$r \in \mathbb P$ y veamos que $A_{n+1}$ cumple la equivalencia de la
+@prp-equivalencia. Como $A_n$ es una anticadena maximal en $\mathbb P$,
+por la @prp-equivalencia, para alguna $x \in A_n$ ocurre que
+$x \mid r$. Sea $r' \in \mathbb P$ tal que $r' \leq x, r$. Como
+$A_n(x)$ satisface la condición (2) del @lem-anticadenas, donde
+$p = x$, se tiene que existe $a \in A_n(x)$ compatible con $r'$. Así,
+para alguna condición $a' \leq a, r'$, tenemos que $a' \leq a, r$ y,
+por tanto, $a \mid r$.
+
+La anticadena $A_{n+1}$ satisface (2), pues por nuestra construcción
+$A_n(a_n) \subseteq A_{n+1}$ y por el @lem-anticadenas (3), existe
+$a \in A_n(a_n)$ tal que $a \leq p_n$.
+
+Sea $x \in A_n$ y verifiquemos (3). Nuestra definición de $A_n(x)$
+garantiza que $A_n(x) \subseteq x^{\downarrow}$ por el
+@lem-anticadenas (4), mientras que por el @lem-anticadenas (1),
+$|A_n(x)| = \omega$. Por definición de $A_{n+1}$,
+$A_n(x) \subseteq A_{n+1}$, por lo cual
+$|\{y \in A_{n+1} : y \leq x\}| = \omega$.
+
+Ahora probemos (4). Sea $y \in A_{n+1}$ arbitrario. Por definición de
+$A_{n+1}$, $y \in A_n(x)$ para algún $x \in A_n$ y en consecuencia
+$y \leq x$.
+:::
+
+En los siguientes resultados, la colección $\{A_n : n \in \omega\}$ es
+la sucesión de anticadenas descrita en el enunciado del @lem-lemados.
+
+Consideremos $\mathbb Q = \omega^{<\omega}$ y veamos qué relación hay
+entre $\mathbb Q_n = \{p : \operatorname{dom} p = n+1\} \subseteq
+\mathbb Q$ y $A_n \subseteq \mathbb P$ para cada $n \in \omega$.
+
+::: {#lem-biyecciones}
+Existe $\langle e_i : i \in \omega \rangle$ tal que para todo
+$i < \omega$:
+
+1. $e_i : \mathbb Q_i \to A_i$, donde $e_i$ es una función biyectiva;
+2. si $p \in \mathbb Q_{n+1}$ y $r \in \mathbb Q_i$, con $i \leq n$ y
+   $p \leq r$, entonces $e_{n+1}(p) \leq e_i(r)$; y
+3. si $p \in \mathbb Q_{n+1}$ y $r \in \mathbb Q_i$, con $i \leq n$,
+   son tales que $p \perp r$, entonces $e_{n+1}(p) \perp e_i(r)$.
+:::
+
+::: {.proof}
+Por inducción finita construiremos las funciones deseadas entre cada
+$\mathbb Q_n$ y $A_n$.
+
+Se tiene que $\mathbb Q_0 = \{p : \operatorname{dom} p = 1\}$ y
+$|\mathbb Q_0| = |A_0| = \omega$. Así, consideramos $e_0$ cualquier
+biyección entre $\mathbb Q_0$ y $A_0$.
+
+Supongamos que para alguna $n \in \omega$ la sucesión
+$\langle e_i : i \leq n \rangle$ satisface (1), (2) y (3).
+
+Para cada $p \in \mathbb Q_n$ definimos
+$\mathbb Q_n(p) = \{q \in \mathbb Q_{n+1} : q \leq p\}$.
+
+Observemos lo siguiente:
+
+- (i) Como $\mathbb Q_n(p) = \{p^{\frown} i : i \in \omega\}$, se
+  tiene que $|\mathbb Q_n(p)| = \omega$.
+- (ii) Si $p, r \in \mathbb Q_n$, con $p \neq r$, entonces
+  $\mathbb Q_n(p) \cap \mathbb Q_n(r) = \emptyset$. Por contrapositiva,
+  si $q \in \mathbb Q_n(p) \cap \mathbb Q_n(r)$, entonces
+  $q \leq p, r$, es decir, $p \mid r$, y por tanto $p = r$.
+- (iii) Para cada $x \in A_n \subseteq \mathbb P$, definimos
+  $A_n(x) := \{r \in A_{n+1} : r \leq x\}$. Por el @lem-lemados (3),
+  $|A_n(x)| = \omega$, mientras que por el inciso (4) del mismo lema,
+  se tiene que $A_{n+1} = \bigcup \{A_n(x) : x \in A_n\}$.
+- (iv) Se tiene que $A_n(x)$ y $A_n(y)$ son ajenas siempre que
+  $x \neq y$. En efecto, si ocurre que $r \in A_n(x) \cap A_n(y)$,
+  entonces $r \in A_{n+1}$ y $r \leq x, y$, es decir $x, y \in A_n$
+  son compatibles, esto es, $x = y$.
+
+Para cada $p \in \mathbb Q_n$ fijamos una biyección
+$e_n^p : \mathbb Q_n(p) \to A_n(e_n(p))$. Notemos que de acuerdo con
+(iii), $A_{n+1} = \bigcup \{A_n(e_n(p)) : p \in \mathbb Q_n\}$.
+
+Sea $e_{n+1} := \bigcup \{e_n^p : p \in \mathbb Q_n\}$. Se tiene que
+$e_{n+1}$ es una función, pues por (ii) los dominios de las funciones
+$e_n^p$ son ajenos por pares. Ahora verifiquemos que $e_{n+1}$ es una
+función biyectiva entre $\mathbb Q_{n+1}$ y $A_{n+1}$ que además
+satisface (2) y (3).
+
+Para verificar el inciso (1) notemos primero que
+$\operatorname{dom} e_{n+1} = \bigcup \{\operatorname{dom} e_n^p :
+p \in \mathbb Q_n\}$. Como $\operatorname{dom} e_n^p = \mathbb Q_n(p)$
+para cada $p \in \mathbb Q_n$, se tiene que
+$\operatorname{dom} e_{n+1} = \bigcup \{\mathbb Q_n(p) :
+p \in \mathbb Q_n\}$. Probemos ahora que
+$\operatorname{dom} e_{n+1} = \mathbb Q_{n+1}$.
+
+Veamos que todo elemento de $\operatorname{dom} e_{n+1}$ es un
+elemento de $\mathbb Q_{n+1}$. Así, si
+$p' \in \operatorname{dom} e_{n+1}$, entonces $p' \in \mathbb Q_n(p)$
+para alguna $p \in \mathbb Q_n$. Pero por la definición de
+$\mathbb Q_n(p)$, $p' \in \mathbb Q_{n+1}$ y, por tanto,
+$\operatorname{dom} e_{n+1} \subseteq \mathbb Q_{n+1}$.
+
+Verifiquemos la contención restante. Si $p \in \mathbb Q_{n+1}$,
+entonces $p \restriction n+1 \in \mathbb Q_n$ y
+$p \leq p \restriction n+1$. Por lo tanto,
+$p \in \mathbb Q_n(p \restriction n+1)$, con lo que
+$p \in \operatorname{dom} e_{n+1}$.
+
+Veamos ahora que $e_{n+1}$ es una función inyectiva. Sean
+$p_1, p_2 \in \operatorname{dom} e_{n+1}$ con $p_1 \neq p_2$. Por la
+definición de $e_{n+1}$, existen $p, r \in \mathbb Q_n$ tales que
+$p_1 \in \mathbb Q_n(p)$ y $p_2 \in \mathbb Q_n(r)$. De este modo, si
+$p = r$, entonces $e_n^p(p_1) \neq e_n^p(p_2)$ por ser $e_n^p$ una
+biyección. Ahora bien, si $p \neq r$, entonces $e_n(p) \neq e_n(r)$
+por hipótesis inductiva. De donde, por (iv),
+$A_n(e_n(p)) \cap A_n(e_n(r)) = \emptyset$. Como
+$e_n^p(p_1) \in A_n(e_n(p))$ y $e_n^r(p_2) \in A_n(e_n(r))$, se tiene
+que $e_n^p(p_1) \neq e_n^r(p_2)$. En vista de que
+$e_{n+1}(p_1) = e_n^p(p_1)$ y $e_{n+1}(p_2) = e_n^r(p_2)$, se obtiene
+el resultado.
+
+Observemos que
+$$
+\operatorname{Im}(e_{n+1}) = \bigcup \{\operatorname{Im}(e_n^p) :
+p \in \mathbb Q_n\} = \bigcup \{A_n(e_n(p)) : p \in \mathbb Q_n\} =
+A_{n+1}.
+$$
+
+Afirmamos que se cumple lo siguiente:
+
+(v) $e_{n+1}(p) \leq e_n(p \restriction n+1)$ para cualquier
+$p \in \mathbb Q_{n+1}$. En efecto, si $p \in \mathbb Q_{n+1}$,
+entonces $(p \restriction n+1) \in \mathbb Q_n$. Dado que
+$p \leq p \restriction n+1 \in \mathbb Q_n$, se obtiene que
+$p \in \mathbb Q_n(p \restriction n+1)$. Así,
+$e_{n+1}(p) \in A_n(e_n(p \restriction n+1))$, por lo que
+$e_{n+1}(p) \leq e_n(p \restriction n+1)$.
+
+Para probar el inciso (2) tomemos $p \in \mathbb Q_{n+1}$ y
+$r \in \mathbb Q_i$ con $i \leq n$ y tales que $p \leq r$. Puesto que
+$(p \restriction n+1) \in \mathbb Q_n$ y además
+$(p \restriction n+1) \leq r$, se sigue, por la hipótesis inductiva,
+que $e_n(p \restriction n+1) \leq e_i(r)$. De acuerdo con lo anterior
+y por (v), se obtiene que $e_{n+1}(p) \leq e_i(r)$.
+
+Resta probar el inciso (3). Sean $p \in \mathbb Q_{n+1}$ y
+$r \in \mathbb Q_i$, con $i \leq n$ y de modo que $p \perp r$.
+
+Como $(p \restriction n+1) \in \mathbb Q_n$, se tiene que
+$r \perp (p \restriction n+1)$. En efecto, $p \perp r$ si y sólo si
+$p \cup r$ no es una función, esto es, existe
+$k \in \operatorname{dom} p \cap \operatorname{dom} r$ tal que
+$p(k) \neq r(k)$. Ahora bien, por hipótesis, $i \leq n$, de donde
+$i + 1 \leq n + 1 = \operatorname{dom}(p \restriction n+1)$. Como
+$k \in \operatorname{dom} r$, se tiene que $k < i + 1 \leq n + 1$,
+es decir, $k \in \operatorname{dom}(p \restriction n+1) \cap
+\operatorname{dom} r$. Como además
+$p(k) = (p \restriction n+1)(k)$, se tiene entonces que
+$(p \restriction n+1)(k) \neq r(k)$. Por tanto,
+$(p \restriction n+1) \perp r$ y, por la hipótesis inductiva,
+$e_i(r) \perp e_n(p \restriction n+1)$.
+
+Afirmamos que $e_{n+1}(p) \perp e_i(r)$. En caso contrario,
+existiría $s \leq e_{n+1}(p), e_i(r)$. De donde, por (v),
+$s \leq e_i(r), e_n(p \restriction n+1)$, lo cual es una contradicción
+a lo probado en el párrafo anterior.
+:::
+
+Finalmente nos encontramos en posesión de todos los elementos
+necesarios para probar el teorema anunciado al inicio de la sección.
+
+::: {#thm-cohen}
+Si $\mathbb P$ es un orden parcial numerable y sin átomos, entonces
+$\omega^{<\omega} \leq_d \mathbb P$.
+:::
+
+::: {.proof}
+Consideremos los elementos de la sucesión
+$\langle e_n : n \in \omega \rangle$, la cual queda garantizada por
+el @lem-biyecciones.
+
+Sea $e := \big(\bigcup_{n \in \omega} e_n\big) \cup
+            \{(\emptyset, \mathbb{1}_{\mathbb P})\}$.
+
+Observamos que $\operatorname{dom} e =
+\bigcup_{n \in \omega} \operatorname{dom} e_n \cup \{\emptyset\} =
+\bigcup_{n \in \omega} \mathbb Q_n \cup \{\emptyset\} =
+\omega^{<\omega}$. Ahora bien,
+$\operatorname{Im}(e) = \bigcup_{n \in \omega} \operatorname{Im}(e_n)
+\cup \{\mathbb{1}_{\mathbb P}\} = \bigcup_{n \in \omega} A_n \cup
+\{\mathbb{1}_{\mathbb P}\}$.
+
+Afirmamos que $e : \omega^{<\omega} \to \mathbb P$ es un encaje denso.
+
+En efecto, $e$ es una función, pues para cualesquiera
+$n, m \in \omega$, $n \neq m$ implica que
+$\mathbb Q_n \cap \mathbb Q_m = \emptyset$. Esto se verifica, pues si
+existe $p \in \mathbb Q_n \cap \mathbb Q_m$, entonces, por definición
+de $\mathbb Q_n$ y $\mathbb Q_m$, se tiene que
+$\operatorname{dom} p = n+1$ y $\operatorname{dom} p = m+1$, con lo
+cual $n = m$.
+
+Sea $p \in \mathbb P$ y veamos que $\operatorname{Im}(e)$ es densa en
+$\mathbb P$. Recordemos que previo al @lem-lemados fijamos una
+enumeración para $\mathbb P$. Así, $p = p_k$ para alguna $k \in \omega$.
+De acuerdo al @lem-lemados (2), existe $a \in A_k$ tal que
+$a \leq p_k$. Pero entonces $a \in \operatorname{Im}(e)$ y
+$a \leq p_k$.
+
+Sean $p, q \in \omega^{<\omega}$ tales que $p \leq q$ y probemos que
+$e$ preserva el orden. Empecemos con los casos triviales. Si
+$q = \emptyset$, entonces $e(p) \leq e(q)$, pues
+$e(q) := \mathbb{1}_{\mathbb P}$. Si se da el caso $q \neq \emptyset$
+y $p = q$, entonces $e(p) = e(q)$ y se cumple el resultado.
+Supongamos entonces que $p < q$ con $q \neq \emptyset$. Sean
+$\operatorname{dom} p = m + 1$ y $\operatorname{dom} q = i + 1$. Como
+$p < q$, se tiene que $i + 1 < m + 1$, de donde $i < m$. Haciendo
+$n := m - 1$, obtenemos $i \leq n$ y $n + 1 = m$. Así, por el
+@lem-biyecciones (2), $e_m(p) \leq e_i(q)$. Pero por la definición
+de $e$, $e(p) = e_m(p)$ y $e(q) = e_i(q)$. Por tanto,
+$e(p) \leq e(q)$.
+
+Probemos que $e$ preserva la incompatibilidad. Sean
+$p, q \in \omega^{<\omega}$ tales que $p \perp q$. Observemos que en
+ningún caso $p$ y $q$ son la función $\emptyset$, pues para toda
+$s \in \omega^{<\omega}$, $s \leq \emptyset$ y en particular,
+$s \mid \emptyset$. Así, existen $m, i \in \omega$ tales que
+$p \in \mathbb Q_m$ y $q \in \mathbb Q_i$. Si $m = i$, ocurre que
+$p, q \in \mathbb Q_m$, entonces por el @lem-biyecciones (1),
+$e_m(p) \neq e_m(q)$ y $e_m(p), e_m(q) \in A_m$. De donde
+$e_m(p) \perp e_m(q)$, es decir, $e(p) \perp e(q)$.
+
+Ahora bien, si $m \neq i$, supongamos sin perder la generalidad que
+$m > i$. Así, haciendo $n := m - 1 \geq i$ se tiene que $n + 1 = m$,
+con lo que $p \in \mathbb Q_{n+1}$ y $q \in \mathbb Q_i$ con
+$i \leq n$. Por el @lem-biyecciones (3), $e_m(p) \perp e_i(q)$, es
+decir, $e(p) \perp e(q)$.
+:::
+
+Ahora bien, órdenes del tipo $\operatorname{Fn}(\omega, 2)$ y
+$\operatorname{Fn}(\omega, \omega)$ son numerables y no atómicos. Esto
+último se verifica, pues si, por ejemplo,
+$p \in \operatorname{Fn}(\omega, 2)$, entonces dado que $|p| < \omega$
+y $\operatorname{dom} p \subseteq \omega$, es posible tomar
+$n \in \omega \setminus \operatorname{dom} p$. De este modo,
+$r = p \cup \{(n, 0)\}$ y $q = p \cup \{(n, 1)\}$ son ambas extensiones
+de $p$ en $\operatorname{Fn}(\omega, 2)$, incompatibles entre sí. El
+mismo argumento permite ver que $\operatorname{Fn}(\omega, \omega)$ es
+una noción no atómica. Asimismo, $2^{<\omega}$ es un orden parcial
+numerable sin átomos (véanse los comentarios posteriores a la
+@def-concatenacion). Por tanto, es un corolario del teorema anterior
+que todos los órdenes de esta naturaleza producen la misma extensión
+genérica que $\omega^{<\omega}$.
+
+Es interesante observar que en el @thm-cohen no es posible prescindir
+de la hipótesis de la numerabilidad para $\mathbb P$.
+
+Para verificar esta observación consideremos $\kappa$ un cardinal
+infinito y los órdenes $2^{<\omega}$ y
+$\operatorname{Fn}(\kappa, 2)$. Pensamos a $2^{<\omega}$ como
+suborden de $\operatorname{Fn}(\kappa, 2)$.
+
+Observemos que en este caso, la inclusión
+$i : 2^{<\omega} \to \operatorname{Fn}(\kappa, 2)$ es un encaje
+completo. La función $i$ preserva el orden y la incompatibilidad
+trivialmente. Recurriendo a la equivalencia del @thm-equivalenciaencaje,
+verifiquemos que todo elemento en $\operatorname{Fn}(\kappa, 2)$
+admite una $i$-reducción a $2^{<\omega}$. Sea
+$q \in \operatorname{Fn}(\kappa, 2)$. De este modo tenemos que
+$|\omega \cap \operatorname{dom} q| < \omega$. En otras palabras,
+existe $n \in \omega$ de tal suerte que
+$(\omega \cap \operatorname{dom} q) \subseteq n$. Afirmamos que la
+función $r : n \to 2$ definida por
+$$
+r(m) = \begin{cases} q(m), & \text{si } m \in \operatorname{dom} q, \\
+                     0,    & \text{en otro caso}
+\end{cases}
+$$
+es una $i$-reducción de $q$ a $2^{<\omega}$. Sea $p \leq r$, es decir,
+$r \subseteq p$. Probemos que $i(p) = p$ es compatible con $q$, es
+decir, que $p \cup q$ es una función. Para tal efecto tomemos
+$m \in \operatorname{dom} p \cap \operatorname{dom} q$. Así,
+$m \in \operatorname{dom} p \in \omega$ y
+$m \in \operatorname{dom} q$, lo que implica que $r(m) = q(m)$. Ahora
+bien, como $r \subseteq p$, se sigue que $p(m) = r(m)$ y, por tanto,
+$p(m) = q(m)$, lo que prueba la afirmación.
+
+Por lo anterior, $2^{<\omega} \leq_c \operatorname{Fn}(\kappa, 2)$.
+De este modo, el @thm-encajeuno garantiza que la extensión genérica
+dada por $\operatorname{Fn}(\kappa, 2)$ contiene a la extensión dada
+por $2^{<\omega}$. Así, dado que la @prp-unnuevoreal establece que al
+hacer forcing vía $2^{<\omega}$ se agrega un nuevo real, se tiene
+que la noción de forcing $\operatorname{Fn}(\kappa, 2)$ hace lo propio.
+
+Hagamos $\mathbb P := \{p : p \subseteq \kappa \times 2 \,\&\,
+p \text{ es función} \,\&\, |p| \leq \omega\}$, y
+$\mathbb Q := \operatorname{Fn}(\kappa, 2)$, ambos ordenados por la
+contención inversa.
+
+En lo que resta de nuestro ejemplo supondremos que $\kappa^{\omega} =
+\kappa$. Esta propiedad la tiene, por ejemplo, el continuo
+$\mathfrak{c}$. En otras palabras: si $\kappa = \mathfrak{c} =
+2^{\omega}$, entonces $\kappa^{\omega} = (2^{\omega})^{\omega} =
+2^{\omega} = \mathfrak{c}$.
+
+La prueba de la @prp-nadanuevo se adapta fácilmente para probar que
+$\mathbb P$ no añade nuevas funciones de $\omega$ en $2$.
+
+Observemos ahora que $|\mathbb P| = \kappa = |\mathbb Q|$. Notemos que
+$\{\{(\alpha, 0)\} : \alpha < \kappa\}$ es un subconjunto tanto de
+$\mathbb P$ como de $\mathbb Q$. Así, tanto $\mathbb P$ como
+$\mathbb Q$ tienen cardinalidad al menos $\kappa$. Ahora bien,
+$\mathbb P \subseteq [\kappa \times 2]^{\leq \omega}$. En suma,
+$|\mathbb P| \leq |[\kappa \times 2]^{\leq \omega}| =
+|[\kappa]^{\leq \omega}| = \kappa^{\omega} = \kappa$.
+
+Por otro lado, como $\mathbb Q \subseteq [\kappa \times 2]^{<\omega}$,
+se tiene que $|\mathbb Q| \leq |[\kappa \times 2]^{<\omega}| \leq
+\kappa$.
+
+Veamos en última instancia que tanto $\mathbb P$ como $\mathbb Q$
+carecen de átomos: si $p \in \mathbb P$, podemos tomar
+$\alpha \in \kappa \setminus \operatorname{dom} p$. Así,
+$r = p \cup \{(\alpha, 0)\}$ y $q = p \cup \{(\alpha, 1)\}$ son ambas
+extensiones de $p$ en $\mathbb P$, incompatibles entre sí. El mismo
+argumento prueba que $\mathbb Q$ no tiene átomos.
+
+En suma, $\mathbb P$ y $\mathbb Q$ son dos órdenes parciales no
+numerables y sin átomos, ninguno de ellos encajado densamente en el
+otro, pues de ocurrir lo contrario, $\mathbb P$ y $\mathbb Q$
+producirían las mismas extensiones genéricas, hecho que no es posible
+puesto que $\mathbb P$ no añade nuevas funciones de $\omega$ en $2$
+mientras que $\mathbb Q$ sí lo hace.

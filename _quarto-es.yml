@@ -11,7 +11,7 @@ book:
   chapters:
     - index.es.qmd
     - chapters/01-preliminares.es.qmd
-    # - chapters/02-encajes.es.qmd
+    - chapters/02-encajes.es.qmd
     # - chapters/03-aplicaciones.es.qmd
   page-footer:
     left: "© Alonso Celis"
