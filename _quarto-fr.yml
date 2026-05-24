@@ -12,6 +12,7 @@ book:
     - index.fr.qmd
     - chapters/01-preliminares.fr.qmd
     - chapters/02-encajes.fr.qmd
+    - chapters/03-aplicaciones.fr.qmd
   page-footer:
     left: "© Alonso Celis"
     right: "Site construit avec Quarto"
