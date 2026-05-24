@@ -31,5 +31,24 @@ original `.tex` al formato del sitio.
 
 Si esta obra te resulta útil:
 
-> Celis, A. *Encajes entre nociones de forcing*. Tesis de licenciatura,
-> Facultad de Ciencias, UNAM.
+> Celis Martínez, A. L. (2013). *Encajes entre nociones de forcing*.
+> Tesis de licenciatura, Facultad de Ciencias, UNAM.
+> <https://alonso-celis.github.io/Mathematics/>
+
+::: {.callout-tip collapse="true" title="BibTeX"}
+```bibtex
+@phdthesis{celis2013encajes,
+  author    = {Celis Mart{\'i}nez, Alonso Lenin},
+  title     = {Encajes entre nociones de forcing},
+  school    = {Facultad de Ciencias, UNAM},
+  type      = {Tesis de licenciatura},
+  year      = {2013},
+  url       = {https://alonso-celis.github.io/Mathematics/}
+}
+```
+:::
+
+Metadatos legibles por máquina en
+[`CITATION.cff`](https://github.com/Alonso-Celis/Mathematics/blob/main/CITATION.cff).
+Una vez emitido el DOI vía Zenodo, sustituirá el `url:` en la entrada
+anterior.

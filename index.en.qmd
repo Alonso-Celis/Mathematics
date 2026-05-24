@@ -31,5 +31,23 @@ translated.
 
 If you find this work useful:
 
-> Celis, A. *Embeddings between forcing notions* [Encajes entre nociones de
-> forcing]. Bachelor's thesis, School of Sciences, UNAM.
+> Celis Martínez, A. L. (2013). *Embeddings between forcing notions*
+> [*Encajes entre nociones de forcing*]. Bachelor's thesis, School of
+> Sciences, UNAM. <https://alonso-celis.github.io/Mathematics/>
+
+::: {.callout-tip collapse="true" title="BibTeX"}
+```bibtex
+@phdthesis{celis2013encajes,
+  author    = {Celis Mart{\'i}nez, Alonso Lenin},
+  title     = {Encajes entre nociones de forcing},
+  school    = {Facultad de Ciencias, UNAM},
+  type      = {Bachelor's thesis},
+  year      = {2013},
+  url       = {https://alonso-celis.github.io/Mathematics/}
+}
+```
+:::
+
+Machine-readable metadata in
+[`CITATION.cff`](https://github.com/Alonso-Celis/Mathematics/blob/main/CITATION.cff).
+Once a Zenodo DOI is issued, it will supersede the `url:` field above.
