@@ -19,7 +19,7 @@ book:
   search: true
   repo-url: https://github.com/Alonso-Celis/Mathematics
   repo-actions: [edit, source]
-  downloads: [pdf]
+  # downloads: [pdf]  # re-enable once TinyTeX is added to the CI runner
   sidebar:
     style: docked
     collapse-level: 1
@@ -61,14 +61,7 @@ format:
     fig-cap-location: bottom
     tbl-cap-location: top
     crossrefs-hover: true
-  pdf:
-    documentclass: scrbook
-    papersize: a4
-    geometry:
-      - margin=1in
-    keep-tex: false
-    pdf-engine: xelatex
-    cite-method: biblatex
+  # pdf: re-add and enable TinyTeX in the workflow to ship per-language PDFs.
 
 # Theorem / proof crossref labels (Quarto built-in)
 crossref:
