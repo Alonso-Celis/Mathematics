@@ -18,12 +18,20 @@ permissions:
 jobs:
   shoot:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.48.0-jammy
-      options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm init -y > /dev/null
+          npm install --save-dev playwright
+          npx playwright install --with-deps chromium
 
       - name: Capture screenshots
         env:
