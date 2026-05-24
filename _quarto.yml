@@ -22,7 +22,7 @@ book:
   search: true
   repo-url: https://github.com/Alonso-Celis/Mathematics
   repo-actions: [edit, source]
-  # downloads: [pdf]  # re-enable once TinyTeX is added to the CI runner
+  downloads: [pdf]
   sidebar:
     style: docked
     collapse-level: 1
@@ -57,7 +57,30 @@ format:
     fig-cap-location: bottom
     tbl-cap-location: top
     crossrefs-hover: true
-  # pdf: re-add and enable TinyTeX in the workflow to ship per-language PDFs.
+  pdf:
+    documentclass: scrbook
+    classoption:
+      - twoside
+      - openright
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+    pdf-engine: xelatex
+    number-sections: true
+    toc: true
+    toc-depth: 3
+    colorlinks: true
+    linkcolor: "Blue4"
+    urlcolor: "Blue4"
+    citecolor: "Blue4"
+    keep-tex: false
+    include-in-header:
+      text: |
+        % Math packages typically needed by Pandoc tex_math output
+        \usepackage{amsmath,amssymb,amsthm,mathtools}
+        \usepackage{dsfont}    % \mathds — kept for forward-compat if used
+        % Wider line spacing for theorem-heavy text
+        \linespread{1.15}\selectfont
 
 # Theorem / proof crossref titles are set per-profile.
 
